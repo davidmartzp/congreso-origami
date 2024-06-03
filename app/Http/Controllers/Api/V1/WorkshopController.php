@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\DB;
 class WorkshopController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Obtiene la lista de talleres en el sitio web.
      *
      * @return \Illuminate\Http\Response
      */
@@ -43,7 +43,7 @@ class WorkshopController extends Controller
     }
 
      /**
-     * Display a listing of the resource.
+     * Lista los talleres en el sitio web.
      *
      * @return \Illuminate\Http\Response
      */

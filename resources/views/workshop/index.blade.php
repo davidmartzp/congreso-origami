@@ -45,7 +45,6 @@ Talleres
     #table tbody tr:last-child td {
         border-bottom: none;
     }
-
 </style>
 
 @endsection
@@ -232,18 +231,7 @@ Talleres
 
 <script>
     var horarios = [
-        '8:00 a 9:00'
-        , '9:00 a 10:00'
-        , '10:00 a 10:15'
-        , '10:15 a 11:15'
-        , '11:15 a 12:15'
-        , '12:15 a 14:00'
-        , '14:00 a 15:00'
-        , '15:00 a 16:00'
-        , '16:00 a 16:15'
-        , '16:15 a 17:15'
-        , '17:15 a 18:00'
-        , '18:00 a 19:00'
+        '8:00 a 9:00', '9:00 a 10:00', '10:00 a 10:15', '10:15 a 11:15', '11:15 a 12:15', '12:15 a 14:00', '14:00 a 15:00', '15:00 a 16:00', '16:00 a 16:15', '16:15 a 17:15', '17:15 a 18:00', '18:00 a 19:00'
     ];
 
     // Generar la tabla de horarios
@@ -358,14 +346,14 @@ Talleres
         resaltarCelda('18:00', '19:00', 'Salón 4', 'Clausura del evento', 'D');
         resaltarCelda('18:00', '19:00', 'Salón 5', 'Clausura del evento', 'D');
 
- 	resaltarCelda('11:15', '12:15', 'Salón 1', 'Foto Grupal', 'D');
- 	resaltarCelda('11:15', '12:15', 'Salón 2', 'Foto Grupal', 'D');
- 	resaltarCelda('11:15', '12:15', 'Salón 3', 'Foto Grupal', 'D');
- 	resaltarCelda('11:15', '12:15', 'Salón 4', 'Foto Grupal', 'D');
- 	resaltarCelda('11:15', '12:15', 'Salón 5', 'Foto Grupal', 'D');
+        resaltarCelda('11:15', '12:15', 'Salón 1', 'Foto Grupal', 'D');
+        resaltarCelda('11:15', '12:15', 'Salón 2', 'Foto Grupal', 'D');
+        resaltarCelda('11:15', '12:15', 'Salón 3', 'Foto Grupal', 'D');
+        resaltarCelda('11:15', '12:15', 'Salón 4', 'Foto Grupal', 'D');
+        resaltarCelda('11:15', '12:15', 'Salón 5', 'Foto Grupal', 'D');
 
-
-        var phpObject = JSON.parse('<?php echo json_encode($workshops); ?>');
+        
+        var phpObject = JSON.parse('<?php echo addslashes(json_encode($workshops)); ?>');
 
         //dinamicamente llena la tabla con los horarios
         phpObject.forEach(element => {
@@ -430,19 +418,18 @@ Talleres
                         break;
 
                 }
-              
 
-                let level = element.level == "A" ? "Avanzado": element.level == "I" ? "Intermedio":"Principiante";
+
+                let level = element.level == "A" ? "Avanzado" : element.level == "I" ? "Intermedio" : "Principiante";
 
                 resaltarCelda(horaI, horaF, element.room == 'KIDS' ? 'Salón 5' : 'Salón ' + element.room,
-                             element.name + "<br>" +element.assistantName +" "+element.lastname+ "<br>"+level, element.day);
+                    element.name + "<br>" + element.assistantName + " " + element.lastname + "<br>" + level, element.day);
             }
         });
 
 
 
     });
-
 </script>
 
 
@@ -472,38 +459,33 @@ Talleres
         data.room = $("#room").val()
 
         $.ajax({
-            type: "PUT"
-            , url: URL + '/congreso/api/updateMenu'
-            , data: data
-            , dataType: "json"
-            , success: function(response) {
+            type: "PUT",
+            url: URL + '/congreso/api/updateMenu',
+            data: data,
+            dataType: "json",
+            success: function(response) {
                 if (response.success == false) {
 
                     Swal.fire(
-                        'No Actualizado'
-                        , response.message
-                        , 'warning'
+                        'No Actualizado', response.message, 'warning'
                     )
                     return false
                 }
 
                 Swal.fire(
-                    'Actualizados'
-                    , 'Su registro ha sido actualizado'
-                    , 'success'
+                    'Actualizados', 'Su registro ha sido actualizado', 'success'
                 )
 
                 setTimeout(() => {
                     location.reload();
                 }, 3000);
                 return false;
-            }
-            , error: function() {
+            },
+            error: function() {
                 return false;
             }
         });
     }
-
 </script>
 
 
@@ -526,36 +508,34 @@ Talleres
     $(".confirmar-varios").on("click", function() {
 
         Swal.fire({
-            text: "¿Desea confirmar " + datos.length + " registros?"
-            , icon: 'warning'
-            , showCancelButton: true
-            , confirmButtonColor: '#3085d6'
-            , cancelButtonColor: '#d33'
-            , confirmButtonText: '¡Si!'
-            , cancelButtonText: '¡No!'
+            text: "¿Desea confirmar " + datos.length + " registros?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si!',
+            cancelButtonText: '¡No!'
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log(datos)
                 $.ajax({
-                    type: "POST"
-                    , url: URL + '/congreso/api/confirmManyAttendees'
-                    , data: {
+                    type: "POST",
+                    url: URL + '/congreso/api/confirmManyAttendees',
+                    data: {
                         ids: datos
-                    }
-                    , dataType: "json"
-                    , success: function(data) {
+                    },
+                    dataType: "json",
+                    success: function(data) {
                         Swal.fire(
-                            'Actualizados'
-                            , 'Sus registros han sido confirmados'
-                            , 'success'
+                            'Actualizados', 'Sus registros han sido confirmados', 'success'
                         )
 
                         setTimeout(() => {
                             location.reload();
                         }, 3000);
                         return false;
-                    }
-                    , error: function() {
+                    },
+                    error: function() {
 
 
                         return false;
@@ -566,74 +546,73 @@ Talleres
     })
 
 
-   
 
-	$(document).ready(function () {
-		 //monta el datatables
-    let thetable = $('#table').DataTable({
-        dom: 'lBfrtip'
-        , buttons: ['excel', "print"]
-        , "columnDefs": [{
-            "targets": [8, 9, 10]
-            , "visible": false
-            , "searchable": false
-        }]
-        , lengthMenu: [
-            [10, 20, 30, -1]
-            , [10, 20, 30, 'Mostrar todos']
-        ]
-        , "createdRow": function(row, data, dataIndex) {
-            if (data[8] == "S" || data[8] == "D") {
-                $(row).addClass('listo');
+
+    $(document).ready(function() {
+        //monta el datatables
+        let thetable = $('#table').DataTable({
+            dom: 'lBfrtip',
+            buttons: ['excel', "print"],
+            "columnDefs": [{
+                "targets": [8, 9, 10],
+                "visible": false,
+                "searchable": false
+            }],
+            lengthMenu: [
+                [10, 20, 30, -1],
+                [10, 20, 30, 'Mostrar todos']
+            ],
+            "createdRow": function(row, data, dataIndex) {
+                if (data[8] == "S" || data[8] == "D") {
+                    $(row).addClass('listo');
+                }
+
+            },
+            "fnInitComplete": function() {
+                $('#table').addClass('compact');
+
+            },
+            "language": {
+                "decimal": ",",
+                "thousands": ".",
+                "lengthMenu": "Mostrar _MENU_ registros por página",
+                "zeroRecords": "No se encontraron registros",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(filtrando _MAX_ registros totales)",
+                "search": "Buscar:",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Último",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
             }
+        });
 
-        }
-        , "fnInitComplete": function() {
-            $('#table').addClass('compact');
 
-        }
-        , "language": {
-            "decimal": ","
-            , "thousands": "."
-            , "lengthMenu": "Mostrar _MENU_ registros por página"
-            , "zeroRecords": "No se encontraron registros"
-            , "info": "Mostrando página _PAGE_ de _PAGES_"
-            , "infoEmpty": "No hay registros disponibles"
-            , "infoFiltered": "(filtrando _MAX_ registros totales)"
-            , "search": "Buscar:"
-            , "paginate": {
-                "first": "Primero"
-                , "last": "Último"
-                , "next": "Siguiente"
-                , "previous": "Anterior"
-            }
-        }
+
+        // Escuchar el evento de cambio en los filtros y el orden
+        thetable.on('search.dt order.dt', function() {
+            // Obtener los valores de los filtros y el orden
+            var filters = thetable.search();
+            var order = thetable.order();
+
+            // Guardar los valores de los filtros y el orden en el almacenamiento local
+            localStorage.setItem('datatableFilters', filters);
+            localStorage.setItem('datatableOrder', JSON.stringify(order));
+        });
+
+        // Obtener los valores de los filtros y el orden desde el almacenamiento local
+        var filters = localStorage.getItem('datatableFilters');
+        var order = JSON.parse(localStorage.getItem('datatableOrder'));
+
+        // Aplicar los valores de los filtros y el orden a la tabla
+        thetable.search(filters).order(order).draw();
+
+
+
     });
-    
-	
-
-// Escuchar el evento de cambio en los filtros y el orden
-thetable.on('search.dt order.dt', function () {
-  // Obtener los valores de los filtros y el orden
-  var filters = thetable.search();
-  var order = thetable.order();
-
-  // Guardar los valores de los filtros y el orden en el almacenamiento local
-  localStorage.setItem('datatableFilters', filters);
-  localStorage.setItem('datatableOrder', JSON.stringify(order));
-});
-
-// Obtener los valores de los filtros y el orden desde el almacenamiento local
-var filters = localStorage.getItem('datatableFilters');
-var order = JSON.parse(localStorage.getItem('datatableOrder'));
-
-// Aplicar los valores de los filtros y el orden a la tabla
-thetable.search(filters).order(order).draw();
-
-
-
-	});
-
 </script>
 
 

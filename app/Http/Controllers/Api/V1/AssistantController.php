@@ -87,8 +87,6 @@ class AssistantController extends Controller
         self::send($assistant->paydate, $assistant->name . ' ' . $assistant->lastname, $assistant->email, $assistant->phone, $assistant->paymethod, $assistant->receipt, $assistant->country);
 
         echo json_encode(true);
-
-
     }
 
     public function send($date, $name, $email, $phone, $pm, $receipt, $country)
@@ -157,8 +155,8 @@ class AssistantController extends Controller
     }
 
     public function sendMails()
-    {   
- 
+    {
+
         $this->sendNumbers();
     }
 
@@ -230,11 +228,15 @@ class AssistantController extends Controller
         // Obtener la hora actual en Colombia
         $horaActual = Carbon::now('America/Bogota');
 
-        // Definir la fecha y hora de inicio del evento (20 de junio a las 8 AM)
-        $fechaInicio = Carbon::parse('2023-06-09 08:00:00');
+        // la fecha de inicio del evento es 08 de junio a las 08:00 am , pero al llegar a media noche ese día , debe cambiar a 09 de junio de 2024 a las 08:00 am
+        if ($horaActual->format('Y-m-d') == '2024-06-08' && $horaActual->format('H:i:s') <= '00:00:00') {
+            $fechaInicio = Carbon::create(2024, 6, 9, 8, 0, 0);
+        } else {
+            $fechaInicio = Carbon::create(2024, 6, 8, 8, 0, 0);
+        }
 
         // Calcular el número de grupos completos
-        $grupo = ceil($codigo / 15);
+        $grupo = ceil($codigo / 20);
 
         // Calcular la hora a la que puede ingresar el grupo
         $tiempo = $fechaInicio->copy()->addMinutes(($grupo - 1) * 10);
@@ -281,5 +283,4 @@ class AssistantController extends Controller
 
         echo json_encode(true);
     }
-   
 }

@@ -153,9 +153,6 @@ use Carbon\Carbon;
             height: auto;
         }
     }
-
-    Este código CSS utiliza una media query @media para aplicar los estilos solo en dispositivos con un ancho máximo de 767px,
-    que generalmente corresponde a dispositivos móviles. Los estilos ajustan los márgenes del contenedor de la imagen y establecen un ancho máximo del 100% para la imagen dentro de ese contenedor. Espero que esta solución cumpla con tus requisitos sin afectar el código existente. Regenerate response
 </style>
 @endsection
 @section('template_title')
@@ -218,7 +215,7 @@ Talleres
         <h1>Talleres</h1>
 
         <div class="tabs-container">
-            @if(Carbon::now()->format('D') == 'Sat' )
+            @if(Carbon::now()->format('D') == 'Sat' || Carbon::now()->format('D') == 'Mon' )
             <div class="tab selected" id="children-tab" onclick="toggleWorkshops('children')">Sábado / Saturday</div>
             @endif
 
@@ -234,7 +231,7 @@ Talleres
             <label class="select-label instructions_es" for="horario">Despliega la lista y selecciona un horario para seleccionar tus talleres :</label>
             <label class="select-label instructions_en" for="horario">Expand the list and select a time slot to choose your workshops:</label>
 
-            @if(Carbon::now()->format('D') == 'Sat' || Carbon::now()->format('D') == 'Thu')
+            @if(Carbon::now()->format('D') == 'Sat' || Carbon::now()->format('D') == 'Mon')
             <select id="horario" class="form-control">
                 <option value="1">09:00 - 10:00</option>
                 <option value="9">09:00 - 12:15 - 3H</option>
@@ -248,7 +245,7 @@ Talleres
                 <option value="12">17:15 - 18:00</option>
             </select>
             @endif
-            @if(Carbon::now()->format('D') == 'Sun' || Carbon::now()->format('D') == 'Fri')
+            @if(Carbon::now()->format('D') == 'Sun' || Carbon::now()->format('D') == 'Tue')
             <select id="horario" class="form-control">
                 <option value="1">09:00 - 10:00</option>
                 <option value="11">09:00 - 11:15 - 2H</option>
@@ -285,7 +282,7 @@ Talleres
 
                     <span class="theme">{{$w->name}}</span><br>
                     @if($w->schedule == 1)
-                    <span class="schedule"> {{$w->day == 'S' ? 'Sábado' : "Domingo"}} 09:00 - 10:00</span><br>
+                    <span class="schedule"> {{$w->day == 'S' ? 'Sábado ' : "Domingo"}} 09:00 - 10:00</span><br>
                     @endif
                     @if($w->schedule == 2)
                     <span class="schedule">{{$w->day == 'S' ? 'Sábado' : "Domingo"}} 10:15 - 11:15</span><br>
@@ -476,6 +473,7 @@ Talleres
     @section('script')
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
     <script>
         let URL = window.location.protocol + "//" + window.location.host
@@ -503,7 +501,13 @@ Talleres
             // document.getElementById(category + '-tab').classList.add('selected');
         }
 
-        toggleWorkshops('adults');
+        //si es sabado o lunes el toggle es children si es domingo o martes es adults con moment
+        if (moment().format('ddd') == 'Sat' || moment().format('ddd') == 'Mon') {
+            toggleWorkshops('children')
+        } else {
+            toggleWorkshops('adults')
+        }
+
 
         //para la operación
         window.seleccionados = {}
@@ -661,7 +665,7 @@ Talleres
 
             $.ajax({
                 type: "POST",
-                url: URL + '/congreso/api/searchCode',
+                url: URL + 'congreso/api/searchCode',
                 data: {
                     "code": $("#thecode").val()
                 },
