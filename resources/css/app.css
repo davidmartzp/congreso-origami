@@ -1,0 +1,74 @@
+
+table.dataTable tbody tr {
+    background-color: unset ;
+}
+
+
+.pendiente{
+    background-color: rgb(240, 208, 213) !important;
+}
+
+.activo{
+    background-color: rgb(179, 240, 240) !important;
+}
+
+
+
+/* Style the pagination links */
+.pagination {
+display: flex;
+justify-content: center;
+margin-top: 20px;
+}
+
+.pagination li {
+list-style: none;
+margin: 0 10px;
+}
+
+.pagination li a {
+display: block;
+padding: 5px;
+font-size: 16px; /* Adjust this to your desired font size */
+background-color: #ddd;
+color: #333;
+text-decoration: none;
+border-radius: 5px;
+}
+
+.pagination li a:hover {
+background-color: #aaa;
+color: #fff;
+}
+
+/* Style the pagination arrows */
+.pagination li:first-child a,
+.pagination li:last-child a {
+padding: 5px;
+font-size: 14px; /* Adjust this to your desired font size */
+}
+
+.pagination li:first-child a:before,
+.pagination li:last-child a:after {
+display: inline-block;
+vertical-align: middle;
+content: '';
+width: 8px; /* Adjust this to your desired arrow size */
+height: 8px; /* Adjust this to your desired arrow size */
+border-style: solid;
+border-width: 0px 2px 2px 0px;
+border-color: #333;
+transform: rotate(-45deg);
+}
+
+.pagination li:first-child a:before {
+margin-right: 5px;
+}
+
+.pagination li:last-child a:after {
+margin-left: 5px;
+}
+
+  svg {
+    width: 15px;
+  }
