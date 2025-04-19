@@ -1,0 +1,23 @@
+<div class="about__columns" id="about">
+	<div class="about__column about__column--primary">
+		<div class="about__slider">
+			<img *ngFor="let image of images; let i = index" 
+				[src]="image" 
+				alt="Imagen del evento" 
+				class="about__cover-image"
+				[ngStyle]="getAnimationStyle(i)">
+		</div>
+	</div>
+	<div class="about__column about__column--secondary">
+		<div class="about__text-wrapper text-content"> <!-- agregado "text-content" -->
+			<h2>Acerca del evento</h2>
+			<p>Origami Bogotá es un evento pensado para todos los apasionados grandes y chicos por doblar papel. Es un espacio para conocer personas con los mismos intereses y pasión por plegar figuras en origami. Origami Bogotá da la posibilidad de aprender nuevas técnicas de plegado e introducirse en el mundo del origami si es la primera vez que asisten.</p>
+		</div>
+	</div>
+	<div class="about__column about__column--dark">
+		<div class="about__text-wrapper text-content"> <!-- agregado "text-content" -->
+			<p>Durante el evento se pliega en diferentes espacios, no sólo los talleres sino mientras se toma un café o se está en un pasillo. Durante los años hemos trabajado para que todos los amantes de este arte tengan un lugar en el evento, por lo cual tenemos espacios para adultos con diferentes niveles de complejidad (desde principiantes hasta avanzados) y otro espacio para niños. Es muy emocionante ver cómo personas más experimentadas forman modelos complejos y los exponen mostrando las posibilidades infinitas y la versatilidad del papel.</p>
+		</div>
+	</div>
+</div>
+

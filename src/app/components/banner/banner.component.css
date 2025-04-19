@@ -1,0 +1,178 @@
+/* --- Variables de Color --- */
+:root {
+    --primary-color: #8B0000; /* Rojo oscuro sólido (Asegúrate que sea opaco) */
+    --secondary-color: #FFFFFF; /* Blanco (Usado como fallback o si es necesario) */
+}
+
+/* Garantizar que todos los elementos usen border-box para cálculos de tamaño más predecibles */
+* {
+    box-sizing: border-box;
+}
+
+/* --- Estructura Base del Banner --- */
+.banner {
+    display: flex;
+    min-height: 70vh; /* Altura mínima deseada para el banner */
+    color: white;
+    position: relative; /* Establece un contexto de apilamiento base */
+}
+
+/* --- Estilos Comunes de Columna --- */
+.banner__column {
+    flex: 1; /* Ocupa espacio equitativamente */
+    /* position: relative; ya no es necesario aquí, se especifica en cada una */
+    /* z-index: 1; ya no es necesario aquí */
+}
+
+/* --- Columna Izquierda (Contenido) --- */
+.banner__column--left {
+    background-color: var(--primary-color); /* ¡CRUCIAL! Color de fondo sólido y opaco */
+    position: relative;   /* ¡CRUCIAL! Para establecer un contexto de apilamiento */
+    z-index: 2;           /* ¡CRUCIAL! Asegura que esté por encima de la columna derecha */
+
+    /* Estilos Flex para centrar contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px; /* Espaciado interno */
+}
+
+/* --- Elementos dentro de la Columna Izquierda --- */
+.banner__logo {
+    max-width: 100px;
+    margin-bottom: 15px;
+}
+
+.banner__title {
+    font-size: 35px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.banner__column--left p {
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+.banner__social {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.banner__social-link {
+    color: white;
+    font-size: 25px; /* Tamaño del ícono */
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease, background-color 0.3s ease; /* Añadida transición de fondo */
+}
+
+.banner__social-link:hover {
+    opacity: 0.8;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Columna Derecha (Contenedor del Fondo Parallax) --- */
+.banner__column--right {
+    background-color: var(--secondary-color); /* Fallback color */
+    position: relative;
+    overflow: hidden; /* Prevent potential content overflow */
+    padding: 0;
+
+    /* Background Image Styling */
+    background-image: url("https://origamibogota.com/wp-content/uploads/IMG_20241004_013121.jpg");
+    background-repeat: no-repeat; /* Prevent image tiling */
+    /* Ensure background covers the container */
+    background-size: cover;
+    background-position: center center; /* Center the image */
+    /* Remove parallax effect */
+    background-attachment: scroll; /* Default behavior, image scrolls with content */
+}
+
+/* --- Media Query para Móviles (max-width: 768px) --- */
+@media only screen and (max-width: 768px) {
+    .banner {
+        flex-direction: column; /* Apila las columnas */
+        height: auto;
+        min-height: 0; /* Resetea min-height si no aplica */
+        width: 100%;
+        max-width: 100%; /* Asegura que no exceda el ancho de la pantalla */
+        overflow-x: hidden; /* Previene scroll horizontal */
+    }
+
+    .banner__column {
+       flex: none; /* Anula el flex: 1 */
+       width: 100%; /* Ocupa todo el ancho */
+       max-width: 100%; /* Garantiza que no exceda el ancho del contenedor */
+    }
+
+    .banner__column--left {
+        padding: 40px 20px; /* Padding más ajustado */
+        order: 1;          /* Muestra el contenido primero */
+        position: relative; /* Mantiene el contexto por si acaso */
+        z-index: 2;         /* Mantiene z-index */
+        box-sizing: border-box; /* Garantiza que padding se incluya en el ancho */
+        width: 100%;
+        overflow: hidden; /* Contiene elementos desbordados */
+    }
+
+    /* Limitar ancho de elementos dentro de la columna */
+    .banner__title {
+        font-size: 26px;
+        margin-bottom: 15px;
+        max-width: 100%; /* Limita ancho */
+        word-wrap: break-word; /* Permite romper palabras largas */
+    }
+
+    .banner__column--left p {
+        font-size: 15px; /* Texto más grande para mejor legibilidad en móvil */
+        margin: 6px 0;   /* Más espacio entre párrafos */
+        line-height: 1.4; /* Mejor espaciado entre líneas */
+        max-width: 100%; /* Limita ancho */
+    }
+
+    .banner__logo {
+        max-width: 80px; /* Reducir tamaño para evitar desbordamiento */
+    }
+
+    .banner__social {
+        justify-content: center;
+        margin-top: 20px; /* Más espacio arriba de los iconos sociales */
+        gap: 12px; /* Reducir espacio para evitar desbordamiento */
+        flex-wrap: wrap; /* Permite que los íconos salten de línea si es necesario */
+    }
+
+    .banner__social-link {
+        width: 42px;  /* Iconos más grandes para facilitar el toque */
+        height: 42px;
+        font-size: 20px; /* Ajuste del tamaño del ícono */
+    }
+
+    .banner__column--right {
+        order: 2;          /* Muestra la imagen después */
+        height: auto;
+        min-height: 350px; /* Aumentado desde 300px para mejor visualización */
+        flex: none;
+        position: relative; /* Mantiene contexto */
+        overflow: hidden;   /* Mantiene recorte */
+        z-index: 1;         /* Mantiene z-index */
+        background-attachment: scroll; /* Disable parallax on mobile */
+        background-position: center center; /* Ensure centering */
+        background-size: cover; /* Keep cover for mobile */
+    }
+}
+
+/* --- Fin Media Query --- */
+
+/* No olvides incluir Font Awesome si usas las clases fab */
+/* Ejemplo en <head>: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" ... /> */

@@ -1,0 +1,35 @@
+<!-- Fixed hamburger menu -->
+<button class="menu-toggle" [class.active]="isMenuOpen" (click)="toggleMenu()">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</button>
+
+<!-- Menu that appears when hamburger is clicked -->
+<div class="menu-container" [class.active]="isMenuOpen">
+  <ul class="menu-items">
+    <li *ngFor="let item of menuItems">
+      <!-- External links -->
+      <a *ngIf="item.type === 'external-page'" 
+         [href]="item.url" 
+         target="_blank"
+         (click)="closeMenu()">
+        {{ item.name }}
+      </a>
+      
+      <!-- Internal page links -->
+      <a *ngIf="item.type === 'internal-page'" 
+         href="javascript:void(0)" 
+         (click)="handleNavigation(item)">
+        {{ item.name }}
+      </a>
+      
+      <!-- Internal target links -->
+      <a *ngIf="item.type === 'internal-target'" 
+         href="javascript:void(0)" 
+         (click)="handleNavigation(item)">
+        {{ item.name }}
+      </a>
+    </li>
+  </ul>
+</div>

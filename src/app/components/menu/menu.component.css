@@ -1,0 +1,153 @@
+/* Hide the desktop menu completely */
+.desktop-menu {
+  display: none;
+}
+
+/* Menu toggle button styling */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 40px;
+  height: 40px;
+  background: var(--light-color);
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 101;
+  transition: background-color 0.3s ease;
+}
+
+.menu-toggle:hover {
+  background-color: var(--secondary-color);
+}
+
+.bar {
+  height: 3px;
+  width: 20px;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover .bar {
+  background-color: var(--light-color);
+}
+
+/* Animate bars when menu is open */
+.menu-toggle.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* SVG orbit animation */
+.menu-toggle .orbit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.menu-toggle .orbit .path {
+  stroke: var(--secondary-color);
+  stroke-width: 2;
+  opacity: 0.2;
+}
+
+.menu-toggle .orbit .particle {
+  fill: var(--primary-color);
+  animation: orbit-diagonal 2s linear infinite;
+}
+
+@keyframes orbit-diagonal {
+  0% {
+    transform: rotate(0deg) translate(45px) rotate(0deg) skewX(10deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(45px) rotate(-360deg) skewX(10deg);
+  }
+}
+
+/* Menu container styling */
+.menu-container {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 250px;
+  background-color: var(--light-color);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+.menu-container.active {
+  max-height: 500px; /* Increased from 300px to accommodate more items */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  overflow-y: auto; /* Add scrolling if content exceeds height */
+  max-height: 70vh; /* Use viewport height to ensure it works on all devices */
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 1rem 0;
+}
+
+.menu-items li {
+  margin: 0;
+  width: 100%;
+}
+
+/* Menu items styling */
+.menu-items a {
+  color: var(--dark-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1.5rem; /* Reduced padding to fit more items */
+  width: 100%;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  font-weight: 400;
+  font-size: 0.95rem; /* Slightly smaller font size to fit more items */
+}
+
+.menu-items a:hover {
+  color: var(--light-color);
+  background-color: var(--secondary-color);
+}
+
+.menu-items a.active {
+  color: var(--light-color);
+  font-weight: 500;
+  border-left: 3px solid var(--secondary-color);
+  background-color: var(--primary-color);
+}
+
+/* Remove all icon related styles */
+.menu-icon, .icon {
+  display: none;
+}

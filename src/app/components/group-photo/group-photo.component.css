@@ -1,0 +1,22 @@
+.group-photo__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color); /* ajustado para usar primary color */
+  padding: 1rem;
+}
+
+.group-photo__logo {
+  max-height: 60px; /* ajustar tamaño según necesidad */
+}
+
+.group-photo__photo-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.group-photo__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}

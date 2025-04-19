@@ -1,0 +1,153 @@
+.guests {
+	display: flex;
+	height: auto; /* Changed from 100vh to auto to adjust to content */
+	min-height: 100vh; /* Ensure it takes at least the full viewport height */
+	color: #FFF;
+	overflow: auto; /* Prevent content overlap */
+	font-size: 16px; /* Base font size */
+}
+
+.guests__column--left {
+	flex: 0 0 70%;
+	background-color: var(--dark-color);
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	white-space: normal;
+	overflow-wrap: break-word;
+	box-sizing: border-box;
+}
+
+.guests__column--right {
+	flex: 0 0 30%;
+	background-color: var(--secondary-color);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 20px;
+	white-space: normal;
+	overflow-wrap: break-word;
+	box-sizing: border-box;
+}
+
+.guests__profiles-wrapper {
+	display: block;
+	width: 100%;
+}
+
+.guests__profile {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 10px 40px;
+	margin-bottom: 20px;
+	transition: background-color 0.3s ease, border-radius 0.3s ease;
+	touch-action: manipulation;
+}
+
+.guests__profile:hover,
+.guests__profile:active {
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+}
+
+.guests__profile-photo {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-right: 20px;
+}
+
+.guests__profile-info {
+	color: #FFF;
+	flex: 1;
+	padding: 0 30px; /* Increase horizontal padding */
+}
+
+.guests__profile-biography {
+	text-align: justify;
+	font-size: 18px; /* Increased font size for biography text */
+}
+
+.guests__profile-instagram {
+	color: var(--secondary-color);
+	text-decoration: none;
+}
+
+.guests__text-content {
+	margin: 20px;
+	text-align: justify;
+}
+
+.guests__header {
+	margin-bottom: 10px;
+}
+
+.guests__description {
+	margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+	.guests {
+		flex-direction: column;
+		background-color: var(--dark-color);
+	}
+	.guests__column--right {
+		order: -1;
+		flex: 1 0 auto;
+		padding: 15px;
+		width: 100%;
+	}
+	.guests__column--left {
+		order: 0;
+		flex: 1 0 auto;
+		padding: 15px;
+	}
+	.guests__profile {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		background-color: rgba(255, 255, 255, 0.1); /* Add lightened background */
+		border-radius: 10px; /* Add rounded corners */
+		padding: 15px; /* Further reduced from 20px to 15px */
+	}
+	.guests__profile-photo {
+		margin: 0 auto 10px auto;
+	}
+	.guests__profile-info {
+		text-align: center;
+		margin: 5px; /* Further reduced from 8px to 5px */
+	}
+	
+	.guests__profile-biography {
+		font-size: 17px; /* Slightly adjusted for mobile screens */
+		padding: 0 2px; /* Further reduced from 3px to 2px */
+		margin-top: 2px; /* Further reduced from 3px to 2px */
+		text-align: center; /* Changed from justify to center only in mobile */
+	}
+	
+	.guests__text-content {
+		margin: 8px; /* Further reduced from 10px to 8px */
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.guests__header,
+	.guests__description {
+		margin-top: 10px; /* Further reduced from 15px to 10px */
+		margin-bottom: 10px; /* Further reduced from 15px to 10px */
+	}
+	
+	.guests__column--right,
+	.guests__column--left {
+		padding: 8px; /* Further reduced from 10px to 8px */
+	}
+	
+	.guests__profile-photo {
+		margin: 0 auto 5px auto; /* Reduced bottom margin from 10px to 5px */
+	}
+}

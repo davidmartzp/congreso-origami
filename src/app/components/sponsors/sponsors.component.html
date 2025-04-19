@@ -1,0 +1,19 @@
+<section class="sponsors-section">
+  <h2>Nuestros Patrocinadores</h2>
+  
+  <div class="sponsors-slider-container">
+    <div class="sponsors-slider" [class.paused]="!autoplayEnabled" [class.animated]="isBrowser">
+      <div class="sponsors-track">
+        <div class="sponsor-item" *ngFor="let sponsor of displayedSponsors">
+          <img 
+            [src]="sponsor.src" 
+            [alt]="sponsor.alt" 
+            class="sponsor-logo"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</section>

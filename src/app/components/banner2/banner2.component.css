@@ -1,0 +1,69 @@
+.hero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-image: url('https://origamibogota.com/2025/images/277398594_722529918915714_3218644820932209406_n.webp'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  color: var(--light-color);
+}
+
+.hero__content {
+  max-width: 600px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 1.5rem 2rem; /* Simplified padding */
+  border-radius: 10px;
+  margin: 0 1rem; /* Added margin for spacing on smaller screens */
+}
+
+.hero__title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero__description {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.hero__button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.hero__button:hover {
+  background-color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 80vh; /* Reduced height for mobile */
+    background-size: cover; /* Changed to cover instead of contain */
+    background-position: left center; /* Changed to align the left edge of image with device */
+  }
+
+  .hero__content {
+    max-width: 90%; /* Wider content area on mobile */
+    padding: 1.2rem 1.5rem; /* Slightly smaller padding */
+  }
+
+  .hero__title {
+    font-size: 2rem; /* Smaller font size for mobile */
+  }
+
+  .hero__description {
+    font-size: 1rem; /* Smaller font size for mobile */
+    margin-bottom: 1.5rem; /* Reduced margin */
+  }
+}

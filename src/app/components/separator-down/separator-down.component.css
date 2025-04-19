@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.separator {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: white;
+}
+
+.separator img {
+    display: block;
+    width: 100%; /* Ensure the image spans the full width */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: -19px; /* Move the image up slightly */
+}

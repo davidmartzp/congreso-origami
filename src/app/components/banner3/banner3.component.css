@@ -1,0 +1,216 @@
+/* --- Reseteo Básico y Fuentes --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* --- Bloque Hero --- */
+.hero {
+    display: flex; /* Usamos Flexbox para alinear contenido e imágenes */
+    align-items: center; /* Centra verticalmente los items */
+    justify-content: center; /* Center content and images horizontally */
+    padding: 60px 5%; /* Espaciado interno (vertical, horizontal) */
+    background: linear-gradient(135deg, var(--light-color) 0%, var(--secondary-color) 100%); /* Fondo gradiente con variables */
+    min-height: 80vh; /* Altura mínima para ocupar buena parte de la pantalla */
+    overflow: hidden; /* Evita que las imágenes se salgan si algo falla */
+    position: relative; /* Necesario para posicionar las imágenes absolutamente */
+}
+
+/* --- Elemento Contenido --- */
+.hero__content {
+    flex-basis: 50%; /* Ocupa la mitad del espacio disponible */
+    padding-right: 40px; /* Espacio entre el texto y las imágenes */
+    z-index: 2; /* Asegura que el texto esté sobre las imágenes */
+    position: relative; /* Asegura que el z-index funcione correctamente */
+}
+
+/* --- Elemento Título --- */
+.hero__title {
+    font-size: 2.8rem; /* Tamaño grande para el título */
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #212529; /* Color oscuro para el título */
+    /* Efecto de texto sutil */
+    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); */
+}
+
+/* --- Elemento Texto --- */
+.hero__text {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #495057; /* Color gris oscuro para el texto */
+    max-width: 600px; /* Evita que el texto sea demasiado ancho */
+}
+
+/* --- Elemento CTA (Call to Action / Botón) --- */
+.hero__cta {
+    display: inline-block; /* Para que padding y margin funcionen bien */
+    background-color: var(--primary-color); /* Color primario con variable */
+    color: #fff; /* Texto blanco */
+    padding: 12px 25px; /* Espaciado interno del botón */
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none; /* Quita el subrayado del enlace */
+    border-radius: 50px; /* Bordes redondeados para un look moderno */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); /* Sombra sutil */
+}
+
+.hero__cta:hover,
+.hero__cta:focus {
+    background-color: darken(var(--primary-color), 10%); /* Color más oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación ligero */
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+/* --- Elemento Contenedor de Imágenes --- */
+.hero__images {
+    flex-basis: 45%; /* Ocupa un poco menos de la mitad */
+    position: relative; /* Contenedor relativo para las imágenes absolutas */
+    min-height: 450px; /* Altura mínima para que las imágenes tengan espacio */
+    align-self: stretch; /* Hace que ocupe toda la altura del flex container (.hero) */
+}
+
+/* --- Elemento Imagen (Estilos base) --- */
+.hero__image {
+    position: absolute; /* Posicionamiento absoluto respecto a .hero__images */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra para dar profundidad */
+    object-fit: cover; /* Asegura que la imagen cubra sin distorsionarse */
+    transition: transform 0.4s ease-out; /* Transición para posible hover */
+}
+
+.hero__image:hover {
+    transform: scale(1.03) rotate(1deg); /* Efecto sutil al pasar el mouse */
+    z-index: 10; /* Asegura que la imagen con hover esté encima */
+}
+
+/* --- Modificadores de Imagen (Posicionamiento específico) --- */
+/* Ajusta estos valores (top, left, width, z-index) para lograr la superposición deseada */
+
+.hero__image--1 {
+    width: 65%; /* Ancho relativo al contenedor .hero__images */
+    top: 10%;
+    left: 5%;
+    z-index: 3; /* La imagen más al frente */
+    transform: rotate(-4deg); /* Ligera rotación */
+}
+
+.hero__image--2 {
+    width: 55%;
+    top: 30%;
+    left: 40%; /* Solapada con la primera */
+    z-index: 2; /* Detrás de la 1, delante de la 3 */
+    transform: rotate(3deg);
+}
+
+.hero__image--3 {
+    width: 45%;
+    top: 55%;
+    left: 15%; /* Solapada */
+    z-index: 1; /* La imagen más al fondo */
+    transform: rotate(-2deg);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .hero {
+        padding: 40px 4%;
+    }
+    .hero__title {
+        font-size: 2.4rem;
+    }
+    .hero__text {
+        font-size: 1rem;
+    }
+    /* Ajustar tamaños de imagen si es necesario */
+    .hero__image--1 { width: 60%; }
+    .hero__image--2 { width: 50%; left: 35%;}
+    .hero__image--3 { width: 40%; top: 60%;}
+}
+
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column; /* Apila contenido e imágenes verticalmente */
+        text-align: center; /* Centra el texto */
+        padding: 40px 5%;
+        align-items: center; /* Center items vertically for mobile */
+    }
+
+    .hero__content {
+        flex-basis: auto; /* Resetea la base flex */
+        padding-right: 0; /* Quita el padding derecho */
+        margin-bottom: 40px; /* Espacio entre texto e imágenes */
+        max-width: 100%; /* Permite que ocupe todo el ancho */
+        text-align: center; /* Center text for better readability */
+    }
+
+    .hero__images {
+        flex-basis: auto; /* Resetea la base flex */
+        width: 100%; /* Ocupa todo el ancho disponible */
+        min-height: 350px; /* Altura ajustada para móvil */
+        margin-top: 20px; /* Reduce top margin for better spacing */
+        align-self: center; /* Asegura que esté centrado */
+        max-width: 500px; /* Limita el ancho máximo en pantallas pequeñas/medianas */
+    }
+
+    /* Reajustar posiciones absolutas para el layout de columna */
+    .hero__image--1 {
+        width: 60%;
+        top: 5%;
+        left: 5%;
+        transform: rotate(-3deg);
+    }
+    .hero__image--2 {
+        width: 50%;
+        top: 25%;
+        left: auto; /* Resetea left */
+        right: 5%; /* Posiciona desde la derecha */
+        transform: rotate(4deg);
+    }
+    .hero__image--3 {
+        width: 45%;
+        top: 55%;
+        left: 20%; /* Ajusta la posición */
+        transform: rotate(-2deg);
+    }
+
+    .hero__title {
+        font-size: 2rem;
+    }
+    .hero__text {
+        font-size: 0.95rem;
+    }
+    .hero__cta {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        margin: 0 auto; /* Center the button */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero__title {
+        font-size: 1.6rem; /* Slightly smaller title for very small screens */
+    }
+     .hero__images {
+        min-height: 250px; /* Further reduce height for small screens */
+    }
+    /* Ajustar más si es necesario */
+     .hero__image--1 { width: 65%; top: 5%; }
+    .hero__image--2 { width: 55%; top: 30%; right: 5%; }
+    .hero__image--3 { width: 50%; top: 55%; left: 10%; }
+    .hero__text {
+        font-size: 0.9rem; /* Adjust text size for readability */
+    }
+}
