@@ -4,10 +4,11 @@ import { FooterComponent } from "../../components/footer/footer.component";
 import { ListWorkshopsComponent } from "../../components/workshops/list-workshops/list-workshops.component";
 import { WorkshopsFormComponent } from "../../components/workshops/workshops-form/workshops-form.component";
 import { MenuComponent } from "../../components/menu/menu.component";
+import { SponsorsComponent } from "../../components/sponsors/sponsors.component";
 
 @Component({
   selector: 'app-workshops',
-  imports: [BannerComponent, FooterComponent, ListWorkshopsComponent, WorkshopsFormComponent, MenuComponent],
+  imports: [BannerComponent, FooterComponent, ListWorkshopsComponent, WorkshopsFormComponent, MenuComponent, SponsorsComponent],
   templateUrl: './workshops.component.html',
   styleUrl: './workshops.component.css'
 })

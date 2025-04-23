@@ -22,11 +22,16 @@ export class MenuComponent {
   menuItems: MenuItem[] = [
     { name: 'Inicio', url: '', type: 'internal-page' },
     { name: 'Acerca del evento', url: 'about', type: 'internal-target' },
-    { name: 'Inscripciones abiertas', url: 'https://origamibogota.com/inscripciones', type: 'external-page' },
+    { name: 'Inscripciones abiertas', url: 'inscriptions', type: 'internal-page' },
     { name: 'Invitados', url: 'guests', type: 'internal-target' },
     { name: 'Actividades', url: 'activities', type: 'internal-target' },
     { name: '¡Sé tallerista!', url: 'talleres', type: 'internal-page' },
+    { name: '+ Sobre Tetsuya', url: 'https://gotaniorigami.wixsite.com/hello', type: 'external-page' },
+    { name: '+ Sobre Cekouat', url: 'https://cekouatorigami.com/es', type: 'external-page' },
+    { name: '+ Sobre Diego', url: 'https://instagram.com/diegorigami', type: 'external-page' },
     { name: 'Contáctanos', url: 'contact', type: 'internal-target' },
+
+
   ];
 
   isMenuOpen = false;

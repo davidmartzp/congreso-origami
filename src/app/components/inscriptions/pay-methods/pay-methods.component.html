@@ -1,0 +1,26 @@
+<section class="pay-methods-container">
+  <div class="header">
+    <h2>{{ headerTitle }}</h2>
+    <p>{{ headerDescription }}</p>
+  </div>
+  
+  <div class="payment-cards">
+    <div class="payment-card" *ngFor="let method of paymentMethods" [id]="'payment-' + method.id">
+      <div class="icon-container">
+        <i [class]="method.icon"></i>
+      </div>
+      <h3>{{ method.title }}</h3>
+      <p>{{ method.description }}</p>
+      <a *ngIf="method.link" [href]="method.link.url" class="btn" target="_blank" rel="noopener noreferrer">
+        {{ method.link.text }}
+      </a>
+    </div>
+  </div>
+  
+  <div class="footer-note">
+    <p>{{ footerNote }}</p>
+    <div class="arrow-container">
+      <i class="fas fa-arrow-down"></i>
+    </div>
+  </div>
+</section>

@@ -7,36 +7,14 @@
 	</div>
 	<div class="guests__column guests__column--left">
 		<div class="guests__profiles-wrapper">
-			<div class="guests__profile">
-				<img src="images/IMG_20241029_092141_360.jpg" alt="Foto del Invitado" class="guests__profile-photo">
+			<div class="guests__profile" *ngFor="let guest of guests">
+				<img [src]="guest.photoUrl" [alt]="'Foto de ' + guest.name" class="guests__profile-photo">
 				<div class="guests__profile-info">
-					<h3 class="guests__name">Tetsuya Gotani</h3>
-					<a class="guests__profile-instagram" href="https://instagram.com/origami_tetsuya_gotani" target="_blank">{{'@origami_tetsuya_gotani'}}</a>
-					<p class="guests__type">Internacional</p>
+					<h3 class="guests__name">{{ guest.name }}</h3>
+					<a class="guests__profile-instagram" [href]="guest.instagramUrl" target="_blank">{{ guest.instagram }}</a>
+					<p class="guests__type">{{ guest.type }}</p>
 					<div class="guests__profile-biography">
-						<p>Tetsuya Gotani es un diseñador japonés de origami que actualmente vive en Francia. Comenzó en el origami en Japón y desarrolló sus propios diseños tras mudarse a Europa. Mientras trabaja como acordeonista profesional, también enseña origami a niños en Francia, y al quedarse sin modelos, empezó a crear los suyos. Inspirado por Origami Dinosaur de Fumiaki Kawahata, ha avanzado hacia diseños más complejos. Gotani ha realizado exposiciones importantes, como una muestra en solitario en EMOZ, España, y en 2019 publicó Origamix, un libro innovador que combina diagramas con su proceso creativo. Ha sido invitado a prestigiosas convenciones de origami en Lyon, Sevilla, Dijon, Tokio y Edimburgo.</p>
-					</div>
-				</div>
-			</div>
-			<div class="guests__profile">
-				<img src="images/Cekouat-Leon_2022-1.jpg" alt="Foto del Invitado" class="guests__profile-photo">
-				<div class="guests__profile-info">
-					<h3 class="guests__name">Cekouat León</h3>
-					<a class="guests__profile-instagram" href="https://instagram.com/cekouat" target="_blank">{{'@cekouat'}}</a>
-					<p class="guests__type">Internacional</p>
-					<div class="guests__profile-biography">
-						<p>Cekouat León, artista del origami y biólogo radicado en Ciudad de México, tiene más de 15 años de experiencia en plegado de papel y comenzó a diseñar modelos propios en 2013. Inspirado por su infancia en desiertos y bosques mexicanos, sus diseños reflejan la fauna y flora local. Investiga el papel amate tradicional y su producción cultural. Su trabajo ha sido exhibido internacionalmente, destacando una exposición individual en EMOZ, España, y su participación como invitado especial en convenciones de origami en Argentina y México en 2024.</p>
-					</div>
-				</div>
-			</div>
-			<div class="guests__profile">
-				<img src="https://picsum.photos/seed/guest/150" alt="Foto del Invitado" class="guests__profile-photo">
-				<div class="guests__profile-info">
-					<h3 class="guests__name">Diego Becerra</h3>
-					<a class="guests__profile-instagram" href="https://instagram.com/diegorigami" target="_blank">{{'@diegorigami'}}</a>
-					<p class="guests__type">Nacional / Internacional</p>
-					<div class="guests__profile-biography">
-						<p>Diego Becerra es un ingeniero y maestro apasionado por el origami, la matemática y la tecnología. Su trabajo explora la intersección entre el arte del plegado y la ingeniería, aplicándolo a la robótica, el diseño industrial y la transición energética. Ha diseñado más de 50 figuras originales y publicado en revistas especializadas, como Tanteidan Magazine. Actualmente, desarrolla prototipos innovadores de origami aplicado a la ingeniería eléctrica y electrónica en colaboración con universidades de la región de Santander.</p>
+						<p>{{ guest.biography }}</p>
 					</div>
 				</div>
 			</div>

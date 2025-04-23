@@ -30,7 +30,7 @@ export class SponsorsComponent implements OnInit, OnDestroy {
     { src: 'images/asm-150x150.png', alt: 'ASM sponsor' },
     { src: 'images/alpa-150x150.png', alt: 'ALPA sponsor' },
     { src: 'images/suepa-150x150.png', alt: 'SUEPA sponsor' },
-    { src: 'images/andipal-150x150.png', alt: 'Andipal sponsor' },
+    { src: 'images/andipal.jpeg', alt: 'Andipal sponsor' },
     { src: 'images/buho-150x150.png', alt: 'Buho sponsor' },
     { src: 'images/parr-150x150.png', alt: 'PARR sponsor' }
   ];

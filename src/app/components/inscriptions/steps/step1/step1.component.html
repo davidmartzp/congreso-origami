@@ -1,0 +1,65 @@
+<div class="payment-container" id="step1">
+  <div class="payment-header">
+    <div class="payment-title">
+      <i class="fas fa-wallet"></i>
+      <h2>{{ pageTitle }}</h2>
+    </div>
+    <p class="payment-subtitle">{{ pageSubtitle }}</p>
+  </div>
+
+  <div class="phases-container">
+    <h3 class="phases-title">Precios por etapas</h3>
+    
+    <div class="phases-grid">
+      <div *ngFor="let phase of filteredPhases" class="phase-card" [class.highlight]="phase.isHighlight">
+        <div *ngIf="phase.badge" class="phase-badge">{{ phase.badge }}</div>
+        <h4 class="phase-name">{{ phase.name }}</h4>
+        <div class="price">
+          <span class="currency">COP</span>
+          <span class="amount">{{ formatPrice(phase.price) }}</span>
+        </div>
+        <div class="timeline">
+          <i class="fas fa-calendar-alt"></i>
+          <span>{{ phase.deadline }}</span>
+        </div>
+        <div class="divider"></div>
+        <div class="includes">
+          <p *ngFor="let item of phase.includes">
+            <i class="fas fa-check"></i> {{ item }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buy-action">
+    <a (click)="onBuyClick($event)" class="buy-button" style="cursor: pointer;">
+      <i class="fas fa-shopping-cart"></i> COMPRA AQUÍ
+    </a>
+  </div>
+
+  <div class="daily-options">
+    <h3 class="daily-title">Opciones por día</h3>
+    
+    <div class="daily-cards">
+      <div *ngFor="let option of dailyOptions" class="daily-card">
+        <div class="daily-header">
+          <div class="daily-date">
+            <i class="fas fa-calendar-day"></i>
+            <h4>{{ option.day }}</h4>
+          </div>
+          <div class="daily-detail">{{ option.date }}</div>
+        </div>
+        <div class="daily-price">
+          <span class="amount">{{ formatPrice(option.price) }}</span>
+          <span class="currency">COP</span>
+        </div>
+        <div class="divider"></div>
+        <p class="daily-description">
+          {{ option.description }}
+        </p>
+        <button class="daily-button">Seleccionar</button>
+      </div>
+    </div>
+  </div>
+</div>

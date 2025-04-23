@@ -10,10 +10,11 @@ import { SponsorsComponent } from "../../components/sponsors/sponsors.component"
 import { SeparatorDownComponent } from "../../components/separator-down/separator-down.component";
 import { FooterComponent } from "../../components/footer/footer.component";
 import { MenuComponent } from "../../components/menu/menu.component";
+import { ItineraryComponent } from "../../components/itinerary/itinerary.component";
 
 @Component({
   selector: 'app-home',
-  imports: [BannerComponent, AboutComponent, GroupPhotoComponent, GuestsComponent, Banner2Component, ActivitiesComponent, Banner3Component, SponsorsComponent, FooterComponent, MenuComponent],
+  imports: [BannerComponent, AboutComponent, GroupPhotoComponent, GuestsComponent, Banner2Component, ActivitiesComponent, Banner3Component, SponsorsComponent, FooterComponent, MenuComponent, ItineraryComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ItineraryComponent } from "../itinerary/itinerary.component";
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ItineraryComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })

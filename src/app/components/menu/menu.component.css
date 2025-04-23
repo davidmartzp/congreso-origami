@@ -8,8 +8,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 40px;
-  height: 40px;
+  width: 35px; /* Reduced from 40px */
+  height: 35px; /* Reduced from 40px */
   background: var(--light-color);
   border: none;
   cursor: pointer;
@@ -17,7 +17,7 @@
   top: 20px;
   right: 20px;
   border-radius: 50%;
-  padding: 10px;
+  padding: 8px; /* Reduced from 10px */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   z-index: 101;
   transition: background-color 0.3s ease;
@@ -28,8 +28,8 @@
 }
 
 .bar {
-  height: 3px;
-  width: 20px;
+  height: 2px; /* Reduced from 3px */
+  width: 18px; /* Reduced from 20px */
   background-color: var(--primary-color);
   border-radius: 10px;
   transition: transform 0.3s ease;
@@ -41,7 +41,7 @@
 
 /* Animate bars when menu is open */
 .menu-toggle.active .bar:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg); /* Adjusted from 8px */
 }
 
 .menu-toggle.active .bar:nth-child(2) {
@@ -49,7 +49,7 @@
 }
 
 .menu-toggle.active .bar:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg); /* Adjusted from 8px */
 }
 
 /* SVG orbit animation */
@@ -85,7 +85,7 @@
 /* Menu container styling */
 .menu-container {
   position: fixed;
-  top: 70px;
+  top: 65px; /* Reduced from 70px to account for smaller button */
   right: 20px;
   width: 250px;
   background-color: var(--light-color);

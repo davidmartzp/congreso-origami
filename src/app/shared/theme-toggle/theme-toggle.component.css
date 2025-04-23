@@ -1,0 +1,113 @@
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: var(--primary-color);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.theme-toggle i {
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover i {
+  transform: rotate(30deg);
+}
+
+.dark-theme {
+  --primary-color: #8a1c2c;
+  --secondary-color: #e9a87c;
+  --light-color: #1a1a1a;
+  --dark-color: #f1f1f1;
+}
+
+.dark-theme body {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.dark-theme .pay-methods-container,
+.dark-theme .steps-hero,
+.dark-theme .payment-container {
+  background: linear-gradient(135deg, #252525, #1a1a1a);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .payment-card:nth-child(even),
+.dark-theme .step:nth-child(even),
+.dark-theme .phase-card:not(:nth-child(3n+1)),
+.dark-theme .daily-card:nth-child(even) {
+  background: #2d2d2d;
+}
+
+.dark-theme .payment-card:nth-child(even) h3,
+.dark-theme .step:nth-child(even) .step-details h3,
+.dark-theme .phase-card:not(:nth-child(3n+1)) .phase-name,
+.dark-theme .daily-card:nth-child(even) .daily-date h4 {
+  color: var(--secondary-color);
+}
+
+.dark-theme .payment-card:nth-child(even) p,
+.dark-theme .step:nth-child(even) .step-details p,
+.dark-theme .phase-card:not(:nth-child(3n+1)) .includes p,
+.dark-theme .daily-card:nth-child(even) .daily-description {
+  color: #cccccc;
+}
+
+.dark-theme .header h2,
+.dark-theme .announcement h1,
+.dark-theme .payment-title h2,
+.dark-theme .phases-title,
+.dark-theme .daily-title {
+  color: var(--secondary-color);
+}
+
+.dark-theme .header p,
+.dark-theme .instructions p,
+.dark-theme .payment-subtitle,
+.dark-theme .footer-note p {
+  color: #cccccc;
+}
+
+.dark-theme .icon-container {
+  background: #2d2d2d;
+  border-color: var(--secondary-color);
+}
+
+.dark-theme .icon-container i {
+  color: var(--secondary-color);
+}
+
+.dark-theme .footer-note {
+  background: #252525;
+  border-left-color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .theme-toggle i {
+    font-size: 1.2rem;
+  }
+}

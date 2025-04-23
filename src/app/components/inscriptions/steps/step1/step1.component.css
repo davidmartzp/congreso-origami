@@ -1,0 +1,659 @@
+.payment-container {
+  background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%);
+  padding: 3rem 2rem;
+  width: 100%;
+  margin: 0 auto;
+  color: var(--dark-color);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.payment-container::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.payment-container::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+/* Homologación de estilos de títulos con step2 */
+.payment-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.payment-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.payment-title h2 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #732F37; /* Color primario de la aplicación */
+  margin: 0;
+}
+
+.payment-subtitle {
+  font-size: 16px;
+  color: #495057;
+  line-height: 1.5;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Phases Section */
+.phases-container {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 3rem;
+}
+
+.phases-title {
+  text-align: center;
+  color: #732F37; /* Color primario de la aplicación */
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 500;
+}
+
+.phases-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #BE7E62; /* Color secundario de la aplicación */
+  border-radius: 2px;
+}
+
+.phases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  justify-content: center; /* Center the items horizontally */
+}
+
+.phase-card {
+  background: linear-gradient(to bottom right, white, #f9f9f9);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(190, 126, 98, 0.1);
+}
+
+.phase-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+  border-color: rgba(190, 126, 98, 0.3);
+}
+
+.phase-card.highlight {
+  border: none;
+  background: linear-gradient(135deg, #fff, rgba(190, 126, 98, 0.15));
+  box-shadow: 0 10px 25px rgba(114, 23, 37, 0.15);
+  position: relative;
+}
+
+.phase-card.highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.phase-card:nth-child(3n+1) {
+  background: linear-gradient(135deg, var(--primary-color), #8a1c2c);
+}
+
+.phase-card:nth-child(3n+1) .phase-name,
+.phase-card:nth-child(3n+1) .amount,
+.phase-card:nth-child(3n+1) .includes i {
+  color: white;
+}
+
+.phase-card:nth-child(3n+1) .currency,
+.phase-card:nth-child(3n+1) .timeline,
+.phase-card:nth-child(3n+1) .includes p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.phase-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--primary-color);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0 12px;
+  transform: translateX(5px) translateY(-5px);
+}
+
+.phase-name {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.price {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.currency {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark-color);
+}
+
+.amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.timeline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--dark-color);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(88, 85, 83, 0.2);
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.includes {
+  flex-grow: 1;
+}
+
+.includes p {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.includes i {
+  color: var(--primary-color);
+}
+
+.buy-action {
+  text-align: center;
+  margin: 2.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.buy-button {
+  background: linear-gradient(to right, var(--primary-color), #8a1c2c);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(114, 23, 37, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.buy-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+}
+
+.buy-button:hover::after {
+  animation: shimmer 1.5s infinite;
+  animation-delay: 0.3s;
+}
+
+.buy-button:hover {
+  background: linear-gradient(to right, var(--secondary-color), #cb8d70);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(190, 126, 98, 0.4);
+}
+
+.buy-button:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(114, 23, 37, 0.3);
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Daily Options */
+.daily-options {
+  position: relative;
+  z-index: 1;
+}
+
+.daily-title {
+  text-align: center;
+  color: #732F37; /* Color primario de la aplicación */
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 500;
+}
+
+.daily-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #BE7E62; /* Color secundario de la aplicación */
+  border-radius: 2px;
+}
+
+.daily-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  justify-content: center; /* Center the items horizontally */
+}
+
+.daily-card {
+  background: linear-gradient(to bottom right, white, #f9f9f9);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(190, 126, 98, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.daily-card::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(190, 126, 98, 0.1) 0%, rgba(190, 126, 98, 0) 70%);
+  top: -100px;
+  right: -100px;
+  border-radius: 50%;
+}
+
+.daily-card:nth-child(odd) {
+  background: linear-gradient(135deg, var(--primary-color), #8a1c2c);
+}
+
+.daily-card:nth-child(odd) .daily-date h4,
+.daily-card:nth-child(odd) .daily-price .amount {
+  color: white;
+}
+
+.daily-card:nth-child(odd) .daily-date i {
+  color: var(--light-color);
+}
+
+.daily-card:nth-child(odd) .daily-description,
+.daily-card:nth-child(odd) .daily-price .currency {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.daily-card:nth-child(odd) .daily-button {
+  background: white;
+  color: var(--primary-color);
+}
+
+.daily-card:nth-child(odd) .daily-button:hover {
+  background: var(--light-color);
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+}
+
+.daily-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.daily-date {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.daily-date i {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.daily-date h4 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.daily-detail {
+  background: var(--secondary-color);
+  color: white;
+  font-weight: bold;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.daily-price {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.daily-price .amount {
+  font-size: 2.2rem;
+}
+
+.daily-price .currency {
+  font-size: 1.1rem;
+}
+
+.daily-description {
+  flex-grow: 1;
+  margin: 1rem 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.daily-button {
+  background: linear-gradient(to right, var(--secondary-color), #cb8d70);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  margin-top: auto;
+  box-shadow: 0 4px 10px rgba(190, 126, 98, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.daily-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+}
+
+.daily-button:hover::after {
+  animation: shimmer 1.5s infinite;
+}
+
+.daily-button:hover {
+  background: linear-gradient(to right, var(--primary-color), #8a1c2c);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(114, 23, 37, 0.3);
+}
+
+/* Media queries para responsividad */
+@media (max-width: 992px) {
+  .phases-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .daily-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .payment-container {
+    padding: 2rem 1.5rem;
+    margin: 0 auto;
+    width: calc(100% - 2rem);
+    max-width: 1100px;
+    border-radius: 12px;
+  }
+  
+  .payment-title h2 {
+    font-size: 22px;
+  }
+  
+  .payment-subtitle {
+    font-size: 14px;
+  }
+  
+  .phases-title, .daily-title {
+    font-size: 1.5rem;
+  }
+  
+  .phases-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .daily-cards {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .buy-button {
+    width: 100%;
+    justify-content: center;
+    padding: 0.9rem 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .phase-card {
+    padding: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .phases-container, .daily-options {
+    margin-bottom: 3.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-container {
+    padding: 1.5rem 1rem;
+    margin: 0 0.5rem 1.5rem 0.5rem;
+    border-radius: 10px;
+  }
+  
+  .payment-title {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .payment-title i {
+    width: 50px;
+    height: 50px;
+    font-size: 1.6rem;
+  }
+  
+  .payment-title h2 {
+    font-size: 20px;
+  }
+  
+  .payment-subtitle {
+    font-size: 13px;
+  }
+  
+  .phase-name, .daily-date h4 {
+    font-size: 1.1rem;
+  }
+  
+  .price .amount, .daily-price .amount {
+    font-size: 1.6rem;
+  }
+
+  .phases-title, .daily-title {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .phase-card {
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .phases-grid {
+    gap: 1.8rem;
+  }
+  
+  .daily-cards {
+    gap: 2rem;
+  }
+
+  .includes p {
+    font-size: 0.85rem;
+  }
+
+  .daily-card {
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .daily-description {
+    font-size: 0.9rem;
+  }
+
+  .daily-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .payment-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .buy-action {
+    margin: 2.5rem 0;
+  }
+  
+  .phases-container, .daily-options {
+    margin-bottom: 3rem;
+    padding: 0 0.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .payment-container {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .payment-title h2 {
+    font-size: 1.6rem;
+  }
+
+  .phase-name, .daily-date h4 {
+    font-size: 1rem;
+  }
+
+  .price .amount, .daily-price .amount {
+    font-size: 1.4rem;
+  }
+
+  .price .currency, .daily-price .currency {
+    font-size: 0.9rem;
+  }
+
+  .includes p {
+    font-size: 0.8rem;
+    margin: 0.4rem 0;
+  }
+
+  .buy-button {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+  }
+  
+  .phases-grid {
+    gap: 1.5rem;
+  }
+  
+  .daily-cards {
+    gap: 1.8rem;
+  }
+  
+  .phases-container, .daily-options {
+    margin-bottom: 2.5rem;
+  }
+}
