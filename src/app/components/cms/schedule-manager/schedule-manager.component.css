@@ -1,0 +1,347 @@
+.schedule-manager {
+  padding: 30px; /* Increased padding for the main container */
+  font-family: Arial, sans-serif;
+  background-color: #1e1e1e; /* Dark background */
+  color: #f5f5f5; /* Light text */
+  width: 100%; /* Full width for the content area */
+  margin: 0 auto; /* Center the content horizontally */
+}
+
+.schedule-manager h1,
+.schedule-manager h2 {
+  font-size: 18px; /* Smaller font size for titles */
+  margin-bottom: 10px;
+  color: #ffffff; /* White text for titles */
+}
+
+.columns {
+  display: flex;
+  height: 90vh; /* Set height to 90% of the viewport */
+}
+
+.left-column {
+  flex: 0 0 20%; /* Sidebar occupies 20% of the width */
+  margin-right: 20px;
+}
+
+.right-column {
+  flex: 0 0 80%; /* Details area occupies 80% of the width */
+  border-left: 1px solid #444; /* Darker border for separation */
+  padding-left: 20px;
+  background-color: #2a2a2a; /* Slightly lighter dark background for details */
+  height: 100%; /* Full height for the details area */
+  overflow-y: auto; /* Enable scrolling if content overflows */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  border-radius: 8px; /* Rounded corners for the details section */
+}
+
+.right-column::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit browsers */
+}
+
+.scrollable-list {
+  max-height: 250px; 
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0; /* Reduced margin */
+  border: none; /* Remove border for cleaner appearance */
+  scrollbar-width: thin; /* Subtle scrollbar for Firefox */
+  scrollbar-color: #555 #333; /* Dark scrollbar colors */
+}
+
+.scrollable-list::-webkit-scrollbar {
+  width: 6px; /* Narrow scrollbar for WebKit browsers */
+}
+
+.scrollable-list::-webkit-scrollbar-thumb {
+  background-color: #555; /* Subtle thumb color */
+  border-radius: 4px; /* Rounded scrollbar thumb */
+  margin: 2px; /* Add spacing between scrollbar and content */
+}
+
+.scrollable-list::-webkit-scrollbar-track {
+  background-color: #333; /* Match track with dark background */
+}
+
+.scrollable-list::-webkit-scrollbar-button {
+  display: none; /* Remove scrollbar arrows */
+}
+
+.scrollable-list li {
+  padding: 10px 15px; /* Adjusted padding for better spacing */
+  cursor: pointer;
+  color: #f5f5f5; /* Light text */
+  font-size: 12px; /* Smaller font size for compact appearance */
+  line-height: 1.4; /* Adjust line height for compactness */
+  border: 1px solid #444; /* Button border */
+  border-radius: 4px; /* Rounded corners for button-like appearance */
+  background-color: #333; /* Dark button background */
+  margin-bottom: 5px; /* Reduced spacing between buttons */
+  text-align: left; /* Align text to the left */
+  white-space: normal; /* Allow line breaks for long text */
+  word-wrap: break-word; /* Break long words if necessary */
+}
+
+.scrollable-list li:last-child {
+  border-bottom: none; /* Remove border for the last item */
+}
+
+.scrollable-list li:hover {
+  background-color: #555; /* Slightly lighter hover effect */
+  border-color: #666; /* Highlight border on hover */
+}
+
+.scrollable-list li.selected {
+  background-color: #ffa500; /* Orange/golden tone for selected items */
+  color: #1e1e1e; /* Dark text for contrast */
+  border-color: #ffa500; /* Match border color with background */
+}
+
+.custom-dropdown {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.dropdown-header {
+  padding: 10px 15px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #333;
+  color: #f5f5f5;
+  cursor: pointer;
+  text-align: center;
+}
+
+.dropdown-header:hover {
+  background-color: #555;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #333;
+  z-index: 10;
+}
+
+.dropdown-list li {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #f5f5f5;
+  text-align: center;
+}
+
+.dropdown-list li:hover {
+  background-color: #555;
+}
+
+.dropdown-list li.selected {
+  background-color: #ffcc00;
+  color: #1e1e1e;
+}
+
+.item-title {
+  font-size: 14px; /* Slightly larger font size for the title */
+  font-weight: bold;
+  margin-bottom: 5px; /* Space between title and tags */
+}
+
+.item-tags {
+  font-size: 10px; /* Smaller font size for tags */
+  color: #aaa; /* Default lighter color for tags */
+}
+
+.scrollable-list li.selected .item-tags {
+  color: #333; /* Ensure tags are visible on the orange background */
+}
+
+.item-tags span {
+  display: block; /* Each tag on a new line */
+  margin-top: 2px; /* Spacing between tags */
+}
+
+.schedule-table {
+  width: 100%; /* Full width of the details area */
+  border-collapse: collapse;
+  table-layout: fixed; /* Prevent horizontal scrolling */
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #444; /* Border for table cells */
+  padding: 5px; /* Reduced padding for compactness */
+  text-align: center;
+  vertical-align: middle; /* Center content vertically */
+  font-size: 11px; /* Reduced font size */
+  font-weight: normal; /* Remove bold text */
+  color: #f5f5f5; /* Light text */
+  background-color: #333; /* Dark background for cells */
+}
+
+.schedule-table th {
+  background-color: #444; /* Slightly darker background for headers */
+}
+
+.schedule-table tbody tr:nth-child(4n) td {
+  border-top: 1px solid #555; /* Subtle border to separate each hour */
+}
+
+.schedule-table td:first-child {
+  font-weight: bold; /* Highlight the time periods */
+  background-color: #2a2a2a; /* Slightly darker background for time column */
+  border-right: 1px solid #444; /* Add consistent border to the time column */
+}
+
+.schedule-cell {
+  min-height: 35px; /* Minimum height for cells */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  flex-direction: column; /* Allow content to stack vertically */
+  padding: 5px; /* Add padding for better spacing */
+  word-wrap: break-word; /* Break long words if necessary */
+  white-space: normal; /* Allow wrapping for long text */
+  overflow: visible; /* Ensure full content is visible */
+}
+
+.schedule-cell span {
+  font-size: 10px; /* Smaller font size for event names */
+  color: #f5f5f5; /* Light text color */
+  text-align: center;
+  display: block;
+  white-space: normal; /* Allow wrapping for long text */
+  overflow: visible; /* Ensure full content is visible */
+  text-overflow: unset; /* Remove ellipsis for overflowing text */
+  word-wrap: break-word; /* Break long words if necessary */
+  max-width: 100%; /* Ensure the text stays within the cell */
+}
+
+.schedule-cell.selected {
+  white-space: normal; /* Allow wrapping for selected cells */
+  overflow: visible; /* Allow full content to be visible */
+  text-overflow: unset; /* Remove ellipsis for selected cells */
+  background-color: #444; /* Highlight selected cell */
+  padding: 5px; /* Add padding for better readability */
+  border-radius: 4px; /* Rounded corners for selected cell */
+}
+
+.schedule-cell.occupied {
+  background-color: #555; /* Darker background for occupied cells */
+  color: #fff; /* Light text for contrast */
+  border-radius: 4px; /* Rounded corners for consistency */
+  padding: 5px; /* Add padding for better readability */
+  position: relative; /* Enable positioning for the first cell */
+}
+
+.schedule-cell.occupied:not(.first-in-range) span {
+  display: none; /* Hide the name in all but the first cell of the range */
+}
+
+.schedule-cell.occupied.first-in-range span {
+  display: block; /* Ensure the name is visible in the first cell */
+  margin-bottom: 5px; /* Add spacing below the name */
+}
+
+.schedule-cell.occupied.first-in-range small {
+  display: block; /* Ensure each detail is on a new line */
+  margin-bottom: 3px; /* Add spacing between details */
+}
+
+.schedule-cell.occupied.first-in-range button {
+  margin-top: 5px; /* Add spacing above the remove button */
+}
+
+.schedule-cell.occupied.saturday {
+  background-color: #4caf50; /* Green background for Saturday */
+}
+
+.schedule-cell.occupied.sunday {
+  background-color: #2196f3; /* Blue background for Sunday */
+}
+
+.schedule-cell.occupied.saturday span,
+.schedule-cell.occupied.sunday span {
+  color: #fff; /* Ensure text is white for both days */
+}
+
+.schedule-controls {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  margin-bottom: 10px; /* Add spacing below the buttons */
+}
+
+.day-button {
+  padding: 8px 15px;
+  margin-left: 10px; /* Spacing between buttons */
+  margin-top: 10px; /* Add margin above the buttons */
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #333;
+  color: #f5f5f5;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.day-button:hover {
+  background-color: #555;
+  border-color: #666;
+}
+
+.day-button.selected {
+  background-color: #ffa500; /* Orange/golden tone for selected button */
+  color: #1e1e1e; /* Dark text for contrast */
+  border-color: #ffa500; /* Match border color with background */
+}
+
+.add-icon {
+  background-color: #444; /* Circular background */
+  border: none;
+  color: #f5f5f5; /* Light text color */
+  font-size: 12px; /* Smaller font size */
+  width: 20px; /* Fixed width for circular shape */
+  height: 20px; /* Fixed height for circular shape */
+  border-radius: 50%; /* Make the background circular */
+  display: flex;
+  justify-content: center; /* Center icon horizontally */
+  align-items: center; /* Center icon vertically */
+  cursor: pointer;
+}
+
+.add-icon:hover {
+  background-color: #ffa500; /* Highlight background on hover */
+  color: #1e1e1e; /* Dark text for contrast */
+}
+
+.remove-icon {
+  background: none;
+  border: none;
+  color: #f5f5f5; /* Light text color */
+  font-size: 10px; /* Match font size with text */
+  cursor: pointer;
+}
+
+.remove-icon:hover {
+  color: #ff4d4d; /* Red color for hover effect */
+}
+
+.event-details {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Distribute items evenly */
+  font-size: 10px; /* Smaller font size */
+  color: #f5f5f5; /* Light text color */
+  margin-top: 5px; /* Add spacing above the details */
+}
+
+.event-details small {
+  margin-right: 10px; /* Add spacing between text elements */
+}

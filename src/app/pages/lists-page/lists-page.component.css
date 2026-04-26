@@ -1,0 +1,345 @@
+.lists-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #0f1419;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.workshops-section, .attendees-section {
+  width: 100%;
+  background: transparent;
+  padding: 1.5rem;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.workshops-section h2 {
+  color: #e8eaed;
+  font-weight: 400;
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+  line-height: 1.4;
+  padding: 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.attendees-section h2 {
+  color: #e8eaed;
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.btn-back {
+  background: rgba(232, 234, 237, 0.08);
+  color: #e8eaed;
+  border: 1px solid rgba(232, 234, 237, 0.12);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: auto;
+}
+
+.btn-back:hover, .btn-back:active {
+  background: rgba(232, 234, 237, 0.12);
+  border-color: rgba(232, 234, 237, 0.2);
+}
+
+.btn-back svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-back:hover svg {
+  transform: translateX(-2px);
+}
+
+.workshops-list, .attendees-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.workshop-card {
+  background: rgba(232, 234, 237, 0.04);
+  border: 1px solid rgba(232, 234, 237, 0.08);
+  border-radius: 12px;
+  padding: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  backdrop-filter: blur(20px);
+}
+
+.workshop-card:hover {
+  background: rgba(232, 234, 237, 0.08);
+  border-color: rgba(232, 234, 237, 0.16);
+  transform: translateY(-1px);
+}
+
+.workshop-card:active {
+  transform: scale(0.98);
+}
+
+.workshop-card.selected {
+  background: rgba(76, 175, 80, 0.12);
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+.workshop-content {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.workshop-card h3 {
+  margin: 0 0 0.75rem 0;
+  color: #e8eaed;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.workshop-details {
+  margin: 0;
+  padding: 0;
+}
+
+.instructor {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #9aa0a6;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.instructor-label {
+  color: #9aa0a6;
+  font-weight: 400;
+}
+
+.instructor-name {
+  color: #8ab4f8;
+  font-weight: 500;
+}
+
+.workshop-arrow {
+  padding: 1.25rem;
+  color: #5f6368;
+  transition: all 0.2s ease;
+}
+
+.workshop-card:hover .workshop-arrow {
+  color: #8ab4f8;
+  transform: translateX(3px);
+}
+
+.workshop-card.selected .workshop-arrow {
+  color: #4caf50;
+}
+
+.attendees-count {
+  background: rgba(232, 234, 237, 0.08);
+  color: #e8eaed;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(232, 234, 237, 0.12);
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+}
+
+.attendee-card {
+  background: rgba(232, 234, 237, 0.04);
+  border: 1px solid rgba(232, 234, 237, 0.08);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(20px);
+}
+
+.attendee-card:hover {
+  background: rgba(232, 234, 237, 0.08);
+  border-color: rgba(232, 234, 237, 0.16);
+}
+
+.attendee-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8ab4f8, #4285f4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.attendee-info {
+  flex: 1;
+}
+
+.attendee-info h4 {
+  margin: 0 0 0.75rem 0;
+  color: #e8eaed;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.attendee-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.attendee-details p {
+  margin: 0;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  line-height: 1.4;
+}
+
+.detail-label {
+  color: #9aa0a6;
+  font-weight: 400;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  color: #e8eaed;
+  font-weight: 500;
+}
+
+.attendee-email .detail-value {
+  color: #8ab4f8;
+}
+
+.attendee-phone .detail-value {
+  color: #81c995;
+}
+
+.attendee-org .detail-value {
+  color: #c58af9;
+}
+
+.loading, .no-data {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #9aa0a6;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.loading {
+  color: #8ab4f8;
+}
+
+.loading::after {
+  content: '...';
+  animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
+
+/* Attendees section full-screen overlay */
+.attendees-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0f1419;
+  z-index: 1000;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Improve scroll performance */
+.attendees-list {
+  padding-bottom: 2rem;
+}
+
+/* Better touch feedback */
+.workshop-card:active {
+  background: rgba(232, 234, 237, 0.12);
+}
+
+.workshop-card.selected:active {
+  background: rgba(76, 175, 80, 0.16);
+}
+
+/* Safe areas for notched devices */
+@supports (padding: max(0px)) {
+  .workshops-section, .attendees-section {
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+  }
+  
+  .workshops-section {
+    padding-top: max(1.5rem, env(safe-area-inset-top));
+  }
+  
+  .attendees-section {
+    padding-top: max(1.5rem, env(safe-area-inset-top));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(232, 234, 237, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 234, 237, 0.3);
+}

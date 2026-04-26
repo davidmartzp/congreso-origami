@@ -1,0 +1,442 @@
+<div class="wizard-container" id="step2">
+  <!-- Mensaje de confirmación después de envío exitoso -->
+  <div *ngIf="isSubmitted" class="success-message">
+    <div class="success-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h3>{{ t().successTitle }}</h3>
+    <p>{{ t().successMsg }} <strong>{{ submittedEmail }}</strong> {{ t().successMsg2 }}</p>
+    <p>{{ t().checkEmail }}</p>
+    <button type="button" class="btn btn-primary mt-3" (click)="startNewRegistration()">
+      <i class="fas fa-plus-circle"></i> {{ t().newRegistration }}
+    </button>
+  </div>
+
+  <!-- Formulario principal (se oculta después del envío exitoso) -->
+  <div *ngIf="!isSubmitted" class="wizard-form-wrapper">
+    <!-- Título y texto de instrucción -->
+    <div class="payment-header">
+      <div class="payment-title">
+        <i class="fas fa-clipboard-list"></i>
+        <h2>{{ t().step2Header }}</h2>
+      </div>
+      <p class="payment-subtitle">{{ t().step2Subtitle }}</p>
+    </div>
+
+    
+    <!-- Indicador de pasos optimizado para móvil -->
+    <div class="steps-indicator">
+      <div class="step" [class]="{'active': currentStep === 1, 'completed': currentStep > 1}" (click)="goToStep(1, $event)">
+        <div class="step-number">1</div>
+        <div class="step-title">{{ t().stepPersonal }}</div> 
+      </div>
+      <div class="step-connector" [class.completed]="currentStep > 1"></div>
+      <div class="step" [class]="{'active': currentStep === 2, 'completed': currentStep > 2}" (click)="goToStep(2, $event)">
+        <div class="step-number">2</div>
+        <div class="step-title">{{ t().stepContact }}</div>
+      </div>
+      <div class="step-connector" [class.completed]="currentStep > 2"></div>
+      <div class="step" [class]="{'active': currentStep === 3, 'completed': currentStep > 3}" (click)="goToStep(3, $event)">
+        <div class="step-number">3</div>
+        <div class="step-title">{{ t().stepPayment }}</div>
+      </div>
+      <div class="step-connector" [class.completed]="currentStep > 3"></div>
+      <div class="step" [class]="{'active': currentStep === 4, 'completed': currentStep > 4}" (click)="goToStep(4, $event)">
+        <div class="step-number">4</div>
+        <div class="step-title">{{ t().stepParticip }}</div>
+      </div>
+      <div class="step-connector" [class.completed]="currentStep > 4"></div>
+      <div class="step" [class]="{'active': currentStep === 5, 'completed': currentStep > 5}" (click)="goToStep(5, $event)">
+        <div class="step-number">5</div>
+        <div class="step-title">{{ t().stepOptions }}</div>
+      </div>
+    </div>
+
+        
+
+    <!-- Top Navigation for Mobile -->
+    <div class="wizard-navigation-mobile">
+      <div class="step-indicator">{{ t().step1Title }} {{currentStep}} {{ t().stepOf }} 5</div>
+      <div class="navigation-buttons">
+        <button type="button" class="btn btn-secondary" [disabled]="currentStep === 1 || isSubmitting" (click)="prevStep()">
+          <i class="fas fa-arrow-left"></i> {{ t().prevBtn }}
+        </button>
+        <button *ngIf="currentStep < 5" type="button" class="btn btn-primary" [disabled]="isSubmitting" (click)="nextStep()">
+          {{ t().nextBtn }} <i class="fas fa-arrow-right"></i>
+        </button>
+        <button *ngIf="currentStep === 5" type="submit" class="btn btn-primary submit-btn" [disabled]="isSubmitting" (click)="onSubmit()">
+          <span *ngIf="!isSubmitting">{{ t().submitBtn }} <i class="fas fa-check"></i></span>
+          <span *ngIf="isSubmitting"><i class="fas fa-spinner fa-spin"></i> {{ t().sendingBtn }}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <form (ngSubmit)="onSubmit()" #inscriptionForm="ngForm">
+        <!-- Paso 1: Información Personal -->
+        <div class="step-content" *ngIf="currentStep === 1">
+          <div class="form-section">
+            <h3 class="phases-title"><i class="fas fa-user"></i> {{ t().personalTitle }}</h3>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="name">{{ t().nameLabel }} <span class="required">*</span></label>
+                  <input class="form-control" id="name" [(ngModel)]="formData.name" name="name" required type="text"/>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="lastname">{{ t().lastnameLabel }} <span class="required">*</span></label>
+                  <input class="form-control" id="lastname" [(ngModel)]="formData.lastname" name="lastname" required type="text"/>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="age">{{ t().ageLabel }} <span class="required">*</span></label>
+                  <input class="form-control" id="age" [(ngModel)]="formData.age" name="age" 
+                         max="99" min="0" required type="number" 
+                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                         maxlength="2"/>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="idname">{{ t().idnameLabel }} <span class="required">*</span></label>
+                  <input class="form-control" id="idname" [(ngModel)]="formData.idname" name="idname" required type="text"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 2: Información de Contacto -->
+        <div class="step-content" *ngIf="currentStep === 2">
+          <div class="form-section">
+            <h3 class="phases-title"><i class="fas fa-address-card"></i> {{ t().contactTitle }}</h3>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="country">{{ t().countryLabel }} <span class="required">*</span></label>
+                  <select class="form-control" id="country" [(ngModel)]="formData.country" name="countryCode" required>
+                    <option selected="selected" value="57">Colombia (+57)</option>
+                    <option value="58">Venezuela (+58)</option>
+                    <option value="1">USA (+1)</option>
+                    <option value="44">United Kingdom (+44)</option>
+                    <option value="91">India (+91)</option>
+                    <option value="81">Japan (+81)</option>
+                    <option value="49">Germany (+49)</option>
+                    <option value="33">France (+33)</option>
+                    <option value="39">Italy (+39)</option>
+                    <option value="86">China (+86)</option>
+                    <option value="7">Russia (+7)</option>
+                    <option value="61">Australia (+61)</option>
+                    <option value="55">Brazil (+55)</option>
+                    <option value="34">Spain (+34)</option>
+                    <option value="27">South Africa (+27)</option>
+                    <option value="82">South Korea (+82)</option>
+                    <option value="31">Netherlands (+31)</option>
+                    <option value="46">Sweden (+46)</option>
+                    <option value="47">Norway (+47)</option>
+                    <option value="48">Poland (+48)</option>
+                    <option value="351">Portugal (+351)</option>
+                    <option value="90">Turkey (+90)</option>
+                    <option value="62">Indonesia (+62)</option>
+                    <option value="63">Philippines (+63)</option>
+                    <option value="64">New Zealand (+64)</option>
+                    <option value="65">Singapore (+65)</option>
+                    <option value="66">Thailand (+66)</option>
+                    <option value="92">Pakistan (+92)</option>
+                    <option value="93">Afghanistan (+93)</option>
+                    <option value="94">Sri Lanka (+94)</option>
+                    <option value="95">Myanmar (+95)</option>
+                    <option value="98">Iran (+98)</option>
+                    <option value="212">Morocco (+212)</option>
+                    <option value="213">Algeria (+213)</option>
+                    <option value="216">Tunisia (+216)</option>
+                    <option value="218">Libya (+218)</option>
+                    <option value="220">Gambia (+220)</option>
+                    <option value="221">Senegal (+221)</option>
+                    <option value="222">Mauritania (+222)</option>
+                    <option value="223">Mali (+223)</option>
+                    <option value="224">Guinea (+224)</option>
+                    <option value="225">Ivory Coast (+225)</option>
+                    <option value="226">Burkina Faso (+226)</option>
+                    <option value="227">Niger (+227)</option>
+                    <option value="228">Togo (+228)</option>
+                    <option value="229">Benin (+229)</option>
+                    <option value="230">Mauritius (+230)</option>
+                    <option value="231">Liberia (+231)</option>
+                    <option value="232">Sierra Leone (+232)</option>
+                    <option value="233">Ghana (+233)</option>
+                    <option value="234">Nigeria (+234)</option>
+                    <option value="235">Chad (+235)</option>
+                    <option value="236">Central African Republic (+236)</option>
+                    <option value="237">Cameroon (+237)</option>
+                    <option value="238">Cape Verde (+238)</option>
+                    <option value="239">Sao Tome and Principe (+239)</option>
+                    <option value="240">Equatorial Guinea (+240)</option>
+                    <option value="241">Gabon (+241)</option>
+                    <option value="242">Congo (+242)</option>
+                    <option value="243">Congo (DRC) (+243)</option>
+                    <option value="244">Angola (+244)</option>
+                    <option value="245">Guinea-Bissau (+245)</option>
+                    <option value="246">Diego Garcia (+246)</option>
+                    <option value="247">Ascension Island (+247)</option>
+                    <option value="248">Seychelles (+248)</option>
+                    <option value="249">Sudan (+249)</option>
+                    <option value="250">Rwanda (+250)</option>
+                    <option value="251">Ethiopia (+251)</option>
+                    <option value="252">Somalia (+252)</option>
+                    <option value="253">Djibouti (+253)</option>
+                    <option value="254">Kenya (+254)</option>
+                    <option value="255">Tanzania (+255)</option>
+                    <option value="256">Uganda (+256)</option>
+                    <option value="257">Burundi (+257)</option>
+                    <option value="258">Mozambique (+258)</option>
+                    <option value="260">Zambia (+260)</option>
+                    <option value="261">Madagascar (+261)</option>
+                    <option value="262">Reunion (+262)</option>
+                    <option value="263">Zimbabwe (+263)</option>
+                    <option value="264">Namibia (+264)</option>
+                    <option value="265">Malawi (+265)</option>
+                    <option value="266">Lesotho (+266)</option>
+                    <option value="267">Botswana (+267)</option>
+                    <option value="268">Swaziland (+268)</option>
+                    <option value="269">Comoros (+269)</option>
+                    <option value="290">Saint Helena (+290)</option>
+                    <option value="291">Eritrea (+291)</option>
+                    <option value="297">Aruba (+297)</option>
+                    <option value="298">Faroe Islands (+298)</option>
+                    <option value="299">Greenland (+299)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="city">{{ t().cityLabel }} <span class="required">*</span></label>
+                  <input class="form-control" id="city" [(ngModel)]="formData.city" name="city" type="text" required/>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="email">{{ t().emailLabel }} <span class="required">*</span></label>
+                  <input class="form-control" id="email" [(ngModel)]="formData.email" name="email" required type="email"/>
+                  <small class="text-muted">{{ t().emailHint }}</small>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="phone">{{ t().phoneLabel }} <span class="required">*</span></label>
+                  <input class="form-control" id="phone" [(ngModel)]="formData.phone" 
+                         name="phone" maxlength="15" required type="tel"
+                         pattern="[0-9]*" inputmode="numeric" 
+                         (keypress)="onlyNumbers($event)"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 3: Información de Pago -->
+        <div class="step-content" *ngIf="currentStep === 3">
+          <div class="form-section">
+            <h3 class="phases-title"><i class="fas fa-credit-card"></i> {{ t().paymentTitle }}</h3>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="paytype">{{ t().payTypeLabel }} <span class="required">*</span></label>
+                  <select class="form-control" id="paytype" [(ngModel)]="formData.paymethod" name="paymethod" required>
+                    <option value="">{{ t().selectOption }}</option>
+                    <option value="Nequi">Nequi</option>
+                    <option value="Daviplata">Daviplata</option>
+                    <option value="Consignación">Consignación</option>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Página">Página web</option>
+                    <option value="Becado(a)">Becado(a)</option>
+                    <option value="Patrocinio">Patrocinio</option>
+                    <option value="Grupo de apoyo">Grupo de apoyo</option>
+                    <option value="Invitado(a)">Invitado(a)</option>
+                  </select>
+                  <small class="text-muted" *ngIf="formData.paymethod === 'Efectivo'">{{ t().cashNote }}</small>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="paydate">{{ t().payDateLabel }} <span class="required" *ngIf="requierePayDate()">*</span></label>
+                  <input class="form-control" id="paydate" [(ngModel)]="formData.paydate" name="paydate" max="2026-06-23" [required]="requierePayDate()" type="date"/>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label" for="receipt">{{ t().receiptLabel }} <span class="required" *ngIf="requierePayDate()">*</span></label>
+                  <input class="form-control" id="receipt" [(ngModel)]="formData.receipt" 
+                         name="receipt" [required]="requierePayDate()" type="text"/>
+                  <p class="text-muted">{{ t().receiptHint }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 4: Participación en Evento -->
+        <div class="step-content" *ngIf="currentStep === 4">
+          <div class="form-section">
+            <h3 class="phases-title"><i class="fas fa-calendar-check"></i> {{ t().participTitle }}</h3>
+            
+            <div class="form-group">
+              <label class="form-label">{{ t().participQuestion }} <span class="required">*</span></label>
+              <div class="option-card">
+                <div class="form-check">
+                  <input class="form-check-input" id="ch5" name="days" [(ngModel)]="formData.days" type="radio" value="T"/>
+                  <label class="form-check-label" for="ch5">{{ t().allDays }}</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="ch6" name="days" [(ngModel)]="formData.days" type="radio" value="S"/>
+                  <label class="form-check-label" for="ch6">{{ t().satOnly }}</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="ch7" name="days" [(ngModel)]="formData.days" type="radio" value="D"/>
+                  <label class="form-check-label" for="ch7">{{ t().sunOnly }}</label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="companion">{{ t().companionLabel }}</label>
+              <input class="form-control" id="companion" [(ngModel)]="formData.companion" name="companion" type="text"/>
+              <small class="text-muted">{{ t().companionHint }}</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 5: Opciones de Participación -->
+        <div class="step-content" *ngIf="currentStep === 5">
+          <div class="form-section">
+            <h3 class="phases-title"><i class="fas fa-star"></i> {{ t().optionsTitle }}</h3>
+            
+            <!-- Información de cómo se enteró -->
+            <div class="form-group">
+              <label class="form-label">{{ t().howHeardLabel }} <span class="required">*</span></label>
+              <select class="form-control" id="info" [(ngModel)]="formData.info" name="info" (change)="onInfoChange($event)" required>
+                <option value="">{{ t().selectOption }}</option>
+                <option value="Redes Sociales">{{ t().socialMedia }}</option>
+                <option value="Prensa">{{ t().press }}</option>
+                <option value="Televisión">{{ t().tv }}</option>
+                <option value="Referidos">{{ t().referrals }}</option>
+                <option value="Otro">{{ t().other }}</option>
+              </select>
+              <input *ngIf="formData.info === 'Otro'" class="form-control mt-2" id="otherInfo" [(ngModel)]="formData.otherInfo" name="otherInfo" [placeholder]="t().specifyPlaceholder" type="text" required/>
+            </div>
+            
+            <!-- Certificado impreso -->
+            <div class="option-card">
+              <div class="form-check">
+                <input class="form-check-input" id="ch8" [(ngModel)]="formData.printCertificate" name="printCertificate" type="checkbox"/>
+                <label class="form-check-label" for="ch8">{{ t().printCertLabel }}</label>
+              </div>
+            </div>
+            
+            <!-- Grupo de origami -->
+            <div class="option-card">
+              <div class="form-check">
+                <input class="form-check-input" id="ch1" [(ngModel)]="formData.group" (change)="onGroupChange($event)" name="group" type="checkbox"/>
+                <label class="form-check-label" for="ch1">{{ t().origamiGroupLabel }}</label>
+              </div>
+              <input *ngIf="formData.group" class="form-control mt-2" id="origamigroup" [(ngModel)]="formData.origamigroup" name="origamigroup" [placeholder]="t().origamiGroupPlaceholder" type="text" required/>
+            </div>
+            
+            <!-- Intercambio de tarjetas -->
+            <div class="option-card">
+              <div class="form-check">
+                <input class="form-check-input" id="ch2" [(ngModel)]="formData.cards" (change)="onCardsChange($event)" name="cards" type="checkbox"/>
+                <label class="form-check-label" for="ch2">{{ t().cardsLabel }}</label>
+              </div>
+              <small *ngIf="formData.cards" class="text-muted d-block mt-1">{{ t().cardsHint }}</small>
+              <input *ngIf="formData.cards" class="form-control mt-2" id="cardGroup" [(ngModel)]="formData.cardGroup" name="cardGroup" [placeholder]="t().cardsPlaceholder" type="number" min="1" max="2" required/>
+            </div>
+            
+            <!-- Dictar talleres -->
+            <div class="option-card">
+              <div class="form-check">
+                <input class="form-check-input" id="ch4" [(ngModel)]="formData.workshops" name="workshops" type="checkbox"/>
+                <label class="form-check-label" for="ch4">{{ t().workshopsLabel }}</label>
+              </div>
+              <small *ngIf="formData.workshops" class="text-muted d-block mt-1">{{ t().workshopsHint }} <a href="https://origamibogota.com/talleres" target="_blank">origamibogota.com/talleres</a></small>
+            </div>
+            
+            <!-- Chiva rumbera -->
+            <div class="option-card">
+              <div class="form-check">
+                <input class="form-check-input" id="ch9" [(ngModel)]="formData.go_to_chiva" (change)="onChivaChange($event)" name="go_to_chiva" type="checkbox"/>
+                <label class="form-check-label" for="ch9">{{ t().chivaLabel }} <span class="text-danger">{{ t().chivaAdultsOnly }}</span></label>
+              </div>
+              
+              <div *ngIf="formData.go_to_chiva" class="mt-3 chiva-options-container">
+                <div class="mb-3">
+                  <label class="form-label fw-bold">{{ t().chivaCompanionsQuestion }} <span class="required">*</span></label>
+                  <div class="radio-options">
+                    <div class="form-check me-4 mb-2">
+                      <input class="form-check-input" id="ch10a" [(ngModel)]="formData.chiva_accompanied" name="chiva_accompanied" [value]="false" type="radio"/>
+                      <label class="form-check-label" for="ch10a">{{ t().chivaNo }}</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ch10b" [(ngModel)]="formData.chiva_accompanied" name="chiva_accompanied" [value]="true" type="radio"/>
+                      <label class="form-check-label" for="ch10b">{{ t().chivaYes }}</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Campo de número de acompañantes -->
+                <div *ngIf="formData.chiva_accompanied === true" class="companions-number-container">
+                  <div class="form-group">
+                    <label class="form-label" for="chiva_companions">{{ t().companionsNumLabel }} <span class="required">*</span></label>
+                    <input 
+                      class="form-control" 
+                      id="chiva_companions" 
+                      [(ngModel)]="formData.chiva_companions" 
+                      name="chiva_companions" 
+                      [placeholder]="t().companionsNumPlaceholder" 
+                      type="number" 
+                      min="2" 
+                      max="9" 
+                      required
+                      (input)="validateChivaCompanions()"
+                    />
+                    <small class="text-muted">{{ t().companionsNumHint }}</small>
+                    <small *ngIf="chivaCompanionsError" class="text-danger">{{chivaCompanionsError}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation and Submit Button -->
+        <div class="wizard-navigation">
+          <button type="button" class="btn btn-secondary desktop-only" [disabled]="currentStep === 1 || isSubmitting" (click)="prevStep()">
+            <i class="fas fa-arrow-left"></i> {{ t().prevBtn }}
+          </button>
+          <div class="step-indicator desktop-only">{{ t().step1Title }} {{currentStep}} {{ t().stepOf }} 5</div>
+          <button *ngIf="currentStep < 5" type="button" class="btn btn-primary desktop-only" [disabled]="isSubmitting" (click)="nextStep()">
+            {{ t().nextBtn }} <i class="fas fa-arrow-right"></i>
+          </button>
+          <button *ngIf="currentStep === 5" type="submit" class="btn btn-primary submit-btn desktop-only" [disabled]="isSubmitting">
+            <span *ngIf="!isSubmitting">{{ t().submitBtn }} <i class="fas fa-check"></i></span>
+            <span *ngIf="isSubmitting"><i class="fas fa-spinner fa-spin"></i> {{ t().sendingBtn }}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Notas importantes -->
+    <div class="important-notes">
+      <ul>
+        <li>{{ t().note1 }}</li>
+        <li>{{ t().note2 }}</li>
+        <li>{{ t().note3 }}</li>
+        <li>{{ t().note4 }}</li>
+      </ul>
+    </div>
+    
+  </div>
+</div>

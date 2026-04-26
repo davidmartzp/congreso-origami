@@ -1,0 +1,122 @@
+<div class="workshops-container">
+  <h2 class="workshops-title">Nuestros Talleres</h2>
+  <p class="workshops-subtitle">Desliza para ver los talleres de este año</p>
+
+  <!-- Desktop navigation controls for the grid -->
+  <div class="gallery-navigation">
+    <button class="gallery-nav-btn prev-btn" (click)="scrollGallery('left')">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="gallery-nav-btn next-btn" (click)="scrollGallery('right')">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <div class="workshop-grid" #workshopGrid 
+       (mousedown)="!isMobileView && startDrag($event)" 
+       (mousemove)="!isMobileView && drag($event)" 
+       (mouseup)="!isMobileView && endDrag()" 
+       (mouseleave)="!isMobileView && endDrag()">
+    <div class="workshop-card" *ngFor="let workshop of workshops; let i = index" 
+         [ngStyle]="{'animation-delay': (i * 0.08) + 's'}" 
+         (click)="openModal($event, workshop, i)">
+      
+      <div class="card-image-container">
+        <img [src]="getWorkshopImageUrl(workshop)" 
+             [alt]="workshop.name"
+             class="card-image"
+             (error)="handleImageError($event)">
+        <span class="card-badge">Taller</span>
+      </div>
+      
+      <div class="card-content">
+        <h3 class="card-title">{{ workshop.name }}</h3>
+        <p class="card-instructor">
+          <strong>Instructor:</strong> {{ workshop.nameAssistant }} {{ workshop.lastname }}
+        </p>
+        
+        <div class="card-footer">
+          <button class="view-btn">Ver detalles</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile navigation dots for the grid -->
+  <div class="mobile-nav" *ngIf="isMobileView">    
+    <div class="mobile-nav-indicator">
+      <div class="dot" *ngFor="let workshop of workshops; let i = index" 
+           [class.active]="i === currentMobileCard"></div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator for desktop grid -->
+  <div class="scroll-indicator" *ngIf="showScrollIndicator && !isMobileView">
+    <i class="fas fa-chevron-left"></i>
+    Desliza
+    <i class="fas fa-chevron-right"></i>
+  </div>
+
+  <div *ngIf="workshops.length === 0" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Cargando talleres...</p>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="modalVisible" (click)="closeModal()" 
+    (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <!-- Restored Fixed Desktop Navigation for Modal -->
+    <div class="modal-fixed-nav desktop-only">
+      <button class="nav-btn" (click)="prevImage()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="nav-btn" (click)="nextImage()">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <button class="close-btn" (click)="closeModal()">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-nav-title">
+          <div class="title-container">
+            <h2 class="modal-title">{{ selectedWorkshop?.name }}</h2>
+            <p class="modal-instructor">
+              <strong>Instructor(a):</strong> {{ selectedWorkshop?.nameAssistant }} {{ selectedWorkshop?.lastname }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-two-columns">
+          <div class="modal-image-column">
+            <div class="modal-image-container">
+              <img [src]="getWorkshopImageUrl(selectedWorkshop)" 
+                   [alt]="selectedWorkshop?.name" 
+                   class="modal-image"
+                   (error)="handleImageError($event)">
+            </div>
+            <div class="counter desktop-only">{{ currentIndex + 1 }} / {{ workshops.length }}</div>
+          </div>
+          
+          <div class="modal-content-column">
+            <div class="workshop-notes" *ngIf="selectedWorkshop?.observations">
+              <strong>Descripción:</strong> {{ selectedWorkshop?.observations }}
+            </div>
+            <div class="counter" *ngIf="isMobileView">{{ currentIndex + 1 }} / {{ workshops.length }}</div>
+          </div>
+        </div>
+        
+        <div class="mobile-modal-swipe-legend" *ngIf="isMobileView && workshops.length > 1">
+          Desliza para ver los otros talleres
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

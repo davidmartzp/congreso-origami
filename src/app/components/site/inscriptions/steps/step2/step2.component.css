@@ -1,0 +1,1048 @@
+.form-container {
+  background-color: var(--light-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  margin: 30px auto;
+  color: var(--dark-color);
+}
+
+/* Estilos para la sección de título e instrucciones */
+.form-title-section {
+  display: none; /* Hide the old style */
+}
+
+.main-title {
+  font-size: 24px;
+  font-weight: 500; /* Changed from 700 to 500 as requested */
+  color: #732F37; /* Color primario de la aplicación */
+  margin-bottom: 10px;
+}
+
+/* Asegura que el texto sea más visible en dispositivos móviles */
+@media (max-width: 768px) {
+  .form-title-section {
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .main-title {
+    font-size: 22px;
+  }
+  
+  .instruction-text {
+    font-size: 14px;
+    color: #000000;
+  }
+}
+
+/* Estructura de columnas */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.form-column {
+  flex: 1;
+  padding: 0 10px;
+  min-width: 300px;
+}
+
+.form-section {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 6px;
+  border-left: 3px solid var(--secondary-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Removing the old section title styling */
+.section-title {
+  display: none; /* Hide the old style */
+}
+
+/* Applying consistent title styling from step1 */
+.phases-title {
+  text-align: center;
+  color: #732F37; /* Color primario de la aplicación */
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 500;
+}
+
+.phases-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #B19CD9; /* Color secundario de la aplicación */
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .phases-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .phases-title {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .phases-title {
+    font-size: 1.6rem;
+  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 5px;
+  display: block;
+  font-size: 0.9rem;
+}
+
+.required {
+  color: var(--primary-color);
+}
+
+.form-control, .form-select {
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  padding: 6px 10px !important;
+  font-size: 0.9rem !important;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  background-color: #fff !important;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--secondary-color) !important;
+  box-shadow: 0 0 0 0.15rem rgba(190, 126, 98, 0.25) !important;
+}
+
+.form-check {
+  margin-bottom: 8px;
+}
+
+.form-check-input {
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 6px !important;
+  cursor: pointer;
+  border: 2px solid var(--secondary-color) !important;
+  /* Reset default appearance */
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-color: #fff !important;
+}
+
+.form-check-input:checked {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.15rem rgba(190, 126, 98, 0.25) !important;
+  border-color: var(--secondary-color) !important;
+  outline: none !important;
+}
+
+/* Estilo específico para radios */
+.form-check-input[type="radio"] {
+  border-radius: 50% !important;
+  width: 18px !important; 
+  height: 18px !important;
+}
+
+.form-check-input[type="radio"]:checked {
+  background-color: var(--secondary-color) !important;
+  background-image: radial-gradient(circle, #fff 0%, #fff 25%, transparent 30%, transparent 100%) !important;
+  background-position: center !important;
+  background-size: contain !important;
+  /* Añadir un efecto de brillo para más visibilidad */
+  box-shadow: 0 0 2px 1px rgba(190, 126, 98, 0.4) !important;
+}
+
+/* Añadiendo estilo para destacar todo el control radio */
+.form-check input[type="radio"]:checked + .form-check-label {
+  color: var(--secondary-color) !important;
+  font-weight: 600 !important;
+}
+
+/* Mejorar la visibilidad de la selección en el option-card */
+.option-card .form-check input[type="radio"]:checked + .form-check-label::before {
+  content: "✓ ";
+  color: var(--secondary-color);
+}
+
+/* Ajustar hover para los radios */
+.form-check:hover .form-check-input[type="radio"] {
+  background-color: #f0f0f0 !important;
+}
+
+.form-check:hover .form-check-input[type="radio"]:checked {
+  background-color: var(--secondary-color) !important;
+}
+
+/* Estilo específico para checkboxes */
+.form-check-input[type="checkbox"]:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e") !important;
+  background-size: 75% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Override Bootstrap */
+input[type="checkbox"].form-check-input, 
+input[type="radio"].form-check-input {
+  background-color: #fff !important;
+}
+
+input[type="checkbox"].form-check-input:checked, 
+input[type="radio"].form-check-input:checked {
+  background-color: var(--secondary-color) !important;
+}
+
+/* Asegurarse de que no queden colores azules */
+.form-check-input::-ms-check {
+  border-color: var(--secondary-color) !important;
+  background-color: #fff !important;
+}
+
+.form-check-label {
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--dark-color);
+}
+
+/* Hover effects para mejorar UX */
+.form-check:hover .form-check-input {
+  border-color: var(--secondary-color) !important;
+}
+
+.form-check:hover .form-check-label {
+  color: var(--primary-color);
+}
+
+.text-muted {
+  font-size: 12px;
+  color: #6c757d;
+  margin-top: 5px;
+  display: block;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 5px;
+  display: block;
+}
+
+.option-card {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  margin-bottom: 10px;
+  transition: box-shadow 0.3s;
+  border-left: 2px solid var(--secondary-color);
+}
+
+.option-card:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+/* Botones básicos */
+.btn {
+  padding: 8px 20px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #5a131e;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  border: none;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #a46b52;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Ajustes para grid responsive */
+.row {
+  margin: 0 -8px;
+}
+
+.col-md-4, .col-md-6, .col-sm-12, .col-lg-3 {
+  padding: 0 8px;
+}
+
+/* Contenedor principal del wizard */
+.wizard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 320px; /* Establecer un ancho mínimo */
+  margin: 30px auto;
+  background-color: var(--light-color);
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  overflow-anchor: none;
+  width: 100%; /* Ancho fijo relativo */
+  box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
+}
+
+/* Indicador de pasos - corregido para evitar overflow */
+.steps-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ancho completo del contenedor padre */
+  margin: 0 auto 25px;
+  padding: 15px 20px;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  position: relative; /* Para posicionar correctamente los conectores */
+  overflow: visible; /* Asegurar que los conectores sean visibles */
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 2; /* Colocar por encima de los conectores */
+  padding: 0 5px; /* Espacio alrededor de cada paso */
+  flex: 0 0 auto; /* Evitar que se estrechen */
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  transition: all 0.3s;
+  font-size: 14px; /* Reducir el tamaño de la fuente para evitar overflow */
+  box-sizing: border-box; /* Incluir padding en el cálculo del tamaño */
+}
+
+.step-title {
+  font-size: 12px;
+  text-align: center;
+  color: #666;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.step.active .step-number {
+  background-color: #B19CD9; /* Color secundario de la aplicación */
+  color: white;
+  transform: scale(1.1); /* Reducir la escala para evitar overflow */
+}
+
+.step.active .step-title {
+  color: #B19CD9; /* Color secundario de la aplicación */
+  font-weight: 600;
+}
+
+.step.completed .step-number {
+  background-color: #732F37; /* Color primario de la aplicación */
+  color: white;
+}
+
+.step-connector {
+  flex-grow: 1;
+  height: 3px;
+  background-color: #e0e0e0;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  min-width: 20px; /* Ancho mínimo para los conectores */
+}
+
+/* Estilo para conectores completados */
+.step-connector.completed {
+  background-color: #732F37; /* Color primario de la aplicación */
+}
+
+/* Contenedor del formulario */
+.form-container {
+  width: 100%; /* Ocupar todo el ancho disponible */
+  max-width: 800px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  margin: 0 auto; /* Centrar */
+  box-sizing: border-box; /* Incluir padding en el cálculo del ancho */
+}
+
+/* Contenido del paso */
+.step-content {
+  min-height: 300px;
+  transition: opacity 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Prevent scroll jump */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navegación entre pasos */
+.wizard-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.step-indicator {
+  background-color: #f5f5f5;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: var(--dark-color);
+}
+
+/* Evitar las flechas en el input de tipo número en varios navegadores */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Estilos para radio buttons inline */
+.form-check-inline {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1rem;
+  padding-left: 0;
+}
+
+/* Ajuste para el texto de ayuda en talleres */
+.option-card small a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.option-card small a:hover {
+  text-decoration: underline;
+}
+
+/* Nuevo contenedor para opciones de radio adaptativas */
+.radio-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.radio-options .form-check {
+  margin-right: 15px;
+}
+
+/* Estilos para el mensaje de éxito */
+.success-message {
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+  min-width: 280px;
+  margin: 0 auto;
+  animation: fadeInUp 0.5s ease;
+  box-sizing: border-box;
+}
+
+.success-icon {
+  font-size: 4rem;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+.success-message h3 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.success-message p {
+  color: var(--dark-color);
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.success-message strong {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilo para el spinner de carga */
+.fa-spinner {
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Destacar input con error */
+input.ng-invalid.ng-touched {
+  border-color: #dc3545 !important;
+}
+
+/* Estilos específicos para las opciones de chiva y acompañantes */
+.chiva-options {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  margin-top: 10px;
+}
+
+.companions-field {
+  padding: 10px;
+  border-left: 2px solid var(--secondary-color);
+  background-color: #fff;
+  border-radius: 0 5px 5px 0;
+}
+
+/* Destacar visualmente los radios de selección de acompañantes */
+.form-check-inline .form-check-input:checked + .form-check-label {
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+/* Evitar que el campo de número de acompañantes sea demasiado ancho */
+input#chiva_companions {
+  max-width: 150px;
+}
+
+/* Mejoras para la visualización de las opciones de chiva */
+.chiva-options-container {
+  background-color: #f9f9fa;
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 15px;
+  border-left: 3px solid var(--secondary-color);
+}
+
+.companions-number-container {
+  background-color: white;
+  padding: 12px;
+  border-radius: 5px;
+  margin-top: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border-left: 2px solid var(--primary-color);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Asegurar que la transición sea suave */
+.mt-2 {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Navigation for mobile devices */
+.wizard-navigation-mobile {
+  display: none; /* Hidden by default on desktop */
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.navigation-buttons {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.navigation-buttons .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+.submit-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Show desktop navigation by default */
+.desktop-only {
+  display: flex;
+}
+
+/* Mejoras para visualización en dispositivos móviles */
+@media (max-width: 768px) {
+  body, html {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  .wizard-container {
+    padding: 10px 8px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 100%; /* Cambiado de 50% a 100% para usar el ancho completo en móvil */
+    min-width: auto;
+    overflow-x: hidden;
+    border-radius: 8px;
+  }
+
+  .steps-indicator {
+    padding: 8px 5px;
+    margin-bottom: 15px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+  
+  .steps-indicator::-webkit-scrollbar {
+    display: none; /* Ocultar scrollbar en WebKit browsers */
+  }
+
+  .step {
+    margin: 0 2px;
+    flex: 0 0 auto;
+    min-width: 40px;
+  }
+
+  .step-number {
+    width: 28px; /* Aumentado de 24px a 28px para mejor toque */
+    height: 28px; /* Aumentado de 24px a 28px para mejor toque */
+    font-size: 12px;
+  }
+
+  .step-title {
+    font-size: 9px;
+    max-width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+  }
+
+  .step-connector {
+    min-width: 10px;
+    flex-grow: 0.5; /* Reducido para controlar mejor el espacio */
+  }
+
+  /* Mejorar la visualización del formulario */
+  .form-container {
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .form-section {
+    padding: 12px 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+
+  .phases-title {
+    font-size: 1.4rem; /* Reducido para mejor ajuste en móvil */
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .form-label {
+    font-size: 0.85rem; /* Aumentado para mejor legibilidad */
+    margin-bottom: 4px;
+  }
+
+  .form-control, .form-select {
+    padding: 10px !important; /* Aumentado para mejor área táctil */
+    font-size: 16px !important; /* Mejor para evitar zoom automático en iOS */
+    height: auto !important;
+    line-height: 1.2 !important;
+  }
+
+  .form-check {
+    margin-bottom: 10px; /* Más espacio entre opciones */
+  }
+
+  .form-check-input {
+    width: 22px !important; /* Aumentado para mejor área táctil */
+    height: 22px !important; /* Aumentado para mejor área táctil */
+    margin-right: 10px !important; /* Más separación del texto */
+  }
+
+  .form-check-label {
+    font-size: 0.95rem; /* Aumentado para mejor legibilidad */
+    line-height: 1.3;
+  }
+
+  /* Mejorar navegación en móvil */
+  .wizard-navigation-mobile {
+    display: flex;
+    order: 2;
+    padding: 12px; /* Aumentado para mejor área táctil */
+    margin-bottom: 15px;
+    border-radius: 8px;
+  }
+  
+  .navigation-buttons {
+    display: flex;
+    gap: 10px; /* Aumentado para mejor separación */
+    width: 100%;
+  }
+  
+  .navigation-buttons .btn {
+    flex: 1;
+    font-size: 0.95rem; /* Aumentado para mejor legibilidad */
+    padding: 12px 15px; /* Aumentado para mejor área táctil */
+    height: 48px; /* Aumentado para mejor área táctil */
+    justify-content: center;
+  }
+
+  .submit-btn {
+    font-size: 1rem;
+    padding: 14px 20px; /* Aumentado para mejor área táctil */
+    height: 50px; /* Aumentado para mejor área táctil */
+  }
+  
+  /* Mejorar visualización de mensajes informativos */
+  .text-muted, .text-danger {
+    font-size: 12px; /* Aumentado para mejor legibilidad */
+    margin-top: 5px;
+    line-height: 1.4;
+  }
+  
+  /* Mejor visualización para tarjetas de opción */
+  .option-card {
+    padding: 12px; /* Aumentado para mejor espaciado */
+    margin-bottom: 12px;
+  }
+  
+  /* Mejor visualización para las notas importantes */
+  .important-notes {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .important-notes li {
+    font-size: 13px; /* Aumentado para mejor legibilidad */
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .wizard-container {
+    padding: 8px 5px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .form-container {
+    padding: 8px;
+  }
+
+  .form-section {
+    padding: 12px 10px; /* Aumentado el padding vertical */
+  }
+
+  .wizard-navigation .btn, 
+  .navigation-buttons .btn {
+    font-size: 0.9rem;
+    padding: 12px 10px; /* Aumentado para mejor área táctil */
+  }
+
+  /* Mejor visualización del indicador de pasos en pantallas muy pequeñas */
+  .steps-indicator {
+    padding: 10px 5px;
+  }
+
+  .step-number {
+    width: 26px; /* Mantener un tamaño razonable */
+    height: 26px; /* Mantener un tamaño razonable */
+    font-size: 11px;
+  }
+
+  .step-title {
+    font-size: 8px;
+    max-width: 40px;
+  }
+
+  /* Asegurar que todos los inputs sean fáciles de tocar */
+  .form-control, .form-select, button {
+    min-height: 44px; /* Aumentado para mejor área táctil */
+  }
+  
+  /* Mejor visualización del footer */
+  .important-notes {
+    padding: 12px;
+  }
+  
+  .important-notes ul {
+    padding-left: 20px; /* Aumentado para mejor legibilidad */
+  }
+  
+  .important-notes li {
+    font-size: 12px;
+    line-height: 1.3;
+    margin-bottom: 10px; /* Aumentado para mejor separación */
+  }
+  
+  /* Mejor visualización del header */
+  .payment-title h2 {
+    font-size: 20px;
+  }
+  
+  .payment-subtitle {
+    font-size: 14px;
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 320px) {
+  .step-number {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+  }
+  
+  .step-title {
+    font-size: 7px;
+    max-width: 35px;
+  }
+  
+  .step-connector {
+    min-width: 5px;
+  }
+  
+  .form-check-input {
+    width: 20px !important;
+    height: 20px !important;
+    margin-right: 8px !important;
+  }
+  
+  .navigation-buttons .btn {
+    font-size: 0.85rem;
+    padding: 10px 8px;
+  }
+  
+  .phases-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* Ajustes específicos para resoluciones desktop */
+@media (min-width: 769px) {
+  .step-number {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .step.active .step-number {
+    transform: scale(1.1); /* Escala más moderada para evitar overflow */
+  }
+  
+  .steps-indicator {
+    max-width: 800px; /* Limitar el ancho en pantallas grandes */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Estilos para las notas importantes - colores actualizados */
+.important-notes {
+  background-color: #f9f8f6;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.important-notes ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.important-notes li {
+  color: #444;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.important-notes li:last-child {
+  margin-bottom: 0;
+}
+
+.important-notes li::marker {
+  color: var(--secondary-color);
+}
+
+/* Title styling homologated with step1 */
+.payment-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.payment-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.payment-title h2 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #732F37; /* Color primario de la aplicación */
+  margin: 0;
+}
+
+.payment-subtitle {
+  font-size: 16px;
+  color: #495057;
+  line-height: 1.5;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Media queries for responsive title styling */
+@media (max-width: 768px) {
+  .payment-title h2 {
+    font-size: 22px;
+  }
+  
+  .payment-subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-title {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .payment-title i {
+    width: 50px;
+    height: 50px;
+    font-size: 1.6rem;
+  }
+  
+  .payment-title h2 {
+    font-size: 20px;
+  }
+  
+  .payment-subtitle {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .payment-title h2 {
+    font-size: 1.6rem;
+  }
+}

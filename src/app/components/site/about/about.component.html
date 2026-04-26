@@ -1,0 +1,25 @@
+<div class="about__columns" id="about">
+	<div class="about__column about__column--primary">
+		<div class="about__slider">
+			<img *ngFor="let image of images; let i = index" 
+				[src]="image" 
+				alt="Imagen del evento" 
+				class="about__cover-image"
+				[ngStyle]="getAnimationStyle(i)">
+		</div>
+	</div>
+	<div class="about__column about__column--secondary">
+		<div class="about__text-wrapper text-content">
+			<h2>{{ translations().title }}</h2>
+			<p>{{ translations().p1 }}</p>
+		</div>
+	</div>
+	<div class="about__column about__column--dark">
+		<div class="about__text-wrapper text-content">
+			<p>{{ translations().p2 }}</p>
+		</div>
+		
+	</div>
+
+</div>
+

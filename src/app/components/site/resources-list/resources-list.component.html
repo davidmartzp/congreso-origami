@@ -1,0 +1,22 @@
+<div class="resources-container">
+  <div class="resources-header">
+    <h2>{{ translations().title }}</h2>
+    <p class="resources-subtitle">{{ translations().subtitle }}</p>
+  </div>
+  
+  <div class="resources-grid">
+    <div class="resource-card" *ngFor="let resource of translations().items">
+      <div class="resource-icon">
+        <i class="fas fa-file-download"></i>
+      </div>
+      <div class="resource-info">
+        <h3>{{ resource.name }}</h3>
+        <a [href]="resource.url" target="_blank" rel="noopener noreferrer">
+          <button class="download-btn">
+            <i class="fas fa-download"></i> {{ translations().downloadBtn }}
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

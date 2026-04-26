@@ -1,0 +1,41 @@
+<div class="steps-hero">
+  <div class="steps-hero-content">
+    <div class="announcement">
+      <i class="fas fa-star-of-life announcement-icon"></i>
+      <h1>{{ translations().heroTitle }}</h1>
+    </div>
+    
+    <div class="instructions">
+      <h2>{{ translations().howTitle }}</h2>
+      <p>{{ translations().howDescription }}</p>
+    </div>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-details">
+          <h3>{{ translations().step1Title }}</h3>
+          <p>{{ translations().step1Description }}</p>
+          <button class="step-action" (click)="scrollToSection('step1')">
+            <i class="fas fa-credit-card"></i> {{ translations().step1Btn }}
+          </button>
+        </div>
+      </div>
+      
+      <div class="step-connector">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      
+      <div  class="step">
+        <div class="step-number">2</div>
+        <div class="step-details">
+          <h3>{{ translations().step2Title }}</h3>
+          <p>{{ translations().step2Description }}</p>
+          <button class="step-action" (click)="scrollToSection('step2')">
+            <i class="fas fa-user-plus"></i> {{ translations().step2Btn }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

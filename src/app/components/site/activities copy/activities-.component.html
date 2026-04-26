@@ -1,0 +1,72 @@
+<div class="activities-container" id="activities">
+  <div class="section-header">
+    <h1 class="section-title">Nuestras Actividades</h1>
+    <p class="section-subtitle">Descubre todo lo que hemos preparado para ti</p>
+  </div>
+  
+  <div class="activities-panel">
+    <div class="activities-menu">
+      <div class="menu-scroll"> 
+        <ul>
+          <li *ngFor="let activity of activities; let i = index"
+              [class.active]="selectedIndex === i"
+              (click)="showActivity(i)">
+            <div class="activity-icon-wrapper">
+              <span class="activity-icon"><i [class]="activity.icon"></i></span>
+            </div>
+            <span class="activity-title">{{ activity.title }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="activity-content-area">
+      <div class="activity-details" *ngIf="selectedIndex !== -1">
+                <!-- Add compact swipe signal for mobile -->
+                <div class="swipe-signal" *ngIf="isMobile">
+                  <i class="fas fa-chevron-left"></i>
+                  <span class="swipe-text">Desliza para navegar</span>
+                  <i class="fas fa-chevron-right"></i>
+                </div>
+        <div class="activity-header">
+          <h2>{{ activities[selectedIndex].title }}</h2>
+          <!-- Flechas de navegación al lado del título -->
+          <div class="activity-nav desktop-nav">
+            <button class="nav-btn prev-btn" 
+                    (click)="navButtonClick('prev', $event)"
+                    aria-label="Previous activity">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-btn next-btn" 
+                    (click)="navButtonClick('next', $event)"
+                    aria-label="Next activity">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="activity-divider"></div>
+        
+        <!-- Activity image -->
+        <div class="activity-image-container" *ngIf="activities[selectedIndex].imageUrl">
+          <img class="activity-image" [src]="activities[selectedIndex].imageUrl" [alt]="activities[selectedIndex].title">
+        </div>
+        
+
+
+        <!-- Wrap description in scrollable container only, without changing other styles -->
+        <div class="activity-description-wrapper">
+          <div class="activity-description" [innerHTML]="getSanitizedContent(activities[selectedIndex].content)"></div>
+        </div>
+      </div>
+      
+      <div class="activity-welcome" *ngIf="selectedIndex === -1">
+        <div class="welcome-paper">
+          <div class="paper-fold"></div>
+          <i class="fas fa-paper-plane welcome-icon"></i>
+          <h3>¡Descubre Nuestras Actividades!</h3>
+          <p>Selecciona una actividad de la lista para conocer todos los detalles</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

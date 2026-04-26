@@ -1,0 +1,137 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.content-box {
+  max-width: 800px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-container {
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  max-width: 180px;
+  height: auto;
+}
+
+.error-code {
+  font-size: 8rem;
+  font-weight: 900;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1;
+  position: relative;
+}
+
+.message {
+  font-size: 1.8rem;
+  color: var(--dark-color);
+  margin: 1rem 0;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #585553;
+  margin-bottom: 2rem;
+}
+
+.origami-joke {
+  background-color: #f3f3f3;
+  border-left: 4px solid var(--secondary-color);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+  color: var(--dark-color);
+}
+
+.navigation {
+  margin-top: 2rem;
+}
+
+.navigation h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-links a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  margin-top: auto;
+  font-size: 0.9rem;
+  color: var(--dark-color);
+}
+
+.paper-fold {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, transparent 50%, #f0f0f0 50%);
+}
+
+.fold-effect {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 80px 80px 0;
+  border-color: transparent var(--secondary-color) transparent transparent;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .error-code {
+    font-size: 6rem;
+  }
+  
+  .message {
+    font-size: 1.5rem;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

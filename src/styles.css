@@ -3,19 +3,26 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  --primary-color: #721725;
-  --secondary-color: #be7e62;
-  --light-color: #f8f9fa;
-  --dark-color: #585553;
+  --primary-color: #3D4451;
+  --secondary-color: #F59E0B;
+  --accent-color: #06B6D4;
+  --light-color: #FAFAF9;
+  --dark-color: #18181B;
   /* ...agrega más variables si es necesario... */
 }
 
-body {
+html, body {
+  box-sizing: border-box;
   margin: 0;
-  width: 100%;
+  width: 100vw;
+  overflow-x: hidden;
   font-family: 'Montserrat', sans-serif;
   background-color: var(--primary-color); /* Fondo primary global */
   color: var(--light-color); /* Texto claro para contraste */
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 h2 {
@@ -43,7 +50,7 @@ h2 {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: b var(--dark-color);
+  scrollbar-color: var(--secondary-color) var(--dark-color); /* Corrected typo 'b' */
 }
 
 

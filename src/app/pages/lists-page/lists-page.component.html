@@ -1,0 +1,90 @@
+<div class="lists-container">
+  <div class="workshops-section">
+    <h2>Selecciona tu taller para obtener la lista de participantes</h2>
+    
+    <div *ngIf="loading" class="loading">
+      Cargando talleres
+    </div>
+
+    <div *ngIf="!loading && workshops.length === 0" class="no-data">
+      No hay talleres disponibles
+    </div>
+
+    <div class="workshops-list" *ngIf="!loading && workshops.length > 0">
+      <div 
+        *ngFor="let workshop of workshops; trackBy: trackByEventId" 
+        class="workshop-card"
+        [class.selected]="selectedEventId === workshop.id_event"
+        (click)="selectEvent(workshop.id_event)"
+        role="button"
+        tabindex="0"
+        [attr.aria-label]="'Seleccionar taller: ' + workshop.workshop_name">
+        <div class="workshop-content">
+          <h3>{{ workshop.workshop_name }}</h3>
+          <div class="workshop-details">
+            <span class="instructor">
+              <span class="instructor-label">Instructor:</span>
+              <span class="instructor-name">{{ workshop.instructor.name }}</span>
+            </span>
+          </div>
+        </div>
+        <div class="workshop-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6-6 6z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="attendees-section" *ngIf="selectedEventId">
+    <div class="section-header">
+      <button 
+        class="btn-back" 
+        (click)="clearSelection()"
+        aria-label="Volver a la lista de talleres">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+        Volver
+      </button>
+      <h2>Participantes</h2>
+    </div>
+
+    <div *ngIf="loadingAttendees" class="loading">
+      Cargando participantes
+    </div>
+
+    <div *ngIf="!loadingAttendees && attendees.length === 0" class="no-data">
+      No hay participantes registrados
+    </div>
+
+    <div class="attendees-list" *ngIf="!loadingAttendees && attendees.length > 0">
+      <div class="attendees-count">
+        {{ attendees.length }} participante{{ attendees.length !== 1 ? 's' : '' }} registrado{{ attendees.length !== 1 ? 's' : '' }}
+      </div>
+      <div *ngFor="let attendee of attendees; trackBy: trackByAttendeeId" class="attendee-card">
+        <div class="attendee-avatar">
+          <span>{{ (attendee.name || attendee.first_name || '?').charAt(0).toUpperCase() }}</span>
+        </div>
+        <div class="attendee-info">
+          <h4>{{ attendee.name || attendee.first_name }} {{ attendee.last_name || '' }}</h4>
+          <div class="attendee-details">
+            <p *ngIf="attendee.email" class="attendee-email">
+              <span class="detail-label">Email:</span>
+              <span class="detail-value">{{ attendee.email }}</span>
+            </p>
+            <p *ngIf="attendee.phone" class="attendee-phone">
+              <span class="detail-label">Teléfono:</span>
+              <span class="detail-value">{{ attendee.phone }}</span>
+            </p>
+            <p *ngIf="attendee.organization" class="attendee-org">
+              <span class="detail-label">Organización:</span>
+              <span class="detail-value">{{ attendee.organization }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

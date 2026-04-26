@@ -1,0 +1,281 @@
+.parche-section {
+  margin-bottom: 8rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.section-number {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--secondary-color);
+  opacity: 0.3;
+}
+
+.section-title {
+  margin: 0;
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.section-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, var(--secondary-color), transparent);
+}
+
+.parche-copy {
+  max-width: 760px;
+  margin-bottom: 2rem;
+}
+
+.parche-copy p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.parche-band {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  padding: 2rem 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(177, 156, 217, 0.08)),
+    rgba(8, 8, 20, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.parche-slider {
+  overflow: hidden;
+}
+
+.parche-track {
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+  width: max-content;
+  padding: 0 1.5rem;
+  animation: parche-autoplay 28s linear infinite;
+}
+
+.parche-track--static {
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: none;
+}
+
+.parche-band:hover .parche-track,
+.parche-band:focus-within .parche-track {
+  animation-play-state: paused;
+}
+
+.parche-card {
+  width: 220px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+}
+
+.parche-card--link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease;
+}
+
+.parche-card--link:hover {
+  transform: translateY(-2px);
+}
+
+.parche-card--link .instagram-link {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.parche-card--link:hover .instagram-link {
+  color: var(--secondary-color);
+}
+
+.parche-card__image-link {
+  display: block;
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+}
+
+.parche-card__image-link:hover {
+  transform: translateY(-2px);
+}
+
+.parche-card__image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--secondary-color), rgba(255, 255, 255, 0.9));
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+.parche-card__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  border: 3px solid rgba(12, 14, 28, 0.92);
+}
+
+.parche-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.parche-card__meta h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.instagram-link {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.instagram-link:hover {
+  color: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+.instagram-link--disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.parche-band__fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 96px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.parche-band__fade--left {
+  left: 0;
+  background: linear-gradient(to right, rgba(20, 14, 40, 0.95), transparent);
+}
+
+.parche-band__fade--right {
+  right: 0;
+  background: linear-gradient(to left, rgba(20, 14, 40, 0.95), transparent);
+}
+
+@keyframes parche-autoplay {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.75rem));
+  }
+}
+
+@media (max-width: 1024px) {
+  .parche-section {
+    margin-bottom: 6rem;
+  }
+
+  .section-header {
+    gap: 1rem;
+  }
+
+  .section-number {
+    font-size: 3rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .parche-section {
+    margin-bottom: 4rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .section-number {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .parche-copy p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .parche-band {
+    padding: 1.5rem 0;
+    border-radius: 22px;
+  }
+
+  .parche-band__fade {
+    width: 52px;
+  }
+
+  .parche-track {
+    gap: 1rem;
+    padding: 0 1rem;
+    animation-duration: 22s;
+  }
+
+  .parche-card {
+    width: 118px;
+    min-width: 118px;
+  }
+
+  .parche-card__image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .parche-card__meta h3 {
+    font-size: 0.68rem;
+  }
+
+  .instagram-link {
+    font-size: 0.62rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parche-track {
+    animation: none;
+  }
+}

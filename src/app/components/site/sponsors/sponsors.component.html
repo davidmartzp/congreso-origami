@@ -1,0 +1,26 @@
+<section class="sponsors-section">
+  <h2>{{ translations().title }}</h2>
+  
+  <div class="sponsors-slider-container">
+    <div class="sponsors-slider" [class.paused]="!autoplayEnabled" [class.animated]="isBrowser">
+      <div class="sponsors-track">
+        <div class="sponsor-item" *ngFor="let sponsor of displayedSponsors">
+          <a *ngIf="sponsor.url && sponsor.url !== '#'" [href]="sponsor.url" target="_blank" rel="noopener noreferrer" class="sponsor-link">
+            <img 
+              [src]="sponsor.src" 
+              [alt]="sponsor.alt" 
+              class="sponsor-logo"
+            >
+          </a>
+          <img *ngIf="!sponsor.url || sponsor.url === '#'"
+            [src]="sponsor.src" 
+            [alt]="sponsor.alt" 
+            class="sponsor-logo"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</section>

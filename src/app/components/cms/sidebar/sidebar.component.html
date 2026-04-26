@@ -1,0 +1,26 @@
+<div class="sidebar" [class.collapsed]="collapsed">
+  <div class="sidebar-header">
+    <img src="images/cropped-AP-2-qep957ie0pzbkwpdzf4c2r01boqxpvvlttrkjq3bvs (2).png" alt="Logo" class="sidebar-logo">
+    <h3>Admin Evento</h3>
+  </div>
+  
+  <div class="sidebar-user">
+    <div class="user-avatar">
+      <i class="fas fa-user-circle"></i>
+    </div>
+    <div class="user-info">
+      <h4>{{sessionUser?.name}}</h4>
+    </div>
+  </div>
+  
+  <ul class="sidebar-menu">
+    <li class="active"><a href="/congreso/dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+    <li><a href="/congreso/asistentes"><i class="fas fa-users"></i><span>Asistentes</span></a></li>
+    <li><a href="/congreso/talleres"><i class="fas fa-chalkboard-teacher"></i><span>Talleres</span></a></li>
+    <!--<li><a href="/congreso/dashboard"><i class="fas fa-cog"></i><span>Configuración</span></a></li>-->
+  </ul>
+  
+  <div class="sidebar-footer">
+    <a (click)="logout()"><i class="fas fa-sign-out-alt"></i><span>Cerrar sesión</span></a>
+  </div>
+</div>

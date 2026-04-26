@@ -1,0 +1,151 @@
+.edit-form-panel {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Hidden by default */
+  width: 60%; /* Set the width to 60% of the screen */
+  max-width: 800px; /* Optional: Set a maximum width for larger screens */
+  height: 100%;
+  background: #232526;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease;
+  z-index: 1000; /* Ensure it appears above other elements */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Prevent horizontal scroll */
+}
+
+.edit-form-panel.visible {
+  right: 0; /* Slide in when visible */
+}
+
+.edit-form-header {
+  background: #35393c;
+  color: #e0e0e0;
+  padding: 10px; /* Reduced padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-form-header h3 {
+  margin: 0;
+  font-size: 1rem; /* Reduced font size */
+}
+
+.edit-form-header .close-btn {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 1.2rem; /* Reduced font size */
+  cursor: pointer;
+}
+
+.edit-form-body {
+  padding: 15px; /* Added padding for better spacing */
+}
+
+.edit-form-body .form-group {
+  margin-bottom: 10px; /* Ensure consistent spacing between fields */
+}
+
+.edit-form-body .form-group label {
+  display: block;
+  margin-bottom: 3px; /* Reduced spacing below label */
+  color: #b0b0b0;
+  font-size: 0.7rem; /* Smaller label font size */
+}
+
+.edit-form-body .form-group input,
+.edit-form-body .form-group select {
+  width: 100%;
+  padding: 4px; /* Reduced padding */
+  border: 1px solid #35393c;
+  border-radius: 3px; /* Reduced border radius */
+  background: #181a1b;
+  color: #e0e0e0;
+  font-size: 0.75rem; /* Smaller font size */
+  height: 28px; /* Reduced height for inputs and selects */
+  outline: none;
+  box-sizing: border-box;
+}
+
+.edit-form-body .form-group textarea {
+  width: 100%;
+  padding: 4px; /* Reduced padding */
+  border: 1px solid #35393c;
+  border-radius: 3px; /* Reduced border radius */
+  background: #181a1b;
+  color: #e0e0e0;
+  font-size: 0.75rem; /* Smaller font size */
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical; /* Allow vertical resizing only */
+  min-height: 60px; /* Reduced minimum height for textarea */
+}
+
+.edit-form-body .form-group textarea:focus {
+  border-color: #e0e0e0;
+}
+
+.edit-form-body .form-group input[type="number"] {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #35393c;
+  border-radius: 3px;
+  background: #181a1b;
+  color: #e0e0e0;
+  font-size: 0.75rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.edit-form-body .form-group input[type="text"] {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #35393c;
+  border-radius: 3px;
+  background: #181a1b;
+  color: #e0e0e0;
+  font-size: 0.75rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.main-content.blurred {
+  filter: blur(5px); /* Apply blur effect */
+  pointer-events: none; /* Disable interactions */
+  user-select: none; /* Prevent text selection */
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 10px; /* Reduced gap between fields */
+}
+
+.form-group.full-width {
+  grid-column: span 2; /* Make the element span both columns */
+}
+
+.btn.primary {
+    background: #35393c;
+    color: #e0e0e0;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn.primary:hover {
+    background: #232526;
+    color: #e0e0e0;
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.btn.primary:active {
+    background: #181a1b;
+    color: #e0e0e0;
+    transform: translateY(0); /* Reset lift effect */
+}

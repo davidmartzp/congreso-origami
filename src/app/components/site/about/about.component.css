@@ -1,0 +1,160 @@
+.about__columns {
+	display: flex;
+	/* overflow-x: hidden; */
+}
+.about__column {
+	box-sizing: border-box; /* Incluye padding y bordes en el cálculo del ancho */
+	padding: 10px;
+	text-align: center;
+	height:75vh;
+	color: #fff; /* Fuente blanca */
+	animation: slideInRight 1s ease-in-out;
+	animation-fill-mode: both;
+}
+.about__column:nth-child(1) {
+	animation-delay: 0.2s;
+}
+.about__column:nth-child(2) {
+	animation-delay: 0.4s;
+}
+.about__column:nth-child(3) {
+	animation-delay: 0.6s;
+}
+.about__column--primary {
+	background-color: var(--primary-color);
+	flex: 0 0 40%;
+	padding: 0; /* Removido para que la imagen abarque el 100% del contenedor */
+}
+.about__column--secondary {
+	background-color: var(--secondary-color);
+	flex: 0 0 30%;
+}
+.about__column--dark {
+	background-color: var(--dark-color);
+	flex: 0 0 30%;
+}
+/* Estilos para el slider */
+.about__slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--primary-color); /* Mismo color que el fondo para consistencia */
+}
+
+/* Estilos para la imagen cover en la primera columna - versión unificada */
+.about__cover-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  animation-name: fadeInOut;
+  animation-iteration-count: infinite;
+}
+
+/* Eliminar los selectores específicos para cada imagen, ya que ahora los estilos se aplican dinámicamente */
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  2% { opacity: 1; }
+  /* El porcentaje de tiempo visible depende del número de imágenes */
+  /* Por ejemplo, para 5 imágenes, cada una debe estar visible ~20% del tiempo */
+  /* Ajustamos un poco para las transiciones */
+  18% { opacity: 1; }
+  20% { opacity: 0.9; }
+  22% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mantener el respaldo para la primera imagen */
+.about__slider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://picsum.photos/seed/origami1/800/600');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* Nuevo estilo para alinear el texto a la izquierda con margin y padding */
+.about__text-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center; /* Centrado vertical */
+	text-align: justify; /* Justificar el texto */
+	/* margin: 20px; eliminado para trasladar margen a .text-content */
+	padding: 10px;
+	height: 100%; /* Para ocupar toda la altura del contenedor y centrar en alto */
+}
+.about__text-wrapper h2 {
+  font-size: 2.2rem; /* Aumentado de 1.8rem para un título más visible */
+}
+.about__text-wrapper p {
+  font-size: 1.2rem; /* Aumentado de 1rem para mejorar la legibilidad del texto */
+}
+
+.text-content {
+    margin: 20px;
+    text-align: justify;  /* agregado para homologar alineación de texto */
+    font-size: 1.2rem; /* Añadido para aumentar el tamaño de texto en el contenido */
+}
+
+@media (max-width: 768px) {
+  .about__columns {
+    flex-direction: column;
+  }
+  .about__text-wrapper {
+    margin-top: 20px;    /* homologado en mobile */
+    margin-bottom: 20px; /* homologado en mobile */
+  }
+  .about__column {
+    animation: slideInUp 1s ease-in-out;
+  }
+}
+
+@media (max-width: 480px) {
+  .about__columns {
+    flex-direction: column;
+  }
+  .about__column--secondary {
+    order: 1;
+  }
+  .about__column--dark {
+    order: 2;
+  }
+  .about__column--primary {
+    order: 3;
+  }
+  .about__text-wrapper {
+    margin-top: 20px;    /* homologado en móviles pequeños */
+    margin-bottom: 20px; /* homologado en móviles pequeños */
+  }
+}

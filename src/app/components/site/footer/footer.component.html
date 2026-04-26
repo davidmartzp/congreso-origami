@@ -1,0 +1,59 @@
+<div class="footer" id="contact">
+  <div class="footer__column">
+    <h2 class="footer__heading">{{ translations().contact }}</h2>
+    <div class="footer__socials">
+      <a href="https://www.facebook.com/origamibogota" target="_blank" class="footer__social-link" aria-label="Facebook">
+        <i class="fab fa-facebook"></i>
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=573152459839&text=Hola,%20quiero%20solicitar%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20evento" target="_blank" class="footer__social-link" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="https://www.instagram.com/congresoorigamibogota/" target="_blank" class="footer__social-link" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+    </div>
+    <div class="footer__contact-info">
+      <a href="tel:+573152459839" class="footer__link">
+        <i class="fas fa-phone-alt"></i> +57 315 245 9839
+      </a><br>
+      <a href="mailto:inscripciones@origamibogota.com" class="footer__link">
+        <i class="fas fa-envelope"></i> {{'inscripciones@origamibogota.com'}}
+      </a>
+      <a href="mailto:congresoorigamibogota@gmail.com" class="footer__link">
+        <i class="fas fa-envelope"></i> {{'congresoorigamibogota@gmail.com'}}
+      </a>
+    </div>
+  </div>
+  <div class="footer__column" >
+    <h2 class="footer__heading">{{ translations().location }}</h2>
+    <div class="footer__map-container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7953.167937825411!2d-74.046762!3d4.668018!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a89e8587291%3A0x83d26b53c7614b25!2sLyc%C3%A9e%20fran%C3%A7ais%20Louis-Pasteur!5e0!3m2!1sfr!2sco!4v1748041553623!5m2!1sfr!2sco" width="400" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    </div>
+    <div class="footer__address" [hidden]="true">
+      <i class="fas fa-map-marker-alt"></i>
+      Liceo Francés Louis Pasteur<br />
+      Cl. 87 #7-77, Barrio La Cabrera, Bogotá
+    </div>
+  </div>
+  <div class="footer__column">
+    <h2 class="footer__heading">{{ translations().register }}</h2>
+    <p class="footer__text">{{ translations().registerText }}</p>
+    <a href="https://origamibogota.com/inscripciones" class="footer__cta-button">
+      <i class="fas fa-user-plus"></i> {{ translations().registerBtn }}
+    </a>
+    <div class="footer__quick-links">
+      <h4 class="footer__subheading">{{ translations().quickLinks }}</h4>
+      <a href="https://origamibogota.com" class="footer__link"><i class="fas fa-chevron-right"></i> {{ translations().home }}</a>
+      <a href="https://origamibogota.com/inscripciones" class="footer__link"><i class="fas fa-chevron-right"></i> {{ translations().inscriptions }}</a>
+      <a href="https://origamibogota.com/talleres" class="footer__link"><i class="fas fa-chevron-right"></i> {{ translations().workshops }}</a>
+    </div>
+  </div>
+</div>
+<div class="footer__bottom">
+  <div class="footer__bottom-container">
+    <img src="images/cropped-AP-2-qep957ie0pzbkwpdzf4c2r01boqxpvvlttrkjq3bvs.png" alt="Logo" class="footer__logo" />
+    <p class="footer__rights">{{ translations().rights }}</p>
+    <p class="footer__credits">Diseño por <a href="https://instagram.com/david_paperfold" class="footer__credit-link" target="_blank" >{{'@david_paperfold'}}</a></p>
+  </div>
+</div>
+

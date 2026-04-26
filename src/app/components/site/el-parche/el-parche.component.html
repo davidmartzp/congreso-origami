@@ -1,0 +1,49 @@
+<article class="parche-section" *ngIf="members.length">
+  <div class="section-header">
+    <div class="section-number">{{ sectionNumber }}</div>
+    <h2 class="section-title">{{ title }}</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="parche-copy">
+    <p>{{ description }}</p>
+  </div>
+
+  <div class="parche-band">
+    <div class="parche-band__fade parche-band__fade--left" aria-hidden="true"></div>
+    <div class="parche-band__fade parche-band__fade--right" aria-hidden="true"></div>
+
+    <div class="parche-slider">
+      <div class="parche-track" [class.parche-track--static]="members.length < 2">
+        <ng-container *ngFor="let member of loopedMembers; let i = index">
+          <a *ngIf="member.instagramUrl; else staticCard" class="parche-card parche-card--link"
+            [href]="member.instagramUrl" target="_blank" rel="noopener noreferrer"
+            [attr.aria-label]="'Abrir Instagram de ' + member.name"
+            [attr.aria-hidden]="members.length > 1 && i >= members.length ? 'true' : null">
+            <div class="parche-card__image">
+              <img [src]="member.image" [alt]="member.alt" loading="lazy">
+            </div>
+
+            <div class="parche-card__meta">
+              <h3>{{ member.name }}</h3>
+              <span class="instagram-link">{{ member.instagramLabel }}</span>
+            </div>
+          </a>
+
+          <ng-template #staticCard>
+            <article class="parche-card" [attr.aria-hidden]="members.length > 1 && i >= members.length ? 'true' : null">
+              <div class="parche-card__image">
+                <img [src]="member.image" [alt]="member.alt" loading="lazy">
+              </div>
+
+              <div class="parche-card__meta">
+                <h3>{{ member.name }}</h3>
+              <span class="instagram-link instagram-link--disabled">{{ member.instagramLabel }}</span>
+              </div>
+            </article>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</article>

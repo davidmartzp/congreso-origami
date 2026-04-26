@@ -1,0 +1,24 @@
+<div class="dashboard-container">
+  <!-- Sidebar Component -->
+  <app-sidebar 
+    [user]="user" 
+    [collapsed]="!sidebarVisible" 
+    (toggleSidebar)="toggleSidebar()">
+  </app-sidebar>
+  
+  <!-- Main Content Area -->
+  <div class="main-content" [class.sidebar-collapsed]="!sidebarVisible">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <button class="menu-toggle" (click)="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h2 class="header-title">Gestión de Agenda</h2>
+    </header>
+    
+    <!-- Content -->
+    <main class="dashboard-content">
+      <app-schedule-manager></app-schedule-manager>
+    </main>
+  </div>
+</div>

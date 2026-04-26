@@ -1,0 +1,1672 @@
+/* Import Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+/* NUEVO: Estilos para la animación de bienvenida - usando colores del booklet */
+.welcome-animation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #0d0d0d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+.welcome-animation-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(136, 136, 136, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(136, 136, 136, 0.15) 0%, transparent 50%);
+  animation: backgroundPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundPulse {
+  0% { 
+    opacity: 0.8;
+  }
+  100% { 
+    opacity: 1;
+  }
+}
+
+.welcome-animation-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #e0e0e0;
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+}
+
+/* Fase 1: Logo y mensaje de bienvenida */
+.welcome-phase-1 {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.welcome-phase-1.active {
+  opacity: 1;
+}
+
+.welcome-logo-wrapper {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(68, 68, 68, 0.3);
+  border-radius: 30px;
+  border: 1px solid rgba(136, 136, 136, 0.3);
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(136, 136, 136, 0.2);
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+.welcome-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 4px rgba(136, 136, 136, 0.3));
+}
+
+.welcome-message {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: rgba(224, 224, 224, 0.9);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Fase 2: Título principal */
+.welcome-phase-2 {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-phase-2.active {
+  opacity: 1;
+}
+
+.welcome-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.title-line {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(135deg, #cccccc 0%, #999999 50%, #888888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleShimmer 2s ease-in-out infinite alternate;
+  line-height: 0.9;
+  text-align: center;
+  width: 100%;
+}
+
+@keyframes titleShimmer {
+  0% { 
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    filter: brightness(1);
+  }
+  100% { 
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes logoFloat {
+  0%, 100% { 
+    transform: translateY(0px); 
+    box-shadow: 
+      0 8px 20px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(136, 136, 136, 0.2);
+  }
+  50% { 
+    transform: translateY(-10px); 
+    box-shadow: 
+      0 12px 25px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(136, 136, 136, 0.3);
+  }
+}
+
+/* Responsive para la animación de bienvenida */
+@media (max-width: 768px) {
+  .welcome-animation-content {
+    padding: 1rem;
+  }
+  
+  .welcome-logo-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 25px;
+  }
+  
+  .welcome-logo {
+    width: 65px;
+    height: 65px;
+  }
+  
+  .welcome-message {
+    font-size: 1.2rem;
+    max-width: 350px;
+    padding: 0 1rem;
+  }
+  
+  .title-line {
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-animation-content {
+    padding: 0.5rem;
+  }
+  
+  .welcome-logo-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+  }
+  
+  .welcome-logo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .welcome-message {
+    font-size: 1rem;
+    max-width: 300px;
+    padding: 0 1.5rem;
+  }
+  
+  .title-line {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+  
+  .welcome-phase-1 {
+    gap: 1.5rem;
+  }
+  
+  .welcome-title {
+    gap: 0.3rem;
+  }
+}
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #0d0d0d 100%);
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 6rem 1rem 2rem;
+}
+
+/* Timeline de talleres - homologado con booklet */
+.timeline-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  /* Quitar display flex y centrado, solo lista normal */
+  display: block;
+  align-items: unset;
+  flex-direction: unset;
+}
+
+/* Elimina la línea vertical de la izquierda */
+.timeline-container::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Elimina la columna de hora y la línea */
+.time-group {
+  /* Quitar centrado y max-width, lista normal */
+  display: block;
+  margin-bottom: 2rem;
+  position: static;
+  width: 100%;
+  max-width: unset;
+  margin-left: 0;
+  margin-right: 0;
+  align-items: unset;
+  flex-direction: unset;
+}
+
+.timeline-time,
+.time-line {
+  display: none !important;
+}
+
+/* Hora como separador arriba de los talleres */
+.time-separator {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* Separador alineado a la izquierda */
+  align-items: center;
+  margin: 2rem 0 1rem 0;
+}
+
+.time-badge {
+  background: linear-gradient(135deg, #444444, #666666);
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(68, 68, 68, 0.4);
+  min-width: 80px;
+  text-align: center;
+  border: 2px solid #888;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.time-badge::after {
+  display: none !important;
+  content: none !important;
+}
+
+.workshops-at-time {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch; /* Cards ocupan todo el ancho */
+}
+
+.workshop-timeline-card {
+  background: rgba(68, 68, 68, 0.2);
+  border: 1px solid rgba(136, 136, 136, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  max-width: unset;
+  margin: 0;
+}
+
+/* Icono de eliminar - homologado */
+.remove-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  background: rgba(244, 67, 54, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+.remove-icon:hover {
+  background: rgba(244, 67, 54, 1);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.5);
+}
+
+.remove-icon i {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.remove-icon.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(117, 117, 117, 0.9) !important;
+  transform: none !important;
+  box-shadow: 0 2px 8px rgba(117, 117, 117, 0.3) !important;
+}
+
+/* Header de workshop - homologado */
+.workshop-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(85, 85, 85, 0.3);
+  border-bottom: 1px solid rgba(136, 136, 136, 0.3);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.workshop-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  color: #e0e0e0;
+  line-height: 1.3;
+  flex: 1 1 100%;
+  min-width: 0;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+  padding-right: 0;
+  word-break: break-word;
+}
+
+/* Oculta duración en el header */
+.workshop-duration {
+  display: none !important;
+}
+
+/* Nueva badge de duración en detalles */
+.workshop-details .workshop-duration-badge {
+  background: #666666;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid #888;
+  margin-right: 0.2rem;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* Oculta los cupos en detalles */
+.workshop-details .detail-badge.tickets {
+  display: none !important;
+}
+
+/* Contenido del workshop */
+.workshop-timeline-content {
+  display: flex;
+  gap: 1.2rem;
+  padding: 1.2rem;
+}
+
+.workshop-thumb {
+  flex-shrink: 0;
+  width: 150px;
+  min-height: 100px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(85, 85, 85, 0.3);
+  border: 1px solid rgba(136, 136, 136, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+}
+
+.workshop-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.workshop-instructor {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  background: rgba(85, 85, 85, 0.3);
+  border-radius: 8px;
+  border-left: 3px solid #888888;
+}
+
+.instructor-label {
+  font-size: 0.9rem;
+  color: #bbb;
+  font-style: italic;
+}
+
+.instructor-name {
+  font-weight: 600;
+  color: #e0e0e0;
+  font-size: 1rem;
+}
+
+.workshop-location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  background: rgba(85, 85, 85, 0.3);
+  border-radius: 8px;
+  border-left: 3px solid #888888;
+  margin-bottom: 0.3rem;
+}
+
+/* NUEVO: Estilo para la franja de hora */
+.workshop-time-range {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  background: rgba(85, 85, 85, 0.3);
+  border-radius: 8px;
+  border-left: 3px solid #4CAF50;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  color: #e0e0e0;
+}
+
+.workshop-time-range .fa-clock {
+  color: #bbb;
+  font-size: 1rem;
+}
+
+.workshop-details {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.detail-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  min-width: fit-content;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  border: 1px solid rgba(136, 136, 136, 0.3);
+}
+
+.detail-badge.level {
+  background: #4CAF50;
+  color: white;
+}
+
+.detail-badge.public {
+  background: #6c757d;
+  color: white;
+}
+
+.detail-badge.kids {
+  background: #e83e8c;
+  color: white;
+}
+
+.detail-badge.tickets {
+  background: rgba(85, 85, 85, 0.3);
+  color: #e0e0e0;
+}
+
+.detail-badge.low-tickets {
+  background: #FF9800;
+  color: white;
+}
+
+.workshop-actions {
+  margin-top: 1rem;
+}
+
+.workshop-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background: #333;
+  color: #e0e0e0;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.workshop-btn.primary {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.workshop-btn.primary:hover {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  transform: translateY(-2px);
+}
+
+.workshop-btn.registering {
+  background: linear-gradient(135deg, #FF9800, #f57c00);
+  color: white;
+  animation: pulse 1.5s infinite;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+}
+
+.workshop-btn.registered {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  cursor: default;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.workshop-btn.unavailable {
+  background: linear-gradient(135deg, #F44336, #d32f2f);
+  color: white;
+  cursor: not-allowed;
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+.workshop-btn.no-tickets {
+  background: #757575;
+  color: white;
+  cursor: not-allowed;
+  box-shadow: 0 4px 15px rgba(117, 117, 117, 0.3);
+}
+
+@keyframes pulse {
+  0% { 
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+  }
+  50% { 
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+  }
+  100% { 
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+  }
+}
+
+/* Barra superior - homologada */
+.room-selector {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(136, 136, 136, 0.3);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  flex-wrap: wrap;
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.filters-toggle-btn,
+.clear-filters-btn,
+.download-schedule-btn,
+.logout-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  white-space: nowrap;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.filters-toggle-btn,
+.clear-filters-btn {
+  background: linear-gradient(135deg, #555555, #666666);
+  color: white;
+}
+
+.filters-toggle-btn:hover,
+.clear-filters-btn:hover {
+  background: linear-gradient(135deg, #666666, #777777);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.download-schedule-btn {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+}
+
+.download-schedule-btn:hover {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, #F44336, #d32f2f);
+  color: white;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+}
+
+/* Modal de filtros - homologado */
+.filters-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 300;
+  justify-content: center;
+  align-items: center;
+}
+
+.filters-modal.open {
+  display: flex;
+}
+
+.filters-content {
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.9);
+  border: 1px solid rgba(136, 136, 136, 0.4);
+  width: 100%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.filters-content label {
+  color: #e0e0e0;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.room-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(136, 136, 136, 0.3);
+  border-radius: 12px;
+  background: rgba(68, 68, 68, 0.3);
+  color: #e0e0e0;
+  font-size: 1rem;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.room-select:focus {
+  outline: none;
+  border-color: #888888;
+  box-shadow: 0 0 0 2px rgba(136, 136, 136, 0.2);
+}
+
+.room-select option {
+  background: #2c2c2c;
+  color: #e0e0e0;
+}
+
+.close-filters-btn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+  margin: -0.5rem -0.5rem 0 0;
+}
+
+.close-filters-btn:hover {
+  color: #cccccc;
+}
+
+/* Modal de horario - homologado */
+.schedule-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 300;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.schedule-modal.open {
+  display: flex;
+}
+
+.schedule-content {
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.9);
+  border: 1px solid rgba(136, 136, 136, 0.4);
+  width: 100%;
+  max-width: 400px;
+  max-height: 85vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 0 auto;
+}
+
+.schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.schedule-title {
+  font-size: 1.8rem;
+  color: #e0e0e0;
+  font-weight: 600;
+  flex: 1;
+}
+
+.schedule-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.schedule-content h4 {
+  font-size: 1.4rem;
+  color: #cccccc;
+  margin: 1rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.schedule-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.schedule-workshop-item {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  background: rgba(68, 68, 68, 0.2) !important;
+  border: 1px solid rgba(136, 136, 136, 0.3) !important;
+  padding: 1rem !important;
+  border-radius: 12px !important;
+  margin-bottom: 0.5rem !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+}
+
+.workshop-schedule-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.workshop-schedule-info strong {
+  color: #cccccc;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.workshop-schedule-info span {
+  color: rgba(224, 224, 224, 0.85);
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.workshop-schedule-info span:first-of-type {
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.remove-workshop-btn {
+  background: rgba(244, 67, 54, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+.remove-workshop-btn:hover:not(:disabled) {
+  background: rgba(244, 67, 54, 1);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.5);
+}
+
+.remove-workshop-btn:disabled {
+  background: rgba(117, 117, 117, 0.9);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(117, 117, 117, 0.3);
+}
+
+.remove-workshop-btn i {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.remove-workshop-btn:disabled i {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.close-schedule-btn {
+  background: rgba(68, 68, 68, 0.9);
+  border: none;
+  color: #e0e0e0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-schedule-btn:hover {
+  background: rgba(102, 102, 102, 0.9);
+  transform: scale(1.1);
+  color: #ffffff;
+}
+
+.download-pdf-btn {
+  background: rgba(76, 175, 80, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.download-pdf-btn:hover {
+  background: rgba(76, 175, 80, 1);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.download-pdf-btn:disabled {
+  background: rgba(117, 117, 117, 0.9);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(117, 117, 117, 0.3);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Login - homologado con el booklet */
+.login-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #0d0d0d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-background {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  background: rgba(68, 68, 68, 0.2);
+  border-radius: 15px;
+  border: 1px solid rgba(136, 136, 136, 0.3);
+  box-shadow: 0 25px 80px rgba(0,0,0,0.9);
+  overflow: hidden;
+}
+
+.login-card {
+  padding: 2rem;
+  position: relative;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-logo-wrapper {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(85, 85, 85, 0.3);
+  border-radius: 25px;
+  border: 1px solid rgba(136, 136, 136, 0.3);
+}
+
+.login-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 4px rgba(136, 136, 136, 0.3));
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #e0e0e0;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  line-height: 1.2;
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  color: rgba(224, 224, 224, 0.8);
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 300;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin-bottom: 0.5rem;
+}
+
+.form-label i {
+  color: #cccccc;
+  width: 16px;
+  text-align: center;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(85, 85, 85, 0.3);
+  border: 1px solid rgba(136, 136, 136, 0.3);
+  border-radius: 10px;
+  color: #e0e0e0;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: rgba(224, 224, 224, 0.5);
+  font-size: 0.9rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #888888;
+  background: rgba(102, 102, 102, 0.3);
+  box-shadow: 0 0 0 2px rgba(136, 136, 136, 0.2);
+}
+
+.login-submit-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.login-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.login-submit-btn:disabled {
+  background: #757575;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(117, 117, 117, 0.3);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.login-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.login-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(136, 136, 136, 0.3);
+}
+
+.help-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(85, 85, 85, 0.3);
+  border-radius: 10px;
+  border-left: 3px solid #888888;
+}
+
+.help-section i {
+  color: #cccccc;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.help-text strong {
+  color: #e0e0e0;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.help-text p {
+  color: rgba(224, 224, 224, 0.8);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Mensaje sin talleres */
+.no-workshops {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: rgba(224, 224, 224, 0.7);
+}
+
+.no-workshops i {
+  font-size: 3rem;
+  color: #666666;
+  margin-bottom: 1rem;
+}
+
+.no-workshops h3 {
+  font-size: 1.5rem;
+  color: #cccccc;
+  margin: 0 0 1rem;
+}
+
+.no-workshops p {
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Progress bar */
+.progress-bar-outer {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.75rem;
+  width: 50px;
+  height: 8px;
+  background: rgba(136, 136, 136, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-inner {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #cccccc, #999999);
+  transition: width 0.3s;
+}
+
+/* Estilos para los encabezados de día */
+.day-header {
+  text-align: center;
+  margin: 3rem 0 2rem;
+}
+
+.day-header h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 1px;
+}
+
+.day-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(45deg, #666666, #999999);
+  border-radius: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline-container::before {
+    left: 30px;
+  }
+
+  .timeline-time {
+    width: 60px;
+  }
+
+  .time-badge {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    min-width: 60px;
+  }
+
+  .workshops-at-time {
+    margin-left: 1rem;
+  }
+
+  .workshop-timeline-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .workshop-thumb {
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+  }
+
+  .room-selector {
+    padding: 0.5rem;
+  }
+
+  .filters-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .filters-header > button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* NUEVO: Estilos específicos para login en tablet */
+  .login-container {
+    padding: 1.5rem 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 3rem;
+  }
+
+  .login-background {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .login-card {
+    padding: 1.8rem;
+  }
+
+  .login-title {
+    font-size: 1.8rem;
+    letter-spacing: 1.5px;
+  }
+
+  .login-logo-wrapper {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 1.2rem;
+  }
+
+  .login-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .login-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .form-input {
+    padding: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .login-submit-btn {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .help-section {
+    padding: 0.9rem;
+    gap: 0.8rem;
+  }
+
+  .help-section i {
+    font-size: 1.1rem;
+  }
+
+  .help-text strong {
+    font-size: 0.95rem;
+  }
+
+  .help-text p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :host {
+    padding-top: 9rem;
+  }
+
+  .timeline-container {
+    padding: 0.5rem;
+  }
+
+  .workshop-timeline-card {
+    padding: 1rem;
+  }
+
+  .time-badge {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    min-width: 50px;
+  }
+
+  .filters-content,
+  .schedule-content {
+    padding: 1.5rem;
+    margin: 0.5rem;
+  }
+
+  .schedule-header {
+    align-items: flex-start;
+  }
+
+  .schedule-title {
+    font-size: 1.4rem;
+    padding-right: 5rem;
+  }
+
+  .schedule-actions {
+    gap: 0.3rem;
+  }
+
+  .download-pdf-btn,
+  .close-schedule-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  /* NUEVO: Estilos específicos para login en móviles */
+  .login-container {
+    padding: 0.5rem;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding-top: 1rem;
+    min-height: 100vh;
+    min-height: 100dvh; /* Usar viewport dinámico para evitar problemas con barras de navegación */
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .login-background {
+    max-width: none;
+    margin: 0;
+    border-radius: 12px;
+    min-height: calc(100vh - 1rem);
+    min-height: calc(100dvh - 1rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-card {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    flex: 1;
+  }
+
+  .login-header {
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .login-logo-wrapper {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1rem;
+    border-radius: 18px;
+  }
+
+  .login-logo {
+    width: 55px;
+    height: 55px;
+  }
+
+  .login-title {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+  }
+
+  .login-subtitle {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    padding: 0 0.5rem;
+  }
+
+  .login-form {
+    gap: 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-group {
+    gap: 0.4rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    gap: 0.4rem;
+  }
+
+  .form-label i {
+    width: 14px;
+    font-size: 0.9rem;
+  }
+
+  .form-input {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    min-height: 48px; /* Asegurar área táctil mínima */
+  }
+
+  .form-input::placeholder {
+    font-size: 0.8rem;
+  }
+
+  .login-submit-btn {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    border-radius: 10px;
+    margin-top: 0.3rem;
+    min-height: 48px; /* Asegurar área táctil mínima */
+  }
+
+  .login-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .help-section {
+    padding: 0.8rem;
+    gap: 0.7rem;
+    border-radius: 8px;
+    border-left-width: 2px;
+  }
+
+  .help-section i {
+    font-size: 1rem;
+    margin-top: 0.1rem;
+  }
+
+  .help-text strong {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .help-text p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 360px) {
+  /* NUEVO: Estilos para pantallas muy pequeñas */
+  .login-container {
+    padding: 0.3rem;
+    padding-top: 0.5rem;
+  }
+
+  .login-background {
+    border-radius: 10px;
+    min-height: calc(100vh - 0.6rem);
+    min-height: calc(100dvh - 0.6rem);
+  }
+
+  .login-card {
+    padding: 1rem;
+  }
+
+  .login-title {
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+  }
+
+  .login-subtitle {
+    font-size: 0.8rem;
+    padding: 0 0.3rem;
+  }
+
+  .form-input {
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .form-input::placeholder {
+    font-size: 0.75rem;
+  }
+
+  .login-submit-btn {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .help-section {
+    padding: 0.7rem;
+    gap: 0.6rem;
+  }
+
+  .help-text strong {
+    font-size: 0.85rem;
+  }
+
+  .help-text p {
+    font-size: 0.75rem;
+  }
+}
+
+/* NUEVO: Estilos para orientación landscape en móviles */
+@media (max-width: 768px) and (orientation: landscape) and (max-height: 500px) {
+  .login-container {
+    padding: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+  }
+
+  .login-background {
+    max-width: 600px;
+    min-height: auto;
+    margin: 0 auto;
+  }
+
+  .login-card {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .login-header {
+    margin-bottom: 1rem;
+  }
+
+  .login-logo-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0.8rem;
+  }
+
+  .login-logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .login-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .login-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .login-form {
+    gap: 1rem;
+  }
+
+  .login-footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+/*# sourceMappingURL=public-attendees.component.css.map */

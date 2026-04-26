@@ -1,0 +1,19 @@
+.group-photo__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  opacity: 0.95;
+  box-sizing: border-box;
+}
+
+.group-photo__logo {
+  max-height: 60px;
+  margin-bottom: 0.5rem;
+}

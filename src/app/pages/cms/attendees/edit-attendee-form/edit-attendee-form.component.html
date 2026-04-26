@@ -1,0 +1,173 @@
+<div class="edit-form-panel" [class.visible]="visible">
+  <div class="edit-form-header">
+    <h3>Editar Asistente</h3>
+    <button class="close-btn" (click)="onClose()">×</button>
+  </div>
+  <div class="edit-form-body">
+    <form class="form-grid">
+      <div class="form-group">
+        <label for="editName">Nombre:</label>
+        <input id="editName" type="text" [(ngModel)]="attendee.name" name="name" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editLastname">Apellido:</label>
+        <input id="editLastname" type="text" [(ngModel)]="attendee.lastname" name="lastname" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editEmail">Email:</label>
+        <input id="editEmail" type="email" [(ngModel)]="attendee.email" name="email" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editPhone">Teléfono:</label>
+        <input id="editPhone" type="text" [(ngModel)]="attendee.phone" name="phone" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editCountry">País:</label>
+        <input id="editCountry" type="text" [(ngModel)]="attendee.country" name="country" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editCity">Ciudad:</label>
+        <input id="editCity" type="text" [(ngModel)]="attendee.city" name="city" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editAge">Edad:</label>
+        <input id="editAge" type="number" [(ngModel)]="attendee.age" name="age" min="0" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editStatus">Estado:</label>
+        <select id="editStatus" [(ngModel)]="attendee.status" name="status" [disabled]="readOnly">
+          <option [ngValue]="true">Confirmado</option>
+          <option [ngValue]="false">Pendiente</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="editPaymentMethod">Método de Pago:</label>
+        <select id="editPaymentMethod" [(ngModel)]="attendee.paymethod" name="paymethod" [disabled]="readOnly">
+          <option value="">Seleccione</option>
+          <option value="Nequi">Nequi</option>
+          <option value="Daviplata">Daviplata</option>
+          <option value="Consignación">Consignación</option>
+          <option value="Efectivo">Efectivo</option>
+          <option value="Página">Página web</option>
+          <option value="Becado(a)">Becado(a)</option>
+          <option value="Patrocinio">Patrocinio</option>
+          <option value="Grupo de apoyo">Grupo de apoyo</option>
+          <option value="Invitado(a)">Invitado(a)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="editPaymentDate">Fecha de Pago:</label>
+        <input 
+          id="editPaymentDate" 
+          type="date" 
+          [(ngModel)]="paydate" 
+          name="paydate" 
+          [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editCompanion">Acompañante:</label>
+        <input id="editCompanion" type="text" [(ngModel)]="attendee.companion" name="companion" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editOrigamiGroup">Grupo de Origami:</label>
+        <input id="editOrigamiGroup" type="text" [(ngModel)]="attendee.origamigroup" name="origamigroup" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editCode">Código:</label>
+        <input id="editCode" type="number" [(ngModel)]="attendee.code" name="code" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editIdName">Identificación:</label>
+        <input id="editIdName" type="text" [(ngModel)]="attendee.idname" name="idname" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editStaff">Es Staff:</label>
+        <input id="editStaff" type="checkbox" [(ngModel)]="attendee.staff" name="staff" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editSpecialCode">Código Especial:</label>
+        <input id="editSpecialCode" type="text" [(ngModel)]="attendee.special_code" name="special_code" [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editGoToChiva">Participa en la Chiva:</label>
+        <input 
+          id="editGoToChiva" 
+          type="checkbox" 
+          [(ngModel)]="attendee.go_to_chiva" 
+          name="go_to_chiva" 
+          [disabled]="readOnly" 
+          (change)="onGoToChivaChange()">
+      </div>
+      <div class="form-group">
+        <label for="editChivaCompanions">Número de Acompañantes en la Chiva:</label>
+        <input 
+          id="editChivaCompanions" 
+          type="number" 
+          [(ngModel)]="attendee.chiva_companions" 
+          name="chivaCompanions" 
+          min="0" 
+          [disabled]="!attendee.go_to_chiva || readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editCards">Intercambio de Tarjetas:</label>
+        <input 
+          id="editCards" 
+          type="checkbox" 
+          [(ngModel)]="attendee.cards" 
+          name="cards" 
+          [disabled]="readOnly" 
+          (change)="onCardsChange()">
+      </div>
+      <div class="form-group">
+        <label for="editCardGroup">Grupo de Tarjetas:</label>
+        <input 
+          id="editCardGroup" 
+          type="number" 
+          [(ngModel)]="attendee.cardsgroup" 
+          name="cardsgroup" 
+          min="0" 
+          max="2" 
+          [disabled]="!attendee.cards || readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editPrintCertificate">Imprimir Certificado:</label>
+        <input 
+          id="editPrintCertificate" 
+          type="checkbox" 
+          [(ngModel)]="attendee.printCertificate" 
+          name="printCertificate" 
+          [disabled]="readOnly">
+      </div>
+      <div class="form-group">
+        <label for="editAttendanceDay">Día de Asistencia:</label>
+        <select id="editAttendanceDay" [(ngModel)]="attendee.days" name="days" [disabled]="readOnly">
+          <option value="">Seleccionar</option>
+          <option value="T">Todos</option>
+          <option value="S">Sábado</option>
+          <option value="D">Domingo</option>
+        </select>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="editInfo">Información Adicional:</label>
+        <textarea id="editInfo" [(ngModel)]="attendee.info" name="info" [disabled]="readOnly"></textarea>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="editPayAmount">Monto Pagado:</label>
+        <input 
+          id="editPayAmount" 
+          type="text" 
+          [(ngModel)]="attendee.pay_amount" 
+          name="pay_amount" 
+          [disabled]="readOnly"
+          (keypress)="onPayAmountKeyPress($event)"
+        >
+      </div>
+
+      <div class="form-group full-width">
+        <button type="button" class="btn primary" (click)="onSave()" [disabled]="readOnly">Actualizar</button>
+      </div>
+    </form>
+  </div>
+</div>

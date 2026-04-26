@@ -1,0 +1,71 @@
+/* Reutiliza estilos globales o de attendees para coherencia visual */
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #181a1b;
+  color: rgba(255, 255, 255, 0.87);
+  font-family: 'Roboto', sans-serif;
+}
+
+.main-content {
+  flex-grow: 1;
+  background-color: #232526;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  margin-left: 280px; /* Sidebar ancho normal */
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 70px; /* Sidebar colapsado */
+}
+
+.dashboard-header {
+  height: 30px;
+  background: #232526;
+  border-bottom: 2px solid #35393c;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  padding: 0 25px;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.header-title {
+  color: #e0e0e0;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  padding-left: 15px;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: #b0b0b0;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 15px;
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .menu-toggle {
+    display: block;
+  }
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+.dashboard-content {
+  padding: 25px;
+  overflow-y: auto;
+}
+
+/* Puedes agregar más estilos según lo necesites */

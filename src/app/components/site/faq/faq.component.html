@@ -1,0 +1,72 @@
+<section class="faq-container" id="faq">
+  <div class="faq-background">
+    <div class="origami-decoration left"></div>
+    <div class="origami-decoration right"></div>
+  </div>
+  
+  <div class="container">
+    <div class="faq-header">
+      <div class="header-icon">
+        <i class="fas fa-question-circle pulse"></i>
+      </div>
+      <h2>{{ translations().title }}</h2>
+      <p class="faq-intro">{{ translations().subtitle }}</p>
+    </div>
+    
+    <div class="faq-grid">
+      <!-- Columna 1 -->
+      <div class="faq-column">
+        <div class="faq-card" *ngFor="let faq of getFaqsByColumn(1)" 
+             (click)="toggleFaq(faq.id)" 
+             [class.active]="activeFaq === faq.id">
+          <div class="faq-card-header">
+            <div class="faq-icon"><i [class]="faq.icon"></i></div>
+            <h3>{{ faq.question }}</h3>
+            <div class="faq-toggle"><i class="fas" [ngClass]="activeFaq === faq.id ? 'fa-minus' : 'fa-plus'"></i></div>
+          </div>
+          <div class="faq-card-body" [class.show]="activeFaq === faq.id">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Columna 2 -->
+      <div class="faq-column">
+        <div class="faq-card" *ngFor="let faq of getFaqsByColumn(2)" 
+             (click)="toggleFaq(faq.id)" 
+             [class.active]="activeFaq === faq.id">
+          <div class="faq-card-header">
+            <div class="faq-icon"><i [class]="faq.icon"></i></div>
+            <h3>{{ faq.question }}</h3>
+            <div class="faq-toggle"><i class="fas" [ngClass]="activeFaq === faq.id ? 'fa-minus' : 'fa-plus'"></i></div>
+          </div>
+          <div class="faq-card-body" [class.show]="activeFaq === faq.id">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Columna 3 -->
+      <div class="faq-column">
+        <div class="faq-card" *ngFor="let faq of getFaqsByColumn(3)" 
+             (click)="toggleFaq(faq.id)" 
+             [class.active]="activeFaq === faq.id">
+          <div class="faq-card-header">
+            <div class="faq-icon"><i [class]="faq.icon"></i></div>
+            <h3>{{ faq.question }}</h3>
+            <div class="faq-toggle"><i class="fas" [ngClass]="activeFaq === faq.id ? 'fa-minus' : 'fa-plus'"></i></div>
+          </div>
+          <div class="faq-card-body" [class.show]="activeFaq === faq.id">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="contact-support">
+      <p>{{ translations().contactText }} <a href="https://api.whatsapp.com/send?phone=573152459839&text=Hola,%20quiero%20solicitar%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20cuentas%20para%20inscribirme%20en%20el%20evento" target="_blank">
+        <i class="fab fa-whatsapp"></i> {{ translations().contactLink }}
+      </a></p>
+    </div>
+  </div>
+</section>

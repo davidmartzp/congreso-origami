@@ -1,0 +1,35 @@
+<div class="lang-switcher" [class.open]="isOpen">
+  <!-- Main trigger button -->
+  <button
+    class="lang-trigger"
+    (click)="toggle()"
+    [attr.aria-label]="'Change language / Cambiar idioma / Mudar idioma'"
+    [attr.aria-expanded]="isOpen"
+  >
+    <span class="lang-flag">{{ getCurrentOption().flag }}</span>
+    <span class="lang-label">{{ getCurrentOption().label }}</span>
+    <span class="lang-chevron" [class.rotated]="isOpen">
+      <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+
+  <!-- Dropdown options -->
+  <div class="lang-dropdown" role="listbox" [attr.aria-hidden]="!isOpen">
+    <button
+      *ngFor="let opt of options"
+      class="lang-option"
+      [class.active]="opt.code === currentLang()"
+      role="option"
+      [attr.aria-selected]="opt.code === currentLang()"
+      (click)="select(opt.code)"
+    >
+      <span class="lang-flag">{{ opt.flag }}</span>
+      <span class="lang-option-label">{{ opt.label }}</span>
+    </button>
+  </div>
+</div>
+
+<!-- Backdrop to close on outside click -->
+<div class="lang-backdrop" *ngIf="isOpen" (click)="toggle()"></div>

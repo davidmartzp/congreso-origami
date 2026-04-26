@@ -1,0 +1,86 @@
+<div class="booklet-container">
+  <!-- Header -->
+  <header class="event-header">
+    <div class="header-content">
+      <h1 class="event-title">Origami Bogotá 2026</h1>
+      <p class="event-subtitle">Programa de Talleres</p>
+    </div>
+  </header>
+
+  <!-- Legend -->
+  <div class="legend-section">
+    <h3>Niveles de Dificultad</h3>
+    <div class="legend-items">
+      <div class="legend-item">
+        <span class="level-badge principiante">P</span>
+        <span>Principiante</span>
+      </div>
+      <div class="legend-item">
+        <span class="level-badge intermedio">I</span>
+        <span>Intermedio</span>
+      </div>
+      <div class="legend-item">
+        <span class="level-badge avanzado">A</span>
+        <span>Avanzado</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schedule by days -->
+  <div class="schedule-container" *ngFor="let day of days">
+    <div class="day-header">
+      <h2 class="day-title">{{ day === 'Saturday' ? 'Sábado' : 'Domingo' }}</h2>
+    </div>
+
+    <div class="timeline-container">
+      <ng-container *ngFor="let timeSlot of organizedWorkshops[day] | keyvalue">
+        <div class="timeline-item">
+          <div class="timeline-time">
+            <span class="time-badge">{{ formatTime(timeSlot.key) }}</span>
+          </div>
+          
+          <div class="timeline-content">
+            <div class="workshop-group" *ngFor="let workshop of timeSlot.value">
+              <div class="workshop-timeline-card">
+                <div class="workshop-header-timeline">
+                  <div class="room-level-info">
+                    <span class="room-badge">{{ workshop.event.room.name }}</span>
+                    <span class="level-badge" [style.background-color]="getLevelColor(workshop.level)">
+                      {{ workshop.level }}
+                    </span>
+                    <span class="public-badge" [class.kids]="workshop.public === 'N'">
+                      {{ getPublicText(workshop.public) }}
+                    </span>
+                  </div>
+                  <span class="duration-badge">{{ workshop.duration }}h</span>
+                </div>
+
+                <div class="workshop-timeline-content">
+                  <div class="workshop-image-timeline" *ngIf="workshop.image">
+                    <img [src]="'https://origamibogota.com/app-ob/storage/app/public/images/' + workshop.image" 
+                         [alt]="workshop.name" 
+                         loading="lazy" />
+                  </div>
+                  
+                  <div class="workshop-info-timeline">
+                    <h4 class="workshop-title-timeline">{{ workshop.name }}</h4>
+                    <p class="workshop-instructor-timeline" *ngIf="workshop.assistantName">
+                      <strong>Instructor(a):</strong> {{ workshop.assistantName }}
+                    </p>
+                    <p class="workshop-observations-timeline" *ngIf="workshop.observations">
+                      {{ workshop.observations }}
+                    </p>
+                    <div class="workshop-time-range">
+                      {{ formatTime(workshop.event.start_time) }} - {{ formatTime(workshop.event.end_time) }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

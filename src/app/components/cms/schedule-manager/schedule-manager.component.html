@@ -1,0 +1,110 @@
+<div class="schedule-manager">
+  <div class="columns">
+    <div class="left-column">
+      <h2 style="color: white;">
+        Talleres
+      </h2>
+      <ul class="scrollable-list">
+        <li 
+          *ngFor="let workshop of workshops" 
+          [class.selected]="selectedWorkshop === workshop"
+          (click)="selectWorkshop(workshop)"
+          [hidden]="workshop.hidden"> <!-- Hide workshops marked as hidden -->
+          <div class="item-title">{{ workshop.name || 'Taller sin nombre' }}</div>
+          <div class="item-tags">
+            <!-- Cambio: de assistantName a nameAssistant -->
+            <span *ngIf="workshop.nameAssistant">Asistente: {{ workshop.nameAssistant }}</span>
+            <span *ngIf="workshop.duration">Duración: {{ workshop.duration }}</span>
+            <span *ngIf="workshop.level">Nivel: {{ workshop.level }}</span>
+            <span *ngIf="workshop.public">Público: {{ workshop.public }}</span>
+          </div>
+        </li>
+      </ul>
+      <h2 style="color: white;">Actividades</h2>
+      <ul class="scrollable-list">
+        <li 
+          *ngFor="let activity of activities" 
+          [class.selected]="selectedActivity === activity"
+          (click)="selectActivity(activity)">
+          <div class="item-title">{{ activity.name || 'Actividad sin nombre' }}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="right-column">
+      <div class="schedule-controls">
+        <button 
+          class="day-button" 
+          [class.selected]="selectedDay === 'Saturday'" 
+          (click)="setDay('Saturday')">
+          Sábado
+        </button>
+        <button 
+          class="day-button" 
+          [class.selected]="selectedDay === 'Sunday'" 
+          (click)="setDay('Sunday')">
+          Domingo
+        </button>
+        <!-- Botón para exportar a Excel -->
+        <button class="day-button" (click)="exportarExcel()">
+          Exportar a Excel
+        </button>
+      </div>
+      <table id="miTabla" class="schedule-table">
+        <thead>
+          <tr>
+            <th>Periodo</th>
+            <th *ngFor="let room of rooms">{{ room.name }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let period of weekendHours">
+            <td>{{ period }}</td>
+            <td *ngFor="let room of rooms">
+              <div 
+                class="schedule-cell" 
+                [class.occupied]="room.events?.[selectedDay]?.[period]"
+                [class.first-in-range]="room.events?.[selectedDay]?.[period]?.isFirst"
+                [class.selected]="selectedCell?.period === period && selectedCell?.room === room"
+                (click)="selectCell(period, room)">
+                <!-- First cell in the range -->
+                <div *ngIf="room.events?.[selectedDay]?.[period]?.isFirst">
+                  <span>{{ room.events[selectedDay][period]?.name }}</span>
+                  <small *ngIf="room.events[selectedDay][period]?.nameAssistant">
+                    Instructor(a): {{ room.events[selectedDay][period]?.nameAssistant }}
+                  </small>
+                  <small *ngIf="room.events[selectedDay][period]?.duration">
+                    Duración: {{ room.events[selectedDay][period]?.duration }}
+                  </small>
+                  <small *ngIf="room.events[selectedDay][period]?.level">
+                    Nivel: {{ room.events[selectedDay][period]?.level }}
+                  </small>
+                  <small *ngIf="room.events[selectedDay][period]?.public">
+                    Público: {{ room.events[selectedDay][period]?.public }}
+                  </small>
+                  <button
+                    class="remove-icon"
+                    (click)="removeItem(period, room)"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+                <!-- Other cells in the range -->
+                <div *ngIf="room.events?.[selectedDay]?.[period] && !room.events?.[selectedDay]?.[period]?.isFirst">
+                  <span>{{ room.events[selectedDay][period]?.name }}</span>
+                </div>
+                <!-- Add button for empty cells -->
+                <button
+                  *ngIf="!room.events?.[selectedDay]?.[period]"
+                  class="add-icon"
+                  (click)="addItem(period, room)"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

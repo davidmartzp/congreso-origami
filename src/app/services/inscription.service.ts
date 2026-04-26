@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; // importar environment
 
 @Injectable({
   providedIn: 'root'
 })
 export class InscriptionService {
-  private apiUrl = 'https://origamibogota.com/congreso/api/assistants';
+  private apiUrl = `${environment.apiUrl}/assistants`; // usar variable de entorno
 
   constructor(private http: HttpClient) { }
 

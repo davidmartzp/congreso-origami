@@ -1,0 +1,414 @@
+/* Fondo principal usando los colores del evento */
+.workshop-container {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(120deg, #232323 60%, #444 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: unset;
+}
+
+.workshop-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url('https://origamibogota.com/images/paws.png') center center/cover no-repeat;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Elimina por completo la clase de huellitas decorativas */
+.paw-prints {
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  background-size: initial !important;
+  background-position: initial !important;
+  background-repeat: initial !important;
+}
+
+.workshop-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2vw 0 1vw 0; /* Reduce padding vertical */
+}
+
+.workshop-header {
+  text-align: center;
+  margin-bottom: 1vw; /* Reduce espacio inferior */
+}
+
+.workshop-header-row {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  margin-bottom: 1.5vw;
+}
+
+.workshop-header h2 {
+  color: var(--secondary-color);
+  font-size: 2.2rem; /* Reduce tamaño */
+  margin: 0.2rem 0.5rem 0.5rem 0.5rem;
+  padding: 0.5rem;
+  font-weight: 500;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  letter-spacing: 2px;
+  background: none;
+}
+
+.separator {
+  height: 3px;
+  width: 120px;
+  margin: 0.3rem auto 0 auto;
+  border-radius: 2px;
+}
+
+.workshop-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1vw;
+  background: none;
+  box-shadow: none;
+  position: relative;
+}
+
+.integrated-content {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  justify-content: center;
+}
+
+.model-image {
+  flex: 0 0 330px;
+  min-width: 250px;
+  max-width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: none;
+  z-index: 3;
+  margin-right: -80px; /* Create overlap with info card */
+  transform: translateY(20px); /* Slight vertical offset */
+}
+
+.model-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,0.55));
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg);}
+  50% { transform: translateY(-14px) rotate(2deg);}
+  100% { transform: translateY(0px) rotate(0deg);}
+}
+
+/* NUEVO: Tarjeta organizada */
+.info-card-organized {
+  flex: 1 1 450px;
+  min-width: 300px;
+  max-width: 650px;
+  background: #292929e6;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 4px rgba(0,0,0,0.10);
+  padding: 2rem 2rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: var(--light-color);
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.info-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  border-bottom: 1.5px solid var(--secondary-color);
+  padding-bottom: 1rem;
+}
+
+.instructor-photo-square {
+  flex: 0 0 80px;
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2.5px solid var(--secondary-color);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instructor-photo-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+
+.info-card-title h3 {
+  margin: 0 0 0.2rem 0;
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.info-card-title .subtitle {
+  font-size: 1rem;
+  color: #e0cfc7;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.info-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1rem;
+}
+
+.info-item i {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+}
+
+.info-item span {
+  color: var(--light-color);
+}
+
+.info-item strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.info-card-bio {
+  margin-top: 1.2rem;
+  background: #232323cc;
+  border-radius: 12px;
+  padding: 1.1rem 1rem 0.7rem 1rem;
+  box-shadow: 0 1.5px 6px rgba(0,0,0,0.10);
+}
+
+.bio-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary-color);
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.bio-title i {
+  font-size: 1.1rem;
+}
+
+.bio-text p {
+  color: #f8f9fa;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.5;
+  font-size: 0.98rem;
+  text-align: justify;
+}
+
+/* NUEVO: Estilos para Instagram */
+.instructor-instagram {
+  margin-top: 0.3rem;
+}
+.instructor-instagram a {
+  color: #e0cfc7;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  transition: color 0.2s;
+}
+.instructor-instagram a:hover {
+  color: var(--secondary-color);
+}
+.instructor-instagram i {
+  font-size: 1.1em;
+}
+
+/* NUEVO: Estilos para el anuncio del taller */
+.workshop-announcement {
+  display: none;
+}
+
+.workshop-subtitle {
+  margin: 1.2rem auto 0.7rem auto;
+  max-width: 700px;
+  background: none;
+  color: #e0cfc7;
+  font-size: 1.13rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.5;
+  padding: 0 1.5rem; /* Add horizontal padding to prevent text from touching edges */
+}
+.workshop-subtitle strong {
+  color: var(--secondary-color);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main-two-cols {
+    flex-direction: column;
+    gap: 2vw;
+  }
+  .model-image, .info-card-organized {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+  }
+  .model-image {
+    padding: 0 1rem;
+    margin: 0 auto; /* Center the model image */
+    width: 100%; /* Set explicit width */
+  }
+  .info-card-organized {
+    padding: 1.8rem;
+    margin: 1rem auto; /* Center the info card and add vertical spacing */
+    overflow: visible; /* Ensure biography content isn't cut off */
+    width: calc(100% - 2rem); /* Adjust width calculation to prevent overflow */
+    max-width: 650px; /* Limit max width for better readability */
+    left: auto; /* Reset any left positioning */
+    right: auto; /* Reset any right positioning */
+  }
+  .workshop-content {
+    padding: 2vw 1rem 2vw 1rem; /* Use fixed padding instead of percentage */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+  }
+  
+  /* Improved title spacing */
+  .workshop-header h2 {
+   
+    margin: 0.8rem 0.5rem 0.5rem 0.5rem;
+    padding: 0.5rem;
+  }
+  
+  .workshop-header {
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .workshop-content {
+    padding: 1rem; /* Simpler padding for smallest screens */
+  }
+  
+  .info-card-organized {
+    width: 100%; /* Full width for smaller screens */
+    margin: 1rem 0; /* Remove horizontal margins */
+    padding: 1.5rem 1.2rem; /* Adjust padding */
+    border-radius: 12px; /* Smaller border radius */
+  }
+  
+  /* Further adjust title for small screens */
+  .workshop-header h2 {
+
+    margin: 0.6rem 0.3rem;
+    padding: 0.3rem;
+    line-height: 1.2;
+  }
+}
+
+/* Ajuste responsive */
+@media (max-width: 700px) {
+  .workshop-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1vw;
+  }
+  .workshop-header {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+/* Responsive: apila la foto sobre el título en pantallas pequeñas */
+@media (max-width: 600px) {
+  .info-card-with-photo .info-card-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .instructor-photo-square {
+    margin-bottom: 0.3rem;
+  }
+}
+
+/* Responsive: apila la foto sobre los datos en pantallas pequeñas */
+@media (max-width: 700px) {
+  .info-main-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+  .instructor-photo-square {
+    margin-bottom: 0.3rem;
+  }
+}
+
+/* Responsive: asegura el layout de dos columnas */
+@media (max-width: 900px) {
+  .main-two-cols {
+    flex-direction: column;
+    gap: 1vw;
+  }
+  
+  .integrated-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .model-image {
+    margin-right: 0;
+    margin-bottom: -40px; /* Create vertical overlap on mobile */
+    transform: translateY(0);
+    z-index: 3;
+  }
+  
+  .info-card-organized {
+    padding-top: 3rem; /* Add extra padding at top to accommodate image overlap */
+  }
+}

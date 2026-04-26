@@ -1,0 +1,74 @@
+<div class="workshops-announcement" [style.background-image]="'url(' + backgroundImageUrl + ')'">
+  <div class="hero-overlay"></div>
+  
+  <div class="origami-container">
+    <div class="geometric-shapes">
+      <div class="hexagon"></div>
+      <div class="triangle"></div>
+      <div class="diamond"></div>
+    </div>
+  </div>
+  
+  <div class="hero-content">
+    <div class="content-wrapper">
+      <div class="hero-text">
+        <div class="organization-info">
+          <div class="logo-container">
+            <img [src]="logoUrl" alt="Amigos Plegadores Logo" class="organization-logo">
+            <div class="organization-text">
+              <div class="organization-line">Amigos</div>
+              <div class="organization-line">Plegadores</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="geometric-header">
+          <div class="header-accent"></div>
+          <h1 class="title">{{ translations().title }}</h1>
+          <h2 class="subtitle">{{ translations().subtitle }}</h2>
+          <div class="title-underline"></div>
+        </div>
+        
+        <div class="description">
+          <p>{{ translations().description1 }}</p>
+          <p>{{ translations().description2 }}</p>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <div class="actions-grid">
+          <div class="primary-action" *ngIf="isRegistrationOpen">
+            <button class="btn btn-primary" (click)="navigateToRegistration()">
+              <span class="btn-icon">🎯</span>
+              {{ translations().registerBtn }}
+            </button>
+          </div>
+          
+          <div class="registration-countdown" *ngIf="!isRegistrationOpen">
+            <div class="countdown-card">
+              <div class="countdown-icon">⏰</div>
+              <div class="countdown-title">{{ translations().countdownTitle }}</div>
+              <div class="countdown-subtitle">{{ translations().countdownSubtitle }}</div>
+              <div class="countdown-info">{{ timeUntilRegistration }}</div>
+            </div>
+          </div>
+          
+          <div class="secondary-actions">
+            <button class="btn btn-accent" (click)="navigateToBooklet()">
+              <span class="btn-icon">📖</span>
+              {{ translations().bookletBtn }}
+            </button>
+            
+            <div class="menu-buttons-grid">
+              <button class="btn btn-secondary" (click)="downloadMenuDay1()">
+                <span class="btn-icon"><i class="fas fa-download"></i></span>
+                {{ translations().menuBtn }}
+              </button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

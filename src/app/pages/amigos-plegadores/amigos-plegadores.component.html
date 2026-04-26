@@ -1,0 +1,249 @@
+<app-menu></app-menu>
+<!-- Banner general de la web -->
+<app-banner></app-banner>
+
+<!-- SECCIÓN AMIGOS PLEGADORES -->
+<section class="amigos-plegadores-section">
+  <!-- Hero Section -->
+  <div class="hero-container">
+    <div class="hero-background">
+      <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="logo-showcase">
+        <div class="logo-wrapper">
+          <img src="https://origamibogota.com/images/cropped-AP-2-qep957ie0pzbkwpdzf4c2r01boqxpvvlttrkjq3bvs.png"
+            alt="Logo Amigos Plegadores" class="main-logo" (error)="onImageError($event)">
+          <div class="logo-glow"></div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="title-line">¿Qué es</span>
+        <span class="title-line highlight">Amigos Plegadores</span>
+        <span class="title-line">en Bogotá?</span>
+      </h1>
+
+      <div class="hero-description">
+        <p>Un parche de amigos con una obsesión compartida por el origami, la cerveza y el caos creativo</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <!-- Origen Section -->
+    <article class="story-section">
+      <div class="section-header">
+        <div class="section-number">01</div>
+        <h2 class="section-title">El Origen</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="story-content">
+        <div class="story-text">
+          <div class="text-block">
+            <p>
+              Amigos Plegadores no es una organización formal ni un colectivo académico. Es, ante todo, un parche de
+              amigos con una obsesión compartida por el origami, la cerveza (a veces más la cerveza que el origami), las
+              buenas conversaciones y el caos creativo.
+            </p>
+          </div>
+
+          <div class="text-block">
+            <p>
+              Este grupo nació del gusto común por el arte de plegar papel, pero rápidamente se volvió mucho más: un
+              espacio donde caben desde plegadores obsesionados con modelos figurativos hasta fans del origami
+              geométrico (aunque hablar de módulos chinos puede ser motivo de excomunión simbólica).
+            </p>
+          </div>
+        </div>
+
+        <div class="story-media">
+          <div class="image-grid" [class.mobile-carousel]="isMobile">
+            <div class="image-container" *ngFor="let image of origenImages; let i = index"
+              [class.active]="!isMobile || currentOrigenIndex === i" [class.fade-transition]="isMobile">
+              <img [src]="image.src" [alt]="image.alt" class="story-image" (error)="onImageError($event)">
+            </div>
+            <div class="carousel-controls" *ngIf="isMobile">
+              <button class="carousel-btn prev" (click)="previousImage('origen')" [disabled]="currentOrigenIndex === 0">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-indicators">
+                <span *ngFor="let image of origenImages; let i = index" [class.active]="currentOrigenIndex === i"
+                  (click)="setCurrentImage('origen', i)"></span>
+              </div>
+              <button class="carousel-btn next" (click)="nextImage('origen')"
+                [disabled]="currentOrigenIndex === origenImages.length - 1">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Reuniones Section -->
+    <article class="story-section reverse">
+      <div class="section-header">
+        <div class="section-number">02</div>
+        <h2 class="section-title">Las Reuniones</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="story-content">
+        <div class="story-media">
+          <div class="image-grid" [class.mobile-carousel]="isMobile">
+            <div class="image-container" *ngFor="let image of reunionesImages; let i = index"
+              [class.active]="!isMobile || currentReunionesIndex === i" [class.fade-transition]="isMobile">
+              <img [src]="image.src" [alt]="image.alt" class="story-image" (error)="onImageError($event)">
+            </div>
+            <div class="carousel-controls" *ngIf="isMobile">
+              <button class="carousel-btn prev" (click)="previousImage('reuniones')"
+                [disabled]="currentReunionesIndex === 0">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-indicators">
+                <span *ngFor="let image of reunionesImages; let i = index" [class.active]="currentReunionesIndex === i"
+                  (click)="setCurrentImage('reuniones', i)"></span>
+              </div>
+              <button class="carousel-btn next" (click)="nextImage('reuniones')"
+                [disabled]="currentReunionesIndex === reunionesImages.length - 1">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-text">
+          <div class="text-block">
+            <p>
+              Las reuniones no siempre consisten en plegar. A veces la conversación se apodera de la mesa, y se habla de
+              todo: ciencia, arte, cine, series, Star Wars, el último bar que se quiere probar o qué restaurante merece
+              una segunda visita. En realidad, cualquier excusa es buena para encontrarse. Y si se pliega, pues mejor.
+            </p>
+          </div>
+
+          <div class="text-block highlight-block">
+            <p>
+              El lugar habitual de reunión es <strong><a href="http://aseismanos.com.co/" target="_blank"
+                  rel="noopener noreferrer" class="external-link">AseisManos</a></strong>, una guarida en el centro de
+              Bogotá donde el
+              café, la pola y el papel conviven sin muchas reglas. Allí no hay jerarquías, ni exigencias: el grupo está
+              formado por personas de todo tipo de profesiones y trasfondos —químicos, maestros, psicólogos, ingenieros,
+              antropólogos— pero lo que los une es la pasión (y la tolerancia) por compartir el tiempo alrededor del
+              origami y la conversación.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <app-el-parche
+      sectionNumber="03"
+      title="El parche"
+      description="Este parche está hecho de personas distintas, profesiones distintas y maneras muy distintas de plegar, pero con la misma facilidad para encontrarse alrededor del papel, la conversación y la amistad.">
+    </app-el-parche>
+
+    <!-- Evento Anual Section -->
+    <article class="story-section">
+      <div class="section-header">
+        <div class="section-number">04</div>
+        <h2 class="section-title">El Evento Anual</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="story-content">
+        <div class="story-text">
+          <div class="text-block">
+            <p>
+              Uno de los momentos cumbre del año es el evento que el grupo impulsa con entusiasmo: una reunión que busca
+              traer artistas internacionales de origami para compartir con la comunidad local. Aunque surge del deseo
+              genuino de conocer a quienes admiran, no es un evento exclusivo: es una celebración abierta a toda la
+              comunidad origamista, un espacio para aprender, conectar y disfrutar. Se organiza con amor, entre
+              cervezas,
+              diagramas arrugados, ideas espontáneas y mucha colaboración.
+            </p>
+          </div>
+        </div>
+
+        <div class="story-media">
+          <div class="image-grid" [class.mobile-carousel]="isMobile">
+            <div class="image-container" *ngFor="let image of eventoImages; let i = index"
+              [class.active]="!isMobile || currentEventoIndex === i" [class.fade-transition]="isMobile">
+              <img [src]="image.src" [alt]="image.alt" class="story-image" (error)="onImageError($event)">
+            </div>
+            <div class="carousel-controls" *ngIf="isMobile">
+              <button class="carousel-btn prev" (click)="previousImage('evento')" [disabled]="currentEventoIndex === 0">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-indicators">
+                <span *ngFor="let image of eventoImages; let i = index" [class.active]="currentEventoIndex === i"
+                  (click)="setCurrentImage('evento', i)"></span>
+              </div>
+              <button class="carousel-btn next" (click)="nextImage('evento')"
+                [disabled]="currentEventoIndex === eventoImages.length - 1">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Chiva Section -->
+    <article class="story-section reverse">
+      <div class="section-header">
+        <div class="section-number">05</div>
+        <h2 class="section-title">La Chiva</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="story-content">
+        <div class="story-media">
+          <div class="image-container primary-image">
+            <img src="images/ap/chiva.jpeg" alt="La Chiva - Fiesta sobre ruedas" class="story-image" (error)="onImageError($event)">
+          </div>
+        </div>
+
+        <div class="story-text">
+          <div class="text-block">
+            <p>
+              Para el grupo, la chiva es mucho más que una actividad dentro del evento anual: es una tradición esperada
+              durante todo el año. Es el momento en que los plegadores se reúnen para celebrar la amistad, la música, el
+              papel y la alegría de compartir, recorriendo juntos las calles de Bogotá en una fiesta sobre ruedas. La
+              chiva es el reflejo del espíritu del grupo: espontáneo, divertido y siempre dispuesto a sumar nuevas
+              historias a la memoria colectiva.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Cierre Section -->
+    <article class="closing-section creative">
+      <div class="closing-content">
+        <div class="final-reflection">
+          <div class="final-quote">
+            <blockquote>
+              "Venimos por el origami, nos quedamos por las historias, y seguimos siendo el mismo parche de siempre."
+            </blockquote>
+            <cite></cite>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+    <!-- Footer general de la web -->
+    <app-footer></app-footer>
+
+    <!-- No hay nada en este HTML que cause parpadeo. El parpadeo suele ser causado por animaciones CSS, transiciones, o efectos visuales en el archivo CSS. 
+Verifica y elimina animaciones, transiciones o efectos en el archivo amigos-plegadores.component.css para evitar el parpadeo. 
+El HTML está correcto y no necesita cambios para este problema. -->

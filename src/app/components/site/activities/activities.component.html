@@ -1,0 +1,70 @@
+<div class="activities-container" id="activities">
+  <div class="section-header">
+    <h1 class="section-title">{{ translations().title }}</h1>
+    <p class="section-subtitle">{{ translations().subtitle }}</p>
+  </div>
+
+  <!-- Carrusel de actividades -->
+  <div class="activities-carousel">
+    <button class="carousel-nav carousel-prev" (click)="previousSlide()" aria-label="Anterior">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <div class="carousel-track-container" (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)"
+      (touchend)="onTouchEnd($event)">
+      <div class="carousel-track" [style.transform]="'translateX(' + translateX + '%)'">
+        <div class="activity-slide" *ngFor="let activity of shuffledActivities; let i = index"
+          (click)="openActivityDetail(i)">
+          <div class="slide-image-wrapper">
+            <img [src]="activity.imageUrl" [alt]="activity.title" class="slide-image" loading="lazy">
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="slide-content">
+            <h3 class="slide-title">{{ activity.title }}</h3>
+            <button class="slide-btn">{{ translations().viewDetails }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-nav carousel-next" (click)="nextSlide()" aria-label="Siguiente">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- Indicadores de páginas -->
+  <div class="carousel-indicators">
+    <button *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="i === currentPage"
+      (click)="goToPage(i)" [attr.aria-label]="'Ir a página ' + (i + 1)">
+    </button>
+  </div>
+
+  <!-- Modal para mostrar detalles -->
+  <div class="activity-modal" *ngIf="selectedIndex !== -1" [@slideIn] (click)="closeDetail()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="closeDetail()">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="modal-header">
+        <img *ngIf="shuffledActivities[selectedIndex].imageUrl" [src]="shuffledActivities[selectedIndex].imageUrl"
+          [alt]="shuffledActivities[selectedIndex].title" class="modal-header-image">
+        <h2>{{ shuffledActivities[selectedIndex].title }}</h2>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-text" [innerHTML]="getSanitizedContent(shuffledActivities[selectedIndex].content)"></div>
+      </div>
+
+      <div class="modal-navigation">
+        <button class="nav-arrow" (click)="previousActivity(); $event.stopPropagation()">
+          <i class="fas fa-chevron-left"></i> {{ translations().prev }}
+        </button>
+        <span class="activity-counter">{{ selectedIndex + 1 }} / {{ shuffledActivities.length }}</span>
+        <button class="nav-arrow" (click)="nextActivity(); $event.stopPropagation()">
+          {{ translations().next }} <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

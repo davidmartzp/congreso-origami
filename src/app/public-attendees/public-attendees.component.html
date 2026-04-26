@@ -1,0 +1,151 @@
+<div class="login-container" *ngIf="!submitted">
+  <h2>Iniciar sesión</h2>
+  <form (submit)="onLogin($event)">
+    <label for="email">Correo electrónico:</label>
+    <input id="email" type="email" [(ngModel)]="email" name="email" required />
+    <label for="participantNumber">Código de participante:</label>
+    <input id="participantNumber" type="text" [(ngModel)]="participantNumber" name="participantNumber" required />
+    <button type="submit">Iniciar sesión</button>
+  </form>
+</div> 
+
+<div *ngIf="submitted">
+  <div class="room-selector">
+    <button class="logout-btn" (click)="logout()" title="Cerrar sesión">
+      <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+    </button>
+    <div class="filters-header">
+      <button class="filters-toggle-btn" (click)="filtersOpen = !filtersOpen" title="Filtrar talleres">
+        <i class="fas" [ngClass]="filtersOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i> Filtrar talleres
+      </button>
+      <button class="clear-filters-btn" (click)="clearFilters()" title="Limpiar filtros">
+        <i class="fas fa-times"></i> Limpiar filtros
+      </button>
+      <button class="download-schedule-btn" (click)="showScheduleModal()" title="Ver tu horario">
+        <i class="fas fa-calendar-alt"></i> Tu horario
+      </button>
+    </div>
+  </div>
+
+  <div class="filters-modal" [class.open]="filtersOpen">
+    <div class="filters-content">
+      <button class="close-filters-btn" (click)="filtersOpen = false" title="Cerrar filtros">
+        <i class="fas fa-times"></i> <!-- Ícono de cerrar -->
+      </button>
+      <label for="roomSelect">Filtrar por sala:</label>
+      <select id="roomSelect" [(ngModel)]="selectedRoomId" (change)="onRoomChange()" class="room-select">
+        <option value="">Todas las salas</option>
+        <option *ngFor="let room of rooms" [value]="room.id">{{ room.name }}</option>
+      </select>
+      <label for="startTimeSelect">Hora inicio:</label>
+      <select id="startTimeSelect" [(ngModel)]="selectedStartTime" (change)="filterEvents()" class="room-select">
+        <option value="">Todas las horas</option>
+        <option *ngFor="let time of getUniqueStartTimes()" [value]="time">{{ time }}</option>
+      </select>
+      <label for="instructorSelect">Instructor(a):</label>
+      <select id="instructorSelect" [(ngModel)]="selectedInstructorId" (change)="filterEvents()" class="room-select">
+        <option value="">Todos los instructores</option>
+        <option *ngFor="let instructor of getUniqueInstructors()" [value]="instructor.id">{{ instructor.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- NUEVO: Título del día -->
+  <div *ngIf="currentDaySpanish" style="text-align:center; font-size:1.5rem; font-weight:bold; margin:2rem 0 1rem;">
+    Talleres para el {{ currentDaySpanish }}
+  </div>
+
+  <ng-container *ngFor="let item of filteredEvents; trackBy: trackByEventId">
+    <div class="workshop-card">
+      <!-- NUEVO: Ícono para eliminar inscripción -->
+      <div *ngIf="registered.includes(item.event.id)" class="remove-icon" (click)="onUnregister(item)" title="Eliminar inscripción">
+        <i class="fas fa-times"></i>
+      </div>
+      <img
+        class="workshop-thumb"
+        [src]="'https://origamibogota.com/app-ob/storage/app/public/images/' + (item.workshop.image || 'default.jpg')"
+        alt="Evento"
+        loading="lazy"
+      />
+      <div class="workshop-info">
+        <div class="workshop-header">
+          <div class="workshop-title">{{ item.workshop.name }}</div>
+          <div class="workshop-time">{{ formatTime(item.event.start_time) }} - {{ formatTime(item.event.end_time) }}</div>
+        </div>
+        
+        <div class="workshop-instructor">
+          <span class="instructor-label">con</span>
+          <span class="instructor-name">{{ item.workshop.instructor.name }}</span>
+        </div>
+        
+        <div class="workshop-location">
+          <i class="fas fa-map-marker-alt location-icon"></i>
+          <span class="location-text">{{ item.room.name }}</span>
+        </div>
+        
+        <div class="workshop-details">
+          <div class="detail-badge duration">{{ item.workshop.duration }}</div>
+          <div class="detail-badge level">{{ translateLevel(item.workshop.level) }}</div>
+          <div class="detail-badge public">{{ translatePublic(item.workshop.public) }}</div>
+        </div>
+        
+        <div class="workshop-actions">
+          <button
+            type="button"
+            class="workshop-btn"
+            [ngClass]="getButtonClasses(item)"
+            (click)="onRegister(item)"
+            [disabled]="!canRegister(item)"
+          >
+            {{ getButtonText(item) }}
+            <ng-container *ngIf="registering[item.event.id]">
+              <span class="progress-bar-outer">
+                <span
+                  class="progress-bar-inner"
+                  [style.width.%]="registering[item.event.id] * 33.33"
+                ></span>
+              </span>
+            </ng-container>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="schedule-modal" [class.open]="showSchedule">
+    <div class="schedule-content">
+      <div class="schedule-header">
+        <span class="schedule-title">Tu horario</span>
+        <button class="close-schedule-btn" (click)="showSchedule = false" title="Cerrar horario">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div *ngIf="organizedSchedule.saturday.length > 0 && organizedSchedule.sunday.length === 0">
+        <h4>Sábado</h4>
+        <ul>
+          <li *ngFor="let workshop of organizedSchedule.saturday">
+            <strong>{{ workshop.time }}</strong>
+            <span>Taller: {{ workshop.name }}</span>
+            <span>Sala: {{ workshop.room }}</span>
+            <span>Instructor: {{ workshop.instructor }}</span>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="organizedSchedule.sunday.length > 0">
+        <h4>Domingo</h4>
+        <ul>
+          <li *ngFor="let workshop of organizedSchedule.sunday">
+            <strong>{{ workshop.time }}</strong>
+            <span>Taller: {{ workshop.name }}</span>
+            <span>Sala: {{ workshop.room }}</span>
+            <span>Instructor: {{ workshop.instructor }}</span>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="organizedSchedule.saturday.length === 0 && organizedSchedule.sunday.length === 0">
+        <p>No tienes talleres inscritos.</p>
+      </div>
+    </div>
+  </div>
+</div>
+

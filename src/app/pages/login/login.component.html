@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="login-card">
+    <img src="images/cropped-AP-2-qep957ie0pzbkwpdzf4c2r01boqxpvvlttrkjq3bvs.png" alt="Site Logo" class="login-logo" />
+    <form (ngSubmit)="onSubmit()" class="login-form">
+      <h2>¡Despliega tus ideas!</h2>
+      
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input 
+          type="email" 
+          [(ngModel)]="email" 
+          name="email" 
+          placeholder="Correo electrónico" 
+          required 
+          autocomplete="username"
+        />
+      </div>
+      
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input 
+          type="password" 
+          [(ngModel)]="password" 
+          name="password" 
+          placeholder="Contraseña" 
+          required 
+          minlength="6"
+          autocomplete="current-password"
+        />
+      </div>
+      
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+  </div>
+</div>

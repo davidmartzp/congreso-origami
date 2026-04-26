@@ -1,0 +1,1427 @@
+.activities-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--light-color);
+  position: relative;
+}
+
+/* Header styling */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.section-title {
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  color: var(--light-color);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-subtitle {
+  color: var(--secondary-color);
+  font-size: 1.15rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+}
+
+/* Carrusel de Actividades */
+.activities-carousel {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  padding: 0.5rem 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  touch-action: pan-y pinch-zoom;
+  padding: 0 0.75rem;
+}
+
+.activity-slide {
+  width: calc((100% - 4.5rem) / 4);
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.activity-slide:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.slide-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.activity-slide:hover .slide-image {
+  transform: scale(1.08);
+}
+
+.slide-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+  pointer-events: none;
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1rem;
+  color: white;
+  z-index: 2;
+}
+
+.slide-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slide-btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.slide-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Navegación del carrusel */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  font-size: 1.2rem;
+}
+
+.carousel-nav:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+  left: -25px;
+}
+
+.carousel-next {
+  right: -25px;
+}
+
+/* Indicadores */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--secondary-color);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-indicators button.active {
+  background: var(--secondary-color);
+  transform: scale(1.2);
+}
+
+.carousel-indicators button:hover {
+  background: var(--secondary-color);
+  opacity: 0.8;
+}
+
+/* Modal/Panel Lateral */
+.activity-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  width: 100%;
+  max-width: 600px;
+  height: 95vh;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--light-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  font-size: 1.2rem;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: transparent;
+}
+
+.modal-header-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--light-color);
+  line-height: 1.3;
+  font-weight: 700;
+  padding: 1.5rem 2rem;
+}
+
+.modal-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary-color) rgba(255, 255, 255, 0.1);
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 4px;
+}
+
+.modal-text {
+  color: var(--light-color);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  text-align: left;
+}
+
+.modal-text a {
+  color: #00ccff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.modal-text a:hover {
+  color: #40e0ff;
+  border-bottom-color: #40e0ff;
+}
+
+.modal-navigation {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+}
+
+.nav-arrow {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  color: white;
+  padding: 0.65rem 1.25rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-arrow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.activity-counter {
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* OLD STYLES - KEPT FOR COMPATIBILITY */
+.activity-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+  /* Increased duration for smoother effects */
+}
+
+.activities-menu li.active .activity-icon {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.activity-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.95rem;
+  color: var(--light-color);
+  font-weight: 500;
+  flex-grow: 1;
+  transition: color 0.2s;
+}
+
+.activities-menu li.active .activity-title {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+/* Content area */
+.activity-content-area {
+  flex-grow: 1;
+  padding: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  /* Smooth scrolling on iOS */
+  scroll-behavior: smooth;
+  background-color: var(--dark-color);
+  position: relative;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  transition: none;
+  /* Disable transition by default */
+}
+
+.activity-content-area::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+.activity-content-area:focus {
+  transition: scroll-behavior 0.3s ease;
+  /* Enable smooth scrolling when focused */
+}
+
+/* Scrollable description container */
+.activity-description-wrapper {
+  position: relative;
+  max-height: 350px;
+  /* Default height for desktop */
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 10px 0 15px;
+  margin: 0 auto 30px;
+  /* Added bottom margin for spacing */
+  max-width: 90%;
+  direction: rtl;
+  /* This moves the scrollbar to the left side */
+  /* Ensure sharp rendering in the content wrapper */
+}
+
+/* Reset text direction inside the wrapper */
+.activity-description {
+  direction: ltr;
+  /* Reset text direction to normal */
+  color: var(--light-color);
+  line-height: 1.6;
+  /* Increased line height for better readability */
+  font-size: 1.25rem;
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  /* Add padding at the bottom of the text */
+  /* Improve text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Remove any potential blur-causing properties */
+  filter: none;
+  text-shadow: none;
+  /* Prevent subpixel blur */
+  transform: translateZ(0);
+}
+
+/* Custom scrollbar styling */
+.activity-description-wrapper::-webkit-scrollbar {
+  width: 6px;
+  display: block;
+  /* Make scrollbar visible */
+}
+
+.activity-description-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 3px;
+}
+
+.activity-description-wrapper::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Enable scrollbar for Firefox */
+.activity-description-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary-color) rgba(255, 255, 255, 0.1);
+}
+
+.activity-description a {
+  color: #00ccff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 0 3px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 0 rgba(0, 204, 255, 0);
+}
+
+.activity-description a:hover {
+  color: #40e0ff;
+  /* Slightly lighter on hover */
+  filter: brightness(130%);
+  background-color: rgba(255, 255, 255, 0.08);
+  text-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
+}
+
+.activity-description a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 204, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.activity-description a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.activity-description a:hover::after,
+.activity-description a:focus::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Special link marker for external links */
+.activity-description a[href^="http"]::after {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300BFFF'%3E%3Cpath d='M18 13v6c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h6M15 3h6v6M10 14L21 3'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.activity-description a[href^="http"]:hover::after {
+  opacity: 1;
+}
+
+/* Welcome screen */
+.activity-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+}
+
+.welcome-paper {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  max-width: 450px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.paper-fold {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255, 255, 255, 0.1) 50%);
+}
+
+.welcome-icon {
+  font-size: 4rem;
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+}
+
+.activity-welcome h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--light-color);
+  font-weight: 700;
+}
+
+.activity-welcome p {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+/* Add transitions container for smoother animations */
+.activity-transition-container {
+  position: relative;
+  min-height: 200px;
+}
+
+.activity-details {
+  position: relative;
+  opacity: 1;
+  transition: none;
+}
+
+/* Estilos para los botones de navegación - restaurando estilo redondeado */
+.nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  /* Restore rounded style */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  /* Restore gradient */
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  -webkit-tap-highlight-color: transparent;
+  /* Prevents highlight on iOS */
+  touch-action: manipulation;
+  /* Improves touch behavior */
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  /* Restore hover effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn:active {
+  transform: scale(0.9);
+  /* More noticeable feedback */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el encabezado de actividad y botones de navegación */
+.activity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Space between title and arrows */
+  width: 100%;
+  margin-bottom: 15px;
+  flex-wrap: nowrap;
+}
+
+.activity-header h2 {
+  margin: 0;
+  color: var(--light-color);
+  font-size: 1.7rem;
+  font-weight: 700;
+  flex: 1;
+  /* Title takes available space */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activity-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.desktop-nav {
+  display: flex;
+  /* Ensure arrows are shown on desktop */
+  justify-content: flex-end;
+  flex-shrink: 0;
+  /* Prevent arrows from shrinking */
+  margin-left: 15px;
+  /* Space between title and arrows */
+}
+
+.mobile-nav {
+  display: none;
+  /* Hidden on desktop */
+}
+
+/* Activity image styling - improved centering and sizing */
+.activity-image-container {
+  margin: 0 auto 25px auto;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 180px;
+  height: 180px;
+  position: relative;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  display: block;
+  text-align: center;
+}
+
+.activity-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.5s ease;
+  object-fit: cover;
+}
+
+/* Hide images on mobile */
+@media (max-width: 900px) {
+  .activity-image-container {
+    display: none;
+  }
+}
+
+/* Enhanced swipe indicator styling - made more prominent */
+.swipe-indicator {
+  display: none;
+  /* Hidden by default (desktop) */
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto;
+  width: 90%;
+  max-width: 280px;
+  padding: 12px 0;
+  background: linear-gradient(90deg,
+      rgba(var(--primary-color-rgb, 100, 100, 255), 0.2),
+      rgba(var(--secondary-color-rgb, 0, 204, 255), 0.3),
+      rgba(var(--primary-color-rgb, 100, 100, 255), 0.2));
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  animation: pulse-attention 2s infinite ease-in-out;
+}
+
+/* Completely redesigned swipe signal with zero blur */
+.swipe-signal {
+  /* Reset all properties and start fresh */
+  all: unset;
+  /* Basic container styling */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px auto;
+  padding: 8px 16px;
+  /* Solid background instead of transparent for better text rendering */
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Corrected background color */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  /* Remove any animation that might cause blur */
+  animation: none;
+}
+
+/* Simple, clean text with no effects */
+.swipe-signal .swipe-text {
+  /* Basic text styling with crisp edges */
+  font: normal 14px/1 'Arial', sans-serif;
+  color: white;
+  padding: 0 8px;
+}
+
+/* Keep the arrow icons simple */
+.swipe-signal i {
+  font-size: 14px;
+  color: white;
+  /* Simple, subtle animation without blur */
+  animation: simple-bounce 1s infinite alternate;
+}
+
+@keyframes simple-bounce {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(3px);
+  }
+}
+
+/* Reset and redo the swipe text with no blur or effects */
+.swipe-signal .swipe-text {
+  all: initial;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+  margin: 0 5px;
+  padding: 0;
+  display: inline-block;
+  letter-spacing: 0;
+  text-transform: none;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+}
+
+.swipe-signal i {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  animation: bounce-horizontal 1.5s infinite alternate;
+}
+
+.swipe-signal i:first-child {
+  animation-delay: 0s;
+}
+
+.swipe-signal i:last-child {
+  animation-delay: 0.75s;
+}
+
+.swipe-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--light-color);
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-horizontal {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+/* Responsive Design for Carousel */
+@media (max-width: 1200px) {
+  .activities-carousel {
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .activities-container {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .activities-carousel {
+    padding: 1rem 0;
+  }
+
+  .carousel-track-container {
+    padding: 0;
+  }
+
+  .carousel-track {
+    gap: 0;
+    padding: 0;
+  }
+
+  .activity-slide {
+    width: 100%;
+  }
+
+  .slide-image-wrapper {
+    height: 350px;
+  }
+
+  .slide-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .slide-title {
+    font-size: 1.1rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .slide-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .carousel-prev {
+    left: 5px;
+  }
+
+  .carousel-next {
+    right: 5px;
+  }
+
+  /* Modal adaptado para móvil */
+  .activity-modal {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .modal-header-image {
+    height: 200px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.25rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .modal-body {
+    padding: 1.5rem 1rem;
+  }
+
+  .modal-text {
+    font-size: 1rem;
+  }
+
+  .modal-navigation {
+    padding: 1rem;
+  }
+
+  .nav-arrow {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .carousel-track-container {
+    padding: 0;
+  }
+
+  .carousel-track {
+    gap: 0;
+    padding: 0;
+  }
+
+  .activity-slide {
+    width: 100%;
+  }
+
+  .slide-image-wrapper {
+    height: 300px;
+  }
+
+  .slide-content {
+    padding: 1.25rem 0.85rem;
+  }
+
+  .slide-title {
+    font-size: 0.95rem;
+    -webkit-line-clamp: 2;
+    margin-bottom: 0.5rem;
+  }
+
+  .slide-btn {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.8rem;
+  }
+
+  .carousel-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .carousel-prev {
+    left: 0;
+  }
+
+  .carousel-next {
+    right: 0;
+  }
+
+  .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+  }
+
+  .modal-header-image {
+    height: 180px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+
+  .modal-text {
+    font-size: 0.95rem;
+  }
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  font-size: 0.8rem;
+}
+
+.modal-icon {
+  width: 45px;
+  height: 45px;
+  font-size: 1.3rem;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+}
+
+.modal-text {
+  font-size: 0.95rem;
+}
+}
+
+.card-title {
+  font-size: 1rem;
+  min-height: 2.5rem;
+}
+
+.activity-img {
+  width: 150px;
+  height: 150px;
+}
+
+.activity-text {
+  font-size: 0.95rem;
+  padding: 0 0.5rem;
+}
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .activities-grid {
+    gap: 0.875rem;
+  }
+
+  .activity-card {
+    padding: 1rem;
+  }
+
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+  }
+
+  .activity-img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .activity-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Accessibility */
+.activity-card:focus {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+.activity-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* OLD RESPONSIVE STYLES - KEPT FOR COMPATIBILITY */
+
+/* Show swipe signal only on mobile */
+@media (max-width: 900px) {
+  .swipe-signal {
+    display: flex;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .activities-panel {
+    flex-direction: column;
+    height: auto;
+    max-height: 80vh;
+    /* Limit height on mobile to prevent layout shifts */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .activities-menu {
+    width: 100%;
+    max-height: 180px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .menu-scroll {
+    padding: 5px 0;
+  }
+
+  .activities-menu li {
+    padding: 10px 15px;
+    margin: 1px 0;
+  }
+
+  .activity-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .activity-content-area {
+    min-height: 450px;
+    padding: 20px;
+    position: relative;
+    /* Ensure content doesn't cause unwanted scroll */
+    max-height: calc(80vh - 180px);
+    padding-bottom: 40px;
+    /* Add more padding at the bottom for better scrolling */
+  }
+
+  .activity-header {
+    flex-direction: column;
+    /* Cambiar a columna en pantallas pequeñas */
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .activity-details h2 {
+    font-size: 1.4rem;
+    max-width: 100%;
+    white-space: normal;
+    /* Permitir que el título se divida en varias líneas */
+    margin-bottom: 10px;
+  }
+
+  .activity-nav {
+    align-self: flex-end;
+    position: relative;
+    z-index: 10;
+    /* Ensure buttons are above other content */
+    display: none;
+    /* Hide the container for mobile nav buttons */
+  }
+
+  .desktop-nav {
+    display: none !important;
+    /* Ocultar flechas desktop en mobile */
+    margin-left: 0;
+    /* Quitar margen en mobile */
+  }
+
+  /* Swipe indicator for mobile */
+  .swipe-indicator {
+    display: flex;
+    z-index: 5;
+    /* Ensure it's above other content */
+  }
+
+  /* Make scrollbar visible but positioned on the left for mobile */
+  .activity-description-wrapper {
+    position: relative;
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 10px 0 15px;
+    /* More padding on left for scrollbar */
+    margin: 0 auto 25px;
+    direction: rtl;
+    /* Keep scrollbar on left side */
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary-color) rgba(255, 255, 255, 0.1);
+  }
+
+  .activity-description-wrapper::-webkit-scrollbar {
+    width: 8px;
+    /* Slightly wider scrollbar for better visibility */
+    display: block;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .activity-description-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Remove the fade indicator that causes blurry appearance */
+  .activity-description-wrapper::after {
+    display: none;
+    /* Remove the fade gradient */
+  }
+
+  .activity-description {
+    direction: ltr;
+    padding-right: 5px;
+    /* Add some space for the scrollbar */
+    font-size: 1.1rem;
+    padding: 0 0 20px 0;
+    /* Add padding at the bottom */
+    max-width: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    filter: none;
+    text-shadow: none;
+  }
+
+  .activity-description a {
+    padding: 2px 5px;
+    margin: 0 2px;
+  }
+
+  .welcome-paper {
+    padding: 25px 20px;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .activities-menu {
+    max-height: 150px;
+  }
+
+  .activities-menu li {
+    padding: 8px 12px;
+  }
+
+  .activity-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+  }
+
+  .activity-title {
+    font-size: 0.85rem;
+  }
+
+  .activity-content-area {
+    padding: 15px;
+    min-height: 400px;
+  }
+
+  .activity-details h2 {
+    font-size: 1.3rem;
+  }
+
+  .activity-description-wrapper {
+    max-height: 250px;
+    /* Smaller height for phones */
+    padding: 0 8px 0 10px;
+    margin-bottom: 20px;
+  }
+
+  .activity-description {
+    font-size: 1rem;
+    padding: 0 0 20px 0;
+  }
+
+  .activity-description a {
+    padding: 2px 5px;
+    margin: 0 2px;
+  }
+
+  .mobile-nav {
+    display: none !important;
+    /* Ensure it remains hidden */
+  }
+
+  .swipe-indicator {
+    padding: 10px 0;
+    margin: 12px auto;
+    width: 85%;
+  }
+
+  .swipe-text {
+    font-size: 1.1rem;
+  }
+
+  .swipe-arrow {
+    font-size: 1rem;
+    width: 20px;
+    height: 20px;
+  }
+
+  .welcome-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .activity-welcome h3 {
+    font-size: 1.3rem;
+  }
+
+  .activity-welcome p {
+    font-size: 0.9rem;
+  }
+
+  .desktop-nav {
+    display: none !important;
+    /* Reforzar ocultamiento en pantallas pequeñas */
+  }
+}
+
+/* Add pulse animation */
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+/* Hide swipe indicator on desktop */
+.swipe-indicator {
+  display: none;
+}
